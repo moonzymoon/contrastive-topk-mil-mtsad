@@ -1,0 +1,42 @@
+{
+  "MSL": {
+    "silhouette": 0.9265491366386414,
+    "ours_wins": 1
+  },
+  "SMAP": {
+    "silhouette": 0.8480951189994812,
+    "ours_wins": 1
+  },
+  "Exathlon-1": {
+    "silhouette": 0.6925711631774902,
+    "ours_wins": 1
+  },
+  "SMD": {
+    "silhouette": 0.4358500838279724,
+    "ours_wins": 0
+  },
+  "PSM": {
+    "silhouette": 0.29873400926589966,
+    "ours_wins": 0
+  },
+  "SWaT": {
+    "silhouette": 0.30264586210250854,
+    "ours_wins": 0
+  },
+  "WADI": {
+    "silhouette": 0.18904027342796326,
+    "ours_wins": 0
+  },
+  "Genesis": {
+    "silhouette": 0.3859676122665405,
+    "ours_wins": 0
+  },
+  "Daphnet": {
+    "silhouette": 0.8219908475875854,
+    "ours_wins": 0
+  },
+  "CATSv2": {
+    "silhouette": 0.14829528331756592,
+    "ours_wins": 0
+  }
+}
