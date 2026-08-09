@@ -1,0 +1,14 @@
+{
+  "seed": 42,
+  "dataset": "SYNTHETIC",
+  "metrics": {
+    "AUPRC": 0.8476190476190477,
+    "AUROC": 0.872,
+    "PointF1": 0.888888888888889,
+    "EventF1_one2one": 1.0,
+    "AllEventMIoU": 0.8,
+    "VUS_PR": 0.30683997923774475
+  },
+  "threshold": -0.9219545125961304,
+  "best_loss": 1.4221160411834717
+}

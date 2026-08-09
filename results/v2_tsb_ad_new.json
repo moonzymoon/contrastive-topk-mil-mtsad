@@ -1,0 +1,238 @@
+{
+  "GHL-1": {
+    "per_seed": [
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.4128113879003559,
+        "seed": 7
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.42491103202846975,
+        "seed": 42
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.41565836298932385,
+        "seed": 123
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.2405693950177936,
+        "seed": 202
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.46619217081850534,
+        "seed": 999
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.0000\u00b10.0000",
+      "EventF1_one2one": "0.0000\u00b10.0000",
+      "empirical_FAR": "0.3920\u00b10.0781"
+    }
+  },
+  "GHL-2": {
+    "per_seed": [
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.39074733096085407,
+        "seed": 7
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.3330960854092527,
+        "seed": 42
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.40213523131672596,
+        "seed": 123
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.3117437722419929,
+        "seed": 202
+      },
+      {
+        "AUPRC": 0.0,
+        "AUROC": NaN,
+        "PointF1": 0.0,
+        "EventF1_one2one": 0.0,
+        "AllEventMIoU": NaN,
+        "VUS_PR": 0.0,
+        "empirical_FAR": 0.3850533807829182,
+        "seed": 999
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.0000\u00b10.0000",
+      "EventF1_one2one": "0.0000\u00b10.0000",
+      "empirical_FAR": "0.3646\u00b10.0355"
+    }
+  },
+  "Exathlon-1": {
+    "per_seed": [
+      {
+        "AUPRC": 0.9991228070175442,
+        "AUROC": 0.9997842968075928,
+        "PointF1": 0.9743589743589743,
+        "EventF1_one2one": 1.0,
+        "AllEventMIoU": 0.9545454545454546,
+        "VUS_PR": 0.43354067631834275,
+        "empirical_FAR": 0.012295081967213115,
+        "seed": 7
+      },
+      {
+        "AUPRC": 0.9991228070175442,
+        "AUROC": 0.9997842968075928,
+        "PointF1": 0.9661016949152543,
+        "EventF1_one2one": 0.8,
+        "AllEventMIoU": 0.9545454545454546,
+        "VUS_PR": 0.43354067631834275,
+        "empirical_FAR": 0.01639344262295082,
+        "seed": 42
+      },
+      {
+        "AUPRC": 0.9994052928932504,
+        "AUROC": 0.9998561978717285,
+        "PointF1": 0.9047619047619047,
+        "EventF1_one2one": 0.3636363636363636,
+        "AllEventMIoU": 1.0,
+        "VUS_PR": 0.43354067631834275,
+        "empirical_FAR": 0.04918032786885246,
+        "seed": 123
+      },
+      {
+        "AUPRC": 0.9991228070175442,
+        "AUROC": 0.9997842968075928,
+        "PointF1": 0.9743589743589743,
+        "EventF1_one2one": 1.0,
+        "AllEventMIoU": 0.9545454545454546,
+        "VUS_PR": 0.43354067631834275,
+        "empirical_FAR": 0.012295081967213115,
+        "seed": 202
+      },
+      {
+        "AUPRC": 0.9994052928932504,
+        "AUROC": 0.9998561978717285,
+        "PointF1": 0.9421487603305785,
+        "EventF1_one2one": 0.6666666666666666,
+        "AllEventMIoU": 0.9545454545454546,
+        "VUS_PR": 0.43354067631834275,
+        "empirical_FAR": 0.028688524590163935,
+        "seed": 999
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.9992\u00b10.0001",
+      "EventF1_one2one": "0.7661\u00b10.2377",
+      "empirical_FAR": "0.0238\u00b10.0141"
+    }
+  },
+  "Exathlon-2": {
+    "per_seed": [
+      {
+        "AUPRC": 0.9535715276843827,
+        "AUROC": 0.9761333914559721,
+        "PointF1": 0.9666666666666666,
+        "EventF1_one2one": 1.0,
+        "AllEventMIoU": 0.9348739495798319,
+        "VUS_PR": 0.2631236357764546,
+        "empirical_FAR": 0.0,
+        "seed": 7
+      },
+      {
+        "AUPRC": 0.9744533448798439,
+        "AUROC": 0.9871403661726241,
+        "PointF1": 0.9836065573770492,
+        "EventF1_one2one": 1.0,
+        "AllEventMIoU": 0.9642857142857143,
+        "VUS_PR": 0.27070064653330983,
+        "empirical_FAR": 0.0,
+        "seed": 42
+      },
+      {
+        "AUPRC": 0.9715013339801115,
+        "AUROC": 0.974389712292938,
+        "PointF1": 0.9836065573770492,
+        "EventF1_one2one": 1.0,
+        "AllEventMIoU": 0.9642857142857143,
+        "VUS_PR": 0.2667507997576408,
+        "empirical_FAR": 0.0,
+        "seed": 123
+      },
+      {
+        "AUPRC": 0.9742354419773772,
+        "AUROC": 0.9865954664341761,
+        "PointF1": 0.9836065573770492,
+        "EventF1_one2one": 1.0,
+        "AllEventMIoU": 0.9642857142857143,
+        "VUS_PR": 0.27043652009901664,
+        "empirical_FAR": 0.0,
+        "seed": 202
+      },
+      {
+        "AUPRC": 0.975806451612903,
+        "AUROC": 0.9898648648648648,
+        "PointF1": 0.9836065573770492,
+        "EventF1_one2one": 1.0,
+        "AllEventMIoU": 0.9642857142857143,
+        "VUS_PR": 0.2718783741178181,
+        "empirical_FAR": 0.0,
+        "seed": 999
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.9699\u00b10.0083",
+      "EventF1_one2one": "1.0000\u00b10.0000",
+      "empirical_FAR": "0.0000\u00b10.0000"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+# CMH-MIL 默认实验配置
+# 论文: From Bags to Calibrated Alarms:
+#       Conformal Multi-Hypersphere Learning for Weakly-Supervised MTS Anomaly Detection
+# 合规: 固定种子 / 全程不触测试标签选阈值 / 阴性结果留存
+
+# ===== 复现性 =====
+seeds: [7, 42, 123, 202, 999]   # 第一篇同款5种子
+
+# ===== 防泄漏时序划分 (沿用第一篇) =====
+split:
+  weak_train_ratio: 0.35        # 弱训练块
+  calib_ratio: 0.15             # bag标签校准块 (保形阈值在此选)
+  test_ratio: 0.50              # 留出测试块
+  disjoint: true                # 时序不相交
+
+# ===== Bag 协议 (沿用第一篇) =====
+bag:
+  L: 128                        # bag长度
+  l: 16                         # instance长度
+  stride: 64                    # 滑动步长
+
+# ===== 模型 =====
+model:
+  encoder:
+    type: tcn                   # tcn / cnn1d
+    d_embed: 24                 # 嵌入维度 (第一篇同款)
+    channels: [32, 64]
+    kernel_size: 3
+    dropout: 0.1
+  var_attention: true           # 变量自注意力
+  hyperspheres:
+    k: 3                        # 球数 (消融 k in {1,2,3,5,8})
+    init: vae_pretrain          # 导师C2: VAE预训练初始化
+
+# ===== 损失权重 (第一篇基础上, 据真实实验坍缩诊断调整) =====
+loss:
+  bag_bce: 1.0
+  compact: 0.10                 # 0.20→0.10 降紧致力防坍缩 (实验诊断)
+  sep: 0.05                     # 0.02→0.05 升分离力 (实验诊断)
+  sep_margin: 1.5
+  rank: 1.0
+  rank_margin: 1.0
+  elbo_mog_alpha: 0.10          # 导师C2混合高斯先验权重 (待消融)
+  balance: 0.10                 # 球均衡正则 (防坍缩, 实验诊断新增)
+
+# ===== 保形校准 (创新点②) =====
+conformal:
+  method: split                 # split conformal (标准)
+  alpha: 0.05                   # 目标误报率
+  bag_pool: softmax             # bag聚合: softmax / mean / topk
+
+# ===== 训练 (沿用第一篇优化器) =====
+train:
+  optimizer: adamw
+  lr: 0.002
+  weight_decay: 1.0e-5
+  grad_clip: 5.0
+  batch_size: 128
+  max_epochs: 12
+  device: cpu                   # 硬约束: 全程CPU
+
+# ===== 数据集 =====
+datasets: [SMD, PSM, MSL, SMAP, 5ECK2022]   # 第一篇同源, 复用
+swat_wadi: false                # 待授权申请后开启
+
+# ===== 评估 (沿用第一篇 + 补VUS-PR) =====
+eval:
+  metrics: [AUPRC, PointF1, EventF1_one2one, AllEventMIoU, VUS_PR, AUROC]
+  event_match: one_to_one       # 一对一匹配, 漏检零信用
+  stats: [Friedman, Wilcoxon, Holm]

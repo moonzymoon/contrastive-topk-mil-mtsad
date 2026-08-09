@@ -1,0 +1,92 @@
+{
+  "dataset": "PSM",
+  "seed": 999,
+  "status": "success",
+  "timestamp": "20260802_012228",
+  "note": "conformal_thr=-0.5890",
+  "config": {
+    "seeds": [
+      7,
+      42,
+      123,
+      202,
+      999
+    ],
+    "split": {
+      "weak_train_ratio": 0.35,
+      "calib_ratio": 0.15,
+      "test_ratio": 0.5,
+      "disjoint": true
+    },
+    "bag": {
+      "L": 128,
+      "l": 16,
+      "stride": 64
+    },
+    "model": {
+      "encoder": {
+        "type": "tcn",
+        "d_embed": 24,
+        "channels": [
+          32,
+          64
+        ],
+        "kernel_size": 3,
+        "dropout": 0.1
+      },
+      "var_attention": true,
+      "hyperspheres": {
+        "k": 3,
+        "init": "vae_pretrain"
+      }
+    },
+    "loss": {
+      "bag_bce": 1.0,
+      "compact": 0.1,
+      "sep": 0.05,
+      "sep_margin": 1.5,
+      "rank": 1.0,
+      "rank_margin": 1.0,
+      "elbo_mog_alpha": 0.1,
+      "balance": 0.1
+    },
+    "conformal": {
+      "method": "split",
+      "alpha": 0.05,
+      "bag_pool": "softmax"
+    },
+    "train": {
+      "optimizer": "adamw",
+      "lr": 0.002,
+      "weight_decay": 1e-05,
+      "grad_clip": 5.0,
+      "batch_size": 128,
+      "max_epochs": 12,
+      "device": "cpu"
+    },
+    "datasets": [
+      "SMD",
+      "PSM",
+      "MSL",
+      "SMAP",
+      "5ECK2022"
+    ],
+    "swat_wadi": false,
+    "eval": {
+      "metrics": [
+        "AUPRC",
+        "PointF1",
+        "EventF1_one2one",
+        "AllEventMIoU",
+        "VUS_PR",
+        "AUROC"
+      ],
+      "event_match": "one_to_one",
+      "stats": [
+        "Friedman",
+        "Wilcoxon",
+        "Holm"
+      ]
+    }
+  }
+}

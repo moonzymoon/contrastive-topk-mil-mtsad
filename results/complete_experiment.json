@@ -1,0 +1,335 @@
+{
+  "main": {
+    "SMD": {
+      "AUPRC": "0.4441±0.0204",
+      "AUROC": "0.7824±0.0243",
+      "PointF1": "0.3545±0.0217",
+      "EventF1_one2one": "0.4102±0.0422",
+      "AllEventMIoU": "0.2495±0.0738",
+      "VUS_PR": "0.1680±0.0116",
+      "empirical_FAR": "0.3221±0.0616"
+    },
+    "PSM": {
+      "AUPRC": "0.4580±0.0554",
+      "AUROC": "0.6734±0.0645",
+      "PointF1": "0.4089±0.0368",
+      "EventF1_one2one": "0.2624±0.0639",
+      "AllEventMIoU": "0.0970±0.0352",
+      "VUS_PR": "0.2344±0.0363",
+      "empirical_FAR": "0.1809±0.0549"
+    },
+    "MSL": {
+      "AUPRC": "0.2478±0.0117",
+      "AUROC": "0.5601±0.0301",
+      "PointF1": "0.1558±0.0153",
+      "EventF1_one2one": "0.3097±0.0468",
+      "AllEventMIoU": "0.1151±0.0164",
+      "VUS_PR": "0.1039±0.0099",
+      "empirical_FAR": "0.0268±0.0067"
+    },
+    "SMAP": {
+      "AUPRC": "0.2231±0.0319",
+      "AUROC": "0.5517±0.0256",
+      "PointF1": "0.1054±0.0354",
+      "EventF1_one2one": "0.3058±0.0687",
+      "AllEventMIoU": "0.0585±0.0040",
+      "VUS_PR": "0.0749±0.0078",
+      "empirical_FAR": "0.0158±0.0132"
+    }
+  },
+  "ablation": {
+    "SMD": {
+      "A1_k1": {
+        "AUPRC": 0.6282,
+        "AUROC": 0.8923,
+        "PointF1": 0.4029,
+        "EventF1_one2one": 0.2581,
+        "AllEventMIoU": 0.1627,
+        "VUS_PR": 0.239,
+        "empirical_FAR": 0.4156
+      },
+      "A2_noConformal": {
+        "AUPRC": 0.4233,
+        "AUROC": 0.7515,
+        "PointF1": 0.2913,
+        "EventF1_one2one": 0.2857,
+        "AllEventMIoU": 0.0602,
+        "VUS_PR": 0.1544,
+        "empirical_FAR": 0.6416
+      },
+      "A3_noMoG": {
+        "AUPRC": 0.4233,
+        "AUROC": 0.7512,
+        "PointF1": 0.3315,
+        "EventF1_one2one": 0.3871,
+        "AllEventMIoU": 0.3358,
+        "VUS_PR": 0.154,
+        "empirical_FAR": 0.2416
+      }
+    },
+    "PSM": {
+      "A1_k1": {
+        "AUPRC": 0.3512,
+        "AUROC": 0.5859,
+        "PointF1": 0.3922,
+        "EventF1_one2one": 0.3279,
+        "AllEventMIoU": 0.1621,
+        "VUS_PR": 0.1426,
+        "empirical_FAR": 0.2419
+      },
+      "A2_noConformal": {
+        "AUPRC": 0.4917,
+        "AUROC": 0.7554,
+        "PointF1": 0.5446,
+        "EventF1_one2one": 0.3571,
+        "AllEventMIoU": 0.1763,
+        "VUS_PR": 0.2844,
+        "empirical_FAR": 0.5663
+      },
+      "A3_noMoG": {
+        "AUPRC": 0.4898,
+        "AUROC": 0.7523,
+        "PointF1": 0.4434,
+        "EventF1_one2one": 0.2778,
+        "AllEventMIoU": 0.1039,
+        "VUS_PR": 0.2816,
+        "empirical_FAR": 0.1424
+      }
+    },
+    "MSL": {
+      "A1_k1": {
+        "AUPRC": 0.1981,
+        "AUROC": 0.525,
+        "PointF1": 0.1244,
+        "EventF1_one2one": 0.2727,
+        "AllEventMIoU": 0.0925,
+        "VUS_PR": 0.026,
+        "empirical_FAR": 0.0291
+      },
+      "A2_noConformal": {
+        "AUPRC": 0.2513,
+        "AUROC": 0.6033,
+        "PointF1": 0.3204,
+        "EventF1_one2one": 0.4127,
+        "AllEventMIoU": 0.3273,
+        "VUS_PR": 0.117,
+        "empirical_FAR": 0.5821
+      },
+      "A3_noMoG": {
+        "AUPRC": 0.2515,
+        "AUROC": 0.6033,
+        "PointF1": 0.1576,
+        "EventF1_one2one": 0.35,
+        "AllEventMIoU": 0.1132,
+        "VUS_PR": 0.1171,
+        "empirical_FAR": 0.0186
+      }
+    },
+    "SMAP": {
+      "A1_k1": {
+        "AUPRC": 0.1502,
+        "AUROC": 0.5113,
+        "PointF1": 0.0713,
+        "EventF1_one2one": 0.2222,
+        "AllEventMIoU": 0.0513,
+        "VUS_PR": 0.0091,
+        "empirical_FAR": 0.0209
+      },
+      "A2_noConformal": {
+        "AUPRC": 0.2427,
+        "AUROC": 0.5572,
+        "PointF1": 0.2415,
+        "EventF1_one2one": 0.1698,
+        "AllEventMIoU": 0.1758,
+        "VUS_PR": 0.0772,
+        "empirical_FAR": 0.2896
+      },
+      "A3_noMoG": {
+        "AUPRC": 0.2589,
+        "AUROC": 0.5613,
+        "PointF1": 0.1809,
+        "EventF1_one2one": 0.3182,
+        "AllEventMIoU": 0.0643,
+        "VUS_PR": 0.0775,
+        "empirical_FAR": 0.01
+      }
+    }
+  },
+  "baselines5seed": {
+    "SMD": {
+      "PCA": {
+        "AUPRC": "0.6523",
+        "AUROC": "0.8999",
+        "PointF1": "0.4043",
+        "EventF1_one2one": "0.2857",
+        "AllEventMIoU": "0.1182",
+        "VUS_PR": "0.2446"
+      },
+      "IF": {
+        "AUPRC": "0.4756",
+        "AUROC": "0.8082",
+        "PointF1": "0.4179",
+        "EventF1_one2one": "0.3226",
+        "AllEventMIoU": "0.3169",
+        "VUS_PR": "0.1789"
+      },
+      "AE": {
+        "AUPRC": "0.5411",
+        "AUROC": "0.8626",
+        "PointF1": "0.3481",
+        "EventF1_one2one": "0.1520",
+        "AllEventMIoU": "0.0063",
+        "VUS_PR": "0.2120"
+      },
+      "DeepSVDD": {
+        "AUPRC": "0.5112",
+        "AUROC": "0.8385",
+        "PointF1": "0.3551",
+        "EventF1_one2one": "0.1618",
+        "AllEventMIoU": "0.0295",
+        "VUS_PR": "0.1980"
+      },
+      "DMSVDD": {
+        "AUPRC": "0.4616",
+        "AUROC": "0.7979",
+        "PointF1": "0.3569",
+        "EventF1_one2one": "0.3727",
+        "AllEventMIoU": "0.1427",
+        "VUS_PR": "0.1771"
+      }
+    },
+    "PSM": {
+      "PCA": {
+        "AUPRC": "0.5152",
+        "AUROC": "0.7441",
+        "PointF1": "0.3920",
+        "EventF1_one2one": "0.4000",
+        "AllEventMIoU": "0.1467",
+        "VUS_PR": "0.2758"
+      },
+      "IF": {
+        "AUPRC": "0.3553",
+        "AUROC": "0.6301",
+        "PointF1": "0.0265",
+        "EventF1_one2one": "0.1290",
+        "AllEventMIoU": "0.0301",
+        "VUS_PR": "0.2062"
+      },
+      "AE": {
+        "AUPRC": "0.5112",
+        "AUROC": "0.7151",
+        "PointF1": "0.3488",
+        "EventF1_one2one": "0.1992",
+        "AllEventMIoU": "0.0510",
+        "VUS_PR": "0.2564"
+      },
+      "DeepSVDD": {
+        "AUPRC": "0.4282",
+        "AUROC": "0.6535",
+        "PointF1": "0.3776",
+        "EventF1_one2one": "0.2416",
+        "AllEventMIoU": "0.0810",
+        "VUS_PR": "0.2096"
+      },
+      "DMSVDD": {
+        "AUPRC": "0.4164",
+        "AUROC": "0.6194",
+        "PointF1": "0.3747",
+        "EventF1_one2one": "0.2396",
+        "AllEventMIoU": "0.0799",
+        "VUS_PR": "0.1850"
+      }
+    },
+    "MSL": {
+      "PCA": {
+        "AUPRC": "0.2766",
+        "AUROC": "0.6301",
+        "PointF1": "0.1860",
+        "EventF1_one2one": "0.3478",
+        "AllEventMIoU": "0.1402",
+        "VUS_PR": "0.1279"
+      },
+      "IF": {
+        "AUPRC": "0.2099",
+        "AUROC": "0.6122",
+        "PointF1": "0.0822",
+        "EventF1_one2one": "0.1395",
+        "AllEventMIoU": "0.0218",
+        "VUS_PR": "0.1213"
+      },
+      "AE": {
+        "AUPRC": "0.2773",
+        "AUROC": "0.6247",
+        "PointF1": "0.1837",
+        "EventF1_one2one": "0.3362",
+        "AllEventMIoU": "0.1402",
+        "VUS_PR": "0.1261"
+      },
+      "DeepSVDD": {
+        "AUPRC": "0.2204",
+        "AUROC": "0.5448",
+        "PointF1": "0.1164",
+        "EventF1_one2one": "0.2570",
+        "AllEventMIoU": "0.0768",
+        "VUS_PR": "0.0678"
+      },
+      "DMSVDD": {
+        "AUPRC": "0.2134",
+        "AUROC": "0.5271",
+        "PointF1": "0.1424",
+        "EventF1_one2one": "0.2977",
+        "AllEventMIoU": "0.1000",
+        "VUS_PR": "0.0692"
+      }
+    },
+    "SMAP": {
+      "PCA": {
+        "AUPRC": "0.1371",
+        "AUROC": "0.4458",
+        "PointF1": "0.0757",
+        "EventF1_one2one": "0.1884",
+        "AllEventMIoU": "0.0598",
+        "VUS_PR": "0.0485"
+      },
+      "IF": {
+        "AUPRC": "0.1112",
+        "AUROC": "0.4456",
+        "PointF1": "0.0608",
+        "EventF1_one2one": "0.1818",
+        "AllEventMIoU": "0.0501",
+        "VUS_PR": "0.0481"
+      },
+      "AE": {
+        "AUPRC": "0.1354",
+        "AUROC": "0.4360",
+        "PointF1": "0.0684",
+        "EventF1_one2one": "0.1890",
+        "AllEventMIoU": "0.0598",
+        "VUS_PR": "0.0462"
+      },
+      "DeepSVDD": {
+        "AUPRC": "0.1486",
+        "AUROC": "0.4972",
+        "PointF1": "0.0905",
+        "EventF1_one2one": "0.2063",
+        "AllEventMIoU": "0.0706",
+        "VUS_PR": "0.0188"
+      },
+      "DMSVDD": {
+        "AUPRC": "0.1881",
+        "AUROC": "0.5246",
+        "PointF1": "0.0776",
+        "EventF1_one2one": "0.2847",
+        "AllEventMIoU": "0.0526",
+        "VUS_PR": "0.0599"
+      }
+    }
+  },
+  "A4_k_sensitivity": {
+    "1": 0.1502,
+    "2": 0.1499,
+    "3": 0.2427,
+    "5": 0.1337,
+    "8": 0.1416
+  }
+}

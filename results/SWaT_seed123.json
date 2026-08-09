@@ -1,0 +1,14 @@
+{
+  "seed": 123,
+  "dataset": "SWaT",
+  "metrics": {
+    "AUPRC": 0.04013938138663605,
+    "AUROC": 0.06650931396104814,
+    "PointF1": 0.0,
+    "EventF1_one2one": 0.0,
+    "AllEventMIoU": 0.0,
+    "VUS_PR": 0.0023946314986951055
+  },
+  "threshold": -0.5893944501876831,
+  "best_loss": 0.5249960653365604
+}

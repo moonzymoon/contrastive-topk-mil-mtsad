@@ -1,0 +1,50 @@
+{
+  "machine-1-1": {
+    "entity": "machine-1-1",
+    "Hit_at_3_grad": 0.46153846153846156,
+    "Hit_at_3_random": 0.8461538461538461,
+    "n_evaluated": 13
+  },
+  "machine-1-2": {
+    "entity": "machine-1-2",
+    "Hit_at_3_grad": NaN,
+    "Hit_at_3_random": NaN,
+    "n_evaluated": 0
+  },
+  "machine-1-3": {
+    "entity": "machine-1-3",
+    "Hit_at_3_grad": 0.0,
+    "Hit_at_3_random": 0.2,
+    "n_evaluated": 5
+  },
+  "machine-1-4": {
+    "entity": "machine-1-4",
+    "Hit_at_3_grad": 0.6,
+    "Hit_at_3_random": 0.6,
+    "n_evaluated": 5
+  },
+  "machine-1-5": {
+    "entity": "machine-1-5",
+    "Hit_at_3_grad": NaN,
+    "Hit_at_3_random": NaN,
+    "n_evaluated": 0
+  },
+  "machine-1-6": {
+    "entity": "machine-1-6",
+    "Hit_at_3_grad": 0.6363636363636364,
+    "Hit_at_3_random": 0.7878787878787878,
+    "n_evaluated": 33
+  },
+  "machine-1-7": {
+    "entity": "machine-1-7",
+    "Hit_at_3_grad": 0.42857142857142855,
+    "Hit_at_3_random": 0.7142857142857143,
+    "n_evaluated": 7
+  },
+  "machine-1-8": {
+    "entity": "machine-1-8",
+    "Hit_at_3_grad": 0.5,
+    "Hit_at_3_random": 0.25,
+    "n_evaluated": 4
+  }
+}

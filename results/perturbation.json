@@ -1,0 +1,18 @@
+{
+  "SMD": {
+    "inject_fp": 0.0,
+    "delete_fp": 0.0
+  },
+  "PSM": {
+    "inject_fp": 0.0,
+    "delete_fp": 0.0
+  },
+  "MSL": {
+    "inject_fp": 0.0,
+    "delete_fp": 0.0
+  },
+  "SMAP": {
+    "inject_fp": 0.0,
+    "delete_fp": 0.0
+  }
+}

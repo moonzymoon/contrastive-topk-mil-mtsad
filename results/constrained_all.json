@@ -1,0 +1,45 @@
+{
+  "constrained_eventF1_FAR0p1": {
+    "SMD": {
+      "CMH-MIL": 0.625,
+      "PCA": 0.632,
+      "IF": 0.667,
+      "AE": 0.545,
+      "DeepSVDD": 0.667,
+      "DMSVDD": 0.625
+    },
+    "PSM": {
+      "CMH-MIL": 0.203,
+      "PCA": 0.231,
+      "IF": 0.357,
+      "AE": 0.241,
+      "DeepSVDD": 0.282,
+      "DMSVDD": 0.203
+    },
+    "MSL": {
+      "CMH-MIL": 0.35,
+      "PCA": 0.379,
+      "IF": 0.241,
+      "AE": 0.379,
+      "DeepSVDD": 0.324,
+      "DMSVDD": 0.35
+    },
+    "SMAP": {
+      "CMH-MIL": 0.351,
+      "PCA": 0.31,
+      "IF": 0.182,
+      "AE": 0.278,
+      "DeepSVDD": 0.286,
+      "DMSVDD": 0.351
+    }
+  },
+  "k_selection": {
+    "SMAP_calib_AUPRC": {
+      "1": 0.272,
+      "2": 0.272,
+      "3": 0.287,
+      "5": 0.194,
+      "8": 0.307
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "SMAP": [
+    {
+      "dataset": "SMAP",
+      "seed": 7,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 1394,
+          "n_test": 7012,
+          "tau": 0.09256178885698318,
+          "FAR": 0.1833998859098688
+        },
+        "sphere1": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere2": {
+          "n_calib": 4,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        }
+      },
+      "global_FAR": 0.1823881447705899,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "SMAP",
+      "seed": 42,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 1019,
+          "n_test": 5685,
+          "tau": 0.7780810594558716,
+          "FAR": 0.11996481970096746
+        },
+        "sphere1": {
+          "n_calib": 379,
+          "n_test": 1333,
+          "tau": 0.8829535245895386,
+          "FAR": 0.015003750937734433
+        },
+        "sphere2": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        }
+      },
+      "global_FAR": 0.09660872043317184,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "SMAP",
+      "seed": 123,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere1": {
+          "n_calib": 1398,
+          "n_test": 7018,
+          "tau": 0.06947902590036392,
+          "FAR": 0.0262182958107723
+        },
+        "sphere2": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        }
+      },
+      "global_FAR": 0.0262182958107723,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "SMAP",
+      "seed": 202,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 1394,
+          "n_test": 6156,
+          "tau": 0.23647642135620117,
+          "FAR": 0.0527940220922677
+        },
+        "sphere1": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere2": {
+          "n_calib": 4,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        }
+      },
+      "global_FAR": 0.11470504417212882,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "SMAP",
+      "seed": 999,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere1": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere2": {
+          "n_calib": 1398,
+          "n_test": 7018,
+          "tau": 0.06168515980243683,
+          "FAR": 0.10173838700484468
+        }
+      },
+      "global_FAR": 0.10173838700484468,
+      "alpha": 0.05
+    }
+  ],
+  "MSL": [
+    {
+      "dataset": "MSL",
+      "seed": 7,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 303,
+          "n_test": 1484,
+          "tau": 0.3061304986476898,
+          "FAR": 0.14690026954177898
+        },
+        "sphere1": {
+          "n_calib": 17,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere2": {
+          "n_calib": 2,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        }
+      },
+      "global_FAR": 0.02557544757033248,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "MSL",
+      "seed": 42,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere1": {
+          "n_calib": 283,
+          "n_test": 1537,
+          "tau": 0.19311366975307465,
+          "FAR": 0.057905009759271306
+        },
+        "sphere2": {
+          "n_calib": 39,
+          "n_test": 27,
+          "tau": 3491976.75,
+          "FAR": 0.14814814814814814
+        }
+      },
+      "global_FAR": 0.017263427109974423,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "MSL",
+      "seed": 123,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere1": {
+          "n_calib": 13,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere2": {
+          "n_calib": 309,
+          "n_test": 1529,
+          "tau": 0.13813483715057373,
+          "FAR": 0.032047089601046436
+        }
+      },
+      "global_FAR": 0.024936061381074168,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "MSL",
+      "seed": 202,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 1,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere1": {
+          "n_calib": 317,
+          "n_test": 1551,
+          "tau": 0.1466938555240631,
+          "FAR": 0.02321083172147002
+        },
+        "sphere2": {
+          "n_calib": 4,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        }
+      },
+      "global_FAR": 0.021099744245524295,
+      "alpha": 0.05
+    },
+    {
+      "dataset": "MSL",
+      "seed": 999,
+      "per_sphere": {
+        "sphere0": {
+          "n_calib": 311,
+          "n_test": 1537,
+          "tau": 0.08030287176370621,
+          "FAR": 0.044892648015614836
+        },
+        "sphere1": {
+          "n_calib": 0,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        },
+        "sphere2": {
+          "n_calib": 11,
+          "FAR": null,
+          "note": "too few (<30), fallback"
+        }
+      },
+      "global_FAR": 0.023657289002557546,
+      "alpha": 0.05
+    }
+  ]
+}
