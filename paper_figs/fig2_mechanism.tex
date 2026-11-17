@@ -1,0 +1,71 @@
+% Figure 2: quantile-radius mechanism (claim-bearing, mechanism left + real instance right).
+% Data source: data/fig2_scores_MSL_seed7.csv (exported by src/export_scores_for_fig.py,
+% MSL seed 7, unified protocol) — zero hand-typed numbers in the histogram.
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+  font=\small,
+  dotn/.style={circle, fill=blue!60!black, inner sep=0pt, minimum size=1.7mm},
+  dota/.style={rectangle, fill=red!70!black, inner sep=0pt, minimum size=1.7mm},
+  arr/.style={-{Stealth[length=2.4mm,width=1.7mm]}, semithick, draw=black!75},
+  rep/.style={-{Stealth[length=2.4mm,width=1.7mm]}, semithick, dashed, draw=black!75},
+  nbox/.style={draw=blue!55!black, fill=blue!8, rounded corners=1.5pt, inner sep=3pt, align=center},
+  abox/.style={draw=red!60!black, fill=red!7, rounded corners=1.5pt, inner sep=3pt, align=center},
+  pan/.style={draw=black!30, rounded corners=4pt},
+  ttl/.style={font=\small\bfseries, align=center},
+  sub/.style={font=\small, align=center, text=black!72},
+  lab/.style={font=\footnotesize, align=center, text=black!72},
+]
+
+% ================= Panel (a): embedding-space mechanism =================
+\draw[pan] (-0.30,-2.75) rectangle (6.30,2.60);
+\node[ttl] at (3.00,2.88) {(a) Quantile radius in embedding space};
+
+% nearest hypersphere with Q90 boundary
+\begin{scope}[shift={(2.55,0.15)}]
+  \draw[black!65, thick] (0,0) circle (1.10);
+  \fill[black!70] (0,0) circle (0.9mm);
+  \node[lab, anchor=south east, fill=white, inner sep=0.8pt] at (-0.02,0.06) {$c_j$};
+  % normal points inside
+  \foreach \p in {(-0.32,0.38),(0.32,0.10),(-0.58,-0.12),(0.12,-0.42),(0.55,0.42),(-0.15,0.66),(-0.62,0.45),(0.72,-0.28)} \node[dotn] at \p {};
+  % one normal point exactly at boundary feel
+  \node[dotn] at (0.98,-0.50) {};
+  % anomalous points outside
+  \node[dota] at (1.72,0.95) {};
+  \node[dota] at (1.95,0.28) {};
+  \node[dota] at (1.60,-0.95) {};
+\end{scope}
+% radius annotation
+\draw[arr] (2.58,0.18) -- (3.42,0.92);
+\node[lab, anchor=south, fill=white, inner sep=1.2pt] at (2.95,0.66) {$R_j=Q_{0.9}(d)$};
+
+% score sign bands
+\node[nbox, minimum width=21mm] (neg) at (1.45,-1.55) {inside: $s=d^2-R_j^2\le 0$};
+\node[abox, minimum width=21mm] (pos) at (4.55,-1.55) {outside: $s>0$};
+\draw[rep] (2.1,-0.85) -- (1.65,-1.20);
+\draw[rep] (4.2,-0.60) -- (4.5,-1.20);
+\node[lab] at (3.0,-2.42) {score $=$ deviation beyond the normal\\90\% quantile (conformal-style)};
+
+% ================= Panel (b): real score distributions (pgfplots) =================
+\begin{scope}[shift={(7.35,0.0)}]
+\begin{axis}[
+  width=8.6cm, height=5.2cm,
+  xlabel={point score $s$},
+  ylabel={density},
+  legend style={font=\footnotesize, at={(0.97,0.80)}, anchor=north east, draw=black!30},
+  tick label style={font=\footnotesize},
+  label style={font=\small},
+  ymajorticks=false,
+]
+\addplot+[ybar, bar shift=0pt, draw=blue!55!black, fill=blue!12]
+  table[x=bin_center, y=density, col sep=comma] {data/fig2_hist_normal.csv};
+\addlegendentry{normal}
+\addplot+[ybar, bar shift=0pt, draw=red!60!black, fill=red!10, fill opacity=0.75]
+  table[x=bin_center, y=density, col sep=comma] {data/fig2_hist_anomaly.csv};
+\addlegendentry{anomaly}
+\end{axis}
+\end{scope}
+\node[ttl] at (11.65,3.15) {(b) Real test-block scores (MSL, seed 7)};
+\node[lab] at (11.65,-2.45) {threshold from calib normal $Q_{0.95}$; anomaly mass concentrates above};
+
+\end{tikzpicture}%
+}%

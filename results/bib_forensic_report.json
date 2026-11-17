@@ -1,0 +1,519 @@
+{
+  "entries": {
+    "1": {
+      "bib_first_author": "Ruff",
+      "bib_year": "2018",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Ensembles of Deep One-Class Classifiers for Multi-Class Image Classification",
+            "doi": "10.2139/ssrn.5055591"
+          },
+          {
+            "title": "Ensembles of Deep One-Class Classifiers for Multi-Class Image Classification",
+            "doi": "10.2139/ssrn.4869376"
+          },
+          {
+            "title": "nanoDoc: RNA modification detection using Nanopore raw reads with Deep One-Class Classification",
+            "doi": "10.1101/2020.09.13.295089"
+          }
+        ]
+      },
+      "title_probe": "Deep One-Class Classification",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "2": {
+      "bib_first_author": "Xing",
+      "bib_year": "2024",
+      "cr": {
+        "title": "Deep multi-sphere support vector data description based on disentangled representation learning",
+        "year": 2024,
+        "container": "Pattern Recognition",
+        "first_author": "Xing",
+        "doi": "10.1016/j.patcog.2024.110842"
+      },
+      "title_probe": "Deep Multi-sphere Support Vector Data Description Based on Disentangled Representation Learning",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "3": {
+      "bib_first_author": "Wang",
+      "bib_year": "2025",
+      "cr": {
+        "title": "A Survey of Deep Anomaly Detection in Multivariate Time Series: Taxonomy, Applications, and Directions",
+        "year": 2025,
+        "container": "Sensors",
+        "first_author": "Wang",
+        "doi": "10.3390/s25010190"
+      },
+      "title_probe": "A Survey of Deep Anomaly Detection in Multivariate Time Series",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "4": {
+      "bib_first_author": "Shi",
+      "bib_year": "2026",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Deep Learning Anomaly Detection for Drone-based Surveillance",
+            "doi": "10.70675/3fa63c77z4e70z4395zb38fz9d8bfa4499e3"
+          },
+          {
+            "title": "Deep Learning Based Anomaly Detection Technology for ICT Services--DeAnoS: Deep Anomaly Surveillance",
+            "doi": "10.53829/ntr201907fa3"
+          },
+          {
+            "title": "Introduction to Deep Learning",
+            "doi": "10.1007/979-8-8688-0008-5_5"
+          }
+        ]
+      },
+      "title_probe": "A Review of Deep Learning Based Anomaly Detection",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "5": {
+      "bib_first_author": "Ho",
+      "bib_year": "2025",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Exploring information flow through graph causal networks for multivariate time series anomaly detection",
+            "doi": "10.14711/thesis-991013340456203412"
+          },
+          {
+            "title": "Dynamic Directed-Graph Self-Supervised Learning for Multivariate Sensor Time-Series Anomaly Detection",
+            "doi": "10.2139/ssrn.7315139"
+          },
+          {
+            "title": "Graph Structure Change-Based Anomaly Detection in Multivariate Time Series of Industrial Processes_supp1-3347000.pdf",
+            "doi": "10.1109/tii.2023.3347000/mm1"
+          }
+        ]
+      },
+      "title_probe": "Graph Anomaly Detection in Time Series: A Survey",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "6": {
+      "bib_first_author": "Ilse",
+      "bib_year": "2018",
+      "cr": {
+        "title": "Attention-Based Deep Multiple Instance Learning with Adaptive Instance Sampling",
+        "year": 2022,
+        "container": "2022 IEEE 19th International Symposium on Biomedical Imaging (ISBI)",
+        "first_author": "Tarkhan",
+        "doi": "10.1109/isbi52829.2022.9761661"
+      },
+      "title_probe": "Attention-Based Deep Multiple Instance Learning",
+      "author_match": false,
+      "year_match": false,
+      "verdict": "CHECK"
+    },
+    "7": {
+      "bib_first_author": "Jang",
+      "bib_year": "2025",
+      "cr": {
+        "title": "TAIL-MIL: Time-Aware and Instance-Learnable Multiple Instance Learning for Multivariate Time Series Anomaly Detection",
+        "year": 2025,
+        "container": "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "first_author": "Jang",
+        "doi": "10.1609/aaai.v39i17.33933"
+      },
+      "title_probe": "TAIL-MIL: Time-Aware and Instance-Learnable Multiple Instance Learning for Multivariate Time Series Anomaly Detection",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "8": {
+      "bib_first_author": "Lv",
+      "bib_year": "2023",
+      "cr": {
+        "title": "Unbiased Multiple Instance Learning for Weakly Supervised Video Anomaly Detection",
+        "year": 2023,
+        "container": "2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+        "first_author": "Lv",
+        "doi": "10.1109/cvpr52729.2023.00775"
+      },
+      "title_probe": "Unbiased Multiple Instance Learning for Weakly Supervised Video Anomaly Detection",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "9": {
+      "bib_first_author": "Liu",
+      "bib_year": "2024",
+      "cr": {
+        "title": "The Elephant in the Room: Towards A Reliable Time-Series Anomaly Detection Benchmark",
+        "year": 2024,
+        "container": "Advances in Neural Information Processing Systems 37",
+        "first_author": "Liu",
+        "doi": "10.52202/079017-3437"
+      },
+      "title_probe": "The Elephant in the Room: Towards A Reliable Time-Series Anomaly Detection Benchmark",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "10": {
+      "bib_first_author": "Kim",
+      "bib_year": "2022",
+      "cr": {
+        "title": "Towards a Rigorous Evaluation of Time-Series Anomaly Detection",
+        "year": 2022,
+        "container": "Proceedings of the AAAI Conference on Artificial Intelligence",
+        "first_author": "Kim",
+        "doi": "10.1609/aaai.v36i7.20680"
+      },
+      "title_probe": "Towards a Rigorous Evaluation of Time-Series Anomaly Detection",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "11": {
+      "bib_first_author": "Paparrizos",
+      "bib_year": "2025",
+      "cr": {
+        "title": "CARLA: Self-supervised contrastive representation learning for time series anomaly detection",
+        "year": 2025,
+        "container": "Pattern Recognition",
+        "first_author": "Darban",
+        "doi": "10.1016/j.patcog.2024.110874"
+      },
+      "title_probe": "CARLA: Self-supervised Contrastive Representation Learning for Time Series Anomaly Detection",
+      "author_match": false,
+      "year_match": true,
+      "verdict": "CHECK"
+    },
+    "12": {
+      "bib_first_author": "Zheng",
+      "bib_year": "2024",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Correlation-Aware Spatial&amp;#x2013;Temporal Graph Learning for Multivariate Time-Series Anomaly Detection_supp1-3325667.pdf",
+            "doi": "10.1109/tnnls.2023.3325667/mm1"
+          },
+          {
+            "title": "Multivariate Time Series Anomaly Detection Based on Kinematics-Aware and Dynamic Spatial Graph Enhancement",
+            "doi": "10.21203/rs.3.rs-9273654/v1"
+          },
+          {
+            "title": "Spatio-Temporal Correlation Aware Graph Attention Network for Anomaly Detection in Multivariate Time Series",
+            "doi": "10.1109/icsp62122.2024.10743431"
+          }
+        ]
+      },
+      "title_probe": "Correlation-Aware Spatial-Temporal Graph Learning for Multivariate Time-Series Anomaly Detection",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "13": {
+      "bib_first_author": "Breunig",
+      "bib_year": "2000",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "LOF",
+            "doi": "10.1145/335191.335388"
+          },
+          {
+            "title": "LOF",
+            "doi": "10.1145/342009.335388"
+          },
+          {
+            "title": "Identifying\n                    <scp>density‐based</scp>\n                    local outliers in medical multivariate circular data",
+            "doi": "10.1002/sim.8576"
+          }
+        ]
+      },
+      "title_probe": "LOF: Identifying Density-Based Local Outliers",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "14": {
+      "bib_first_author": "Chen",
+      "bib_year": "1984",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Salient-Aware Multiple Instance Learning Optimized Network for Weakly Supervised Object Detection",
+            "doi": "10.2139/ssrn.4292749"
+          },
+          {
+            "title": "A Self-Paced Multiple Instance Learning Framework for Weakly Supervised Video Anomaly Detection",
+            "doi": "10.2139/ssrn.4987257"
+          },
+          {
+            "title": "TAIL-MIL: Time-Aware and Instance-Learnable Multiple Instance Learning for Multivariate Time Series Anomaly Detection",
+            "doi": "10.1609/aaai.v39i17.33933"
+          }
+        ]
+      },
+      "title_probe": "TimeMIL: Time-Aware Multiple Instance Learning for Weakly-Supervised Time-Series Anomaly Detection",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "15": {
+      "bib_first_author": "Paparrizos",
+      "bib_year": "2022",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "TSB-UAD",
+            "doi": "10.14778/3529337.3529354"
+          },
+          {
+            "title": "Deep Learning for Univariate Time Series Anomaly Detection in Industrial IoT",
+            "doi": "10.14264/f82c56d"
+          },
+          {
+            "title": "A Lightweight Detector Ensemble for Univariate Time-Series Anomaly Detection",
+            "doi": "10.2139/ssrn.7552763"
+          }
+        ]
+      },
+      "title_probe": "TSB-UAD: An End-to-End Benchmark Suite for Univariate Time-Series Anomaly Detection",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "16": {
+      "bib_first_author": "Oord",
+      "bib_year": "2018",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Unsupervised Representation Learning From Pathology Images With Multi-Directional Contrastive Predictive Coding",
+            "doi": "10.1109/isbi48211.2021.9434140"
+          },
+          {
+            "title": "An Adaptive Multi-Indicator Contrastive Predictive Coding Framework for Patient Representation Learning",
+            "doi": "10.1109/ijcnn64981.2025.11229326"
+          },
+          {
+            "title": "Contrastive predictive coding with transformer for video representation learning",
+            "doi": "10.1016/j.neucom.2021.11.031"
+          }
+        ]
+      },
+      "title_probe": "Representation Learning with Contrastive Predictive Coding",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "17": {
+      "bib_first_author": "Wang",
+      "bib_year": "2020",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Prototypical Contrastive Learning through Alignment and Uniformity for Recommendation",
+            "doi": "10.1109/ijcnn60899.2024.10650218"
+          },
+          {
+            "title": "Towards Alignment-Uniformity Aware Representation in Graph Contrastive Learning",
+            "doi": "10.1145/3616855.3635789"
+          },
+          {
+            "title": "scAURA: Alignment- and Uniformity-based Graph Debiased Contrastive Representation Architecture for Self-Supervised Clustering of Single-Cell Transcriptomics",
+            "doi": "10.64898/2026.01.25.701579"
+          }
+        ]
+      },
+      "title_probe": "Understanding Contrastive Representation Learning through Alignment and Uniformity on the Hypersphere",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "18": {
+      "bib_first_author": "Sundararajan",
+      "bib_year": "2017",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Towards robust explainability of deep neural networks against attribution attacks",
+            "doi": "10.32657/10356/175394"
+          },
+          {
+            "title": "Interpreting Deep Neural Networks Beyond Attribution Methods: Quantifying Global Importance of Genomic Features",
+            "doi": "10.1101/2020.02.19.956896"
+          },
+          {
+            "title": "Improving performance of deep learning models with axiomatic attribution priors and expected gradients",
+            "doi": "10.1038/s42256-021-00343-w"
+          }
+        ]
+      },
+      "title_probe": "Axiomatic Attribution for Deep Networks",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "19": {
+      "bib_first_author": "Su",
+      "bib_year": "2019",
+      "cr": {
+        "title": "Robust Anomaly Detection for Multivariate Time Series through Stochastic Recurrent Neural Network",
+        "year": 2019,
+        "container": "Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining",
+        "first_author": "Su",
+        "doi": "10.1145/3292500.3330672"
+      },
+      "title_probe": "Robust Anomaly Detection for Multivariate Time Series through Stochastic Recurrent Neural Network",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "20": {
+      "bib_first_author": "Abdulaal",
+      "bib_year": "2021",
+      "cr": {
+        "title": "Practical Approach to Asynchronous Multivariate Time Series Anomaly Detection and Localization",
+        "year": 2021,
+        "container": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery &amp; Data Mining",
+        "first_author": "Abdulaal",
+        "doi": "10.1145/3447548.3467174"
+      },
+      "title_probe": "Practical Approach to Asynchronous Multivariate Time Series Anomaly Detection and Localization",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "21": {
+      "bib_first_author": "Hundman",
+      "bib_year": "2018",
+      "cr": {
+        "title": "Detecting Spacecraft Anomalies Using LSTMs and Nonparametric Dynamic Thresholding",
+        "year": 2018,
+        "container": "Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining",
+        "first_author": "Hundman",
+        "doi": "10.1145/3219819.3219845"
+      },
+      "title_probe": "Detecting Spacecraft Anomalies Using LSTMs and Nonparametric Dynamic Thresholding",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "22": {
+      "bib_first_author": "Mathur",
+      "bib_year": "2016",
+      "cr": {
+        "title": "SWaT: a water treatment testbed for research and training on ICS security",
+        "year": 2016,
+        "container": "2016 International Workshop on Cyber-physical Systems for Smart Water Networks (CySWater)",
+        "first_author": "Mathur",
+        "doi": "10.1109/cyswater.2016.7469060"
+      },
+      "title_probe": "SWaT: A Water Treatment Testbed for Research and Training on ICS Security",
+      "author_match": true,
+      "year_match": true,
+      "verdict": "OK"
+    },
+    "23": {
+      "bib_first_author": "Wennakate",
+      "bib_year": "2020",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "A demonstration of the exathlon benchmarking platform for explainable anomaly detection",
+            "doi": "10.14778/3476311.3476355"
+          },
+          {
+            "title": "Benchmarking Anomaly Detection Algorithms using Hyperparameter Optimization",
+            "doi": "10.1109/iccp60212.2023.10398721"
+          },
+          {
+            "title": "Anomaly Detection on Real-time Security Log using Stream Processing",
+            "doi": "10.1109/isai-nlp56921.2022.9960280"
+          }
+        ]
+      },
+      "title_probe": "Using Exathlon for Benchmarking and Explaining Anomaly Detection in Stream Processing",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "24": {
+      "bib_first_author": "Xu",
+      "bib_year": "2024",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Anomaly detection in multivariate time series using ensemble method",
+            "doi": "10.32657/10356/155731"
+          },
+          {
+            "title": "Distributional reservoir state analysis for real-time anomaly detection in multivariate time series data",
+            "doi": "10.36227/techrxiv.174378296.63561723/v1"
+          },
+          {
+            "title": "Distributional reservoir state analysis for real-time anomaly detection in multivariate time series data",
+            "doi": "10.36227/techrxiv.174378296.63561723/v2"
+          }
+        ]
+      },
+      "title_probe": "Anomaly Detection on Multivariate Time-Series Data",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    },
+    "25": {
+      "bib_first_author": "Angelopoulos",
+      "bib_year": "2021",
+      "cr": {
+        "error": "no-match",
+        "candidates": [
+          {
+            "title": "Review for \"A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction\"",
+            "doi": "10.1177/25152459251380452/v2/review1"
+          },
+          {
+            "title": "Review for \"A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction\"",
+            "doi": "10.1177/25152459251380452/v2/review2"
+          },
+          {
+            "title": "Review for \"A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction\"",
+            "doi": "10.1177/25152459251380452/v3/review2"
+          }
+        ]
+      },
+      "title_probe": "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",
+      "verdict": "UNVERIFIED(arXiv/会议无DOI属正常, 人工核)"
+    }
+  },
+  "known_fixes": {
+    "11": "CARLA -> Darban, Z.Z., Webb, G.I., Pan, S., Aggarwal, C.C., Salehi, M. CARLA: Self-supervised Contrastive Representation Learning for Time Series Anomaly Detection. Pattern Recognition, 157:110874, 2025. doi:10.1016/j.patcog.2024.110874",
+    "14": "TimeMIL -> Chen, X., Qiu, P., Zhu, W., Li, H., Wang, H., Sotiras, A., Wang, Y., Razi, A. TimeMIL: Advancing Multivariate Time Series Classification via a Time-aware Multiple Instance Learning. ICML, PMLR 235:7190-7206, 2024. (arXiv:2405.03140)",
+    "23": "Exathlon -> Jacob, V., Song, F., Stiegler, A., Rad, B., Diao, Y., Tatbul, N. Exathlon: A Benchmark for Explainable Anomaly Detection over Time Series. PVLDB, 14(11):2613-2626, 2021. doi:10.14778/3476249.3476307",
+    "24": "USAD -> Audibert, J., Michiardi, P., Guyard, F., Marti, S., Zuluaga, M. USAD: UnSupervised Anomaly Detection on Multivariate Time Series. KDD, pp.3395-3404, 2020. doi:10.1145/3394486.3403392"
+  },
+  "new_refs": [
+    [
+      "DCdetector",
+      "10.1145/3580305.3599295"
+    ],
+    [
+      "CAROTS",
+      "arXiv:2506.03964 (Kim et al., ICML 2025)"
+    ],
+    [
+      "MulGad",
+      "10.1016/j.inffus.2025.103008"
+    ],
+    [
+      "DACAD",
+      "10.1109/TKDE.2025.3569909"
+    ],
+    [
+      "NRdetector",
+      "10.1145/3690624.3709257"
+    ],
+    [
+      "TAIL-MIL-correct",
+      "10.1609/aaai.v39i17.33933 (Jang & Kwon, AAAI 2025, 39(17))"
+    ],
+    [
+      "TimeMIL-correct",
+      "PMLR 235:7190-7206 ICML 2024"
+    ]
+  ]
+}

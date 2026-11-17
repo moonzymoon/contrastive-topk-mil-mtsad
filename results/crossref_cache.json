@@ -1,0 +1,307 @@
+{
+  "tit:deeponeclassclassification": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Ensembles of Deep One-Class Classifiers for Multi-Class Image Classification",
+        "doi": "10.2139/ssrn.5055591"
+      },
+      {
+        "title": "Ensembles of Deep One-Class Classifiers for Multi-Class Image Classification",
+        "doi": "10.2139/ssrn.4869376"
+      },
+      {
+        "title": "nanoDoc: RNA modification detection using Nanopore raw reads with Deep One-Class Classification",
+        "doi": "10.1101/2020.09.13.295089"
+      }
+    ]
+  },
+  "tit:deepmultispheresupportvectordatadescriptionbasedondisentangl": {
+    "title": "Deep multi-sphere support vector data description based on disentangled representation learning",
+    "year": 2024,
+    "container": "Pattern Recognition",
+    "first_author": "Xing",
+    "doi": "10.1016/j.patcog.2024.110842"
+  },
+  "tit:asurveyofdeepanomalydetectioninmultivariatetimeseries": {
+    "title": "A Survey of Deep Anomaly Detection in Multivariate Time Series: Taxonomy, Applications, and Directions",
+    "year": 2025,
+    "container": "Sensors",
+    "first_author": "Wang",
+    "doi": "10.3390/s25010190"
+  },
+  "tit:areviewofdeeplearningbasedanomalydetection": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Deep Learning Anomaly Detection for Drone-based Surveillance",
+        "doi": "10.70675/3fa63c77z4e70z4395zb38fz9d8bfa4499e3"
+      },
+      {
+        "title": "Deep Learning Based Anomaly Detection Technology for ICT Services--DeAnoS: Deep Anomaly Surveillance",
+        "doi": "10.53829/ntr201907fa3"
+      },
+      {
+        "title": "Introduction to Deep Learning",
+        "doi": "10.1007/979-8-8688-0008-5_5"
+      }
+    ]
+  },
+  "tit:graphanomalydetectionintimeseriesasurvey": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Exploring information flow through graph causal networks for multivariate time series anomaly detection",
+        "doi": "10.14711/thesis-991013340456203412"
+      },
+      {
+        "title": "Dynamic Directed-Graph Self-Supervised Learning for Multivariate Sensor Time-Series Anomaly Detection",
+        "doi": "10.2139/ssrn.7315139"
+      },
+      {
+        "title": "Graph Structure Change-Based Anomaly Detection in Multivariate Time Series of Industrial Processes_supp1-3347000.pdf",
+        "doi": "10.1109/tii.2023.3347000/mm1"
+      }
+    ]
+  },
+  "tit:attentionbaseddeepmultipleinstancelearning": {
+    "title": "Attention-Based Deep Multiple Instance Learning with Adaptive Instance Sampling",
+    "year": 2022,
+    "container": "2022 IEEE 19th International Symposium on Biomedical Imaging (ISBI)",
+    "first_author": "Tarkhan",
+    "doi": "10.1109/isbi52829.2022.9761661"
+  },
+  "tit:tailmiltimeawareandinstancelearnablemultipleinstancelearning": {
+    "title": "TAIL-MIL: Time-Aware and Instance-Learnable Multiple Instance Learning for Multivariate Time Series Anomaly Detection",
+    "year": 2025,
+    "container": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "first_author": "Jang",
+    "doi": "10.1609/aaai.v39i17.33933"
+  },
+  "tit:unbiasedmultipleinstancelearningforweaklysupervisedvideoanom": {
+    "title": "Unbiased Multiple Instance Learning for Weakly Supervised Video Anomaly Detection",
+    "year": 2023,
+    "container": "2023 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)",
+    "first_author": "Lv",
+    "doi": "10.1109/cvpr52729.2023.00775"
+  },
+  "tit:theelephantintheroomtowardsareliabletimeseriesanomalydetecti": {
+    "title": "The Elephant in the Room: Towards A Reliable Time-Series Anomaly Detection Benchmark",
+    "year": 2024,
+    "container": "Advances in Neural Information Processing Systems 37",
+    "first_author": "Liu",
+    "doi": "10.52202/079017-3437"
+  },
+  "tit:towardsarigorousevaluationoftimeseriesanomalydetection": {
+    "title": "Towards a Rigorous Evaluation of Time-Series Anomaly Detection",
+    "year": 2022,
+    "container": "Proceedings of the AAAI Conference on Artificial Intelligence",
+    "first_author": "Kim",
+    "doi": "10.1609/aaai.v36i7.20680"
+  },
+  "tit:carlaselfsupervisedcontrastiverepresentationlearningfortimes": {
+    "title": "CARLA: Self-supervised contrastive representation learning for time series anomaly detection",
+    "year": 2025,
+    "container": "Pattern Recognition",
+    "first_author": "Darban",
+    "doi": "10.1016/j.patcog.2024.110874"
+  },
+  "tit:correlationawarespatialtemporalgraphlearningformultivariatet": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Correlation-Aware Spatial&amp;#x2013;Temporal Graph Learning for Multivariate Time-Series Anomaly Detection_supp1-3325667.pdf",
+        "doi": "10.1109/tnnls.2023.3325667/mm1"
+      },
+      {
+        "title": "Multivariate Time Series Anomaly Detection Based on Kinematics-Aware and Dynamic Spatial Graph Enhancement",
+        "doi": "10.21203/rs.3.rs-9273654/v1"
+      },
+      {
+        "title": "Spatio-Temporal Correlation Aware Graph Attention Network for Anomaly Detection in Multivariate Time Series",
+        "doi": "10.1109/icsp62122.2024.10743431"
+      }
+    ]
+  },
+  "tit:lofidentifyingdensitybasedlocaloutliers": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "LOF",
+        "doi": "10.1145/335191.335388"
+      },
+      {
+        "title": "LOF",
+        "doi": "10.1145/342009.335388"
+      },
+      {
+        "title": "Identifying\n                    <scp>density\u2010based</scp>\n                    local outliers in medical multivariate circular data",
+        "doi": "10.1002/sim.8576"
+      }
+    ]
+  },
+  "tit:timemiltimeawaremultipleinstancelearningforweaklysupervisedt": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Salient-Aware Multiple Instance Learning Optimized Network for Weakly Supervised Object Detection",
+        "doi": "10.2139/ssrn.4292749"
+      },
+      {
+        "title": "A Self-Paced Multiple Instance Learning Framework for Weakly Supervised Video Anomaly Detection",
+        "doi": "10.2139/ssrn.4987257"
+      },
+      {
+        "title": "TAIL-MIL: Time-Aware and Instance-Learnable Multiple Instance Learning for Multivariate Time Series Anomaly Detection",
+        "doi": "10.1609/aaai.v39i17.33933"
+      }
+    ]
+  },
+  "tit:tsbuadanendtoendbenchmarksuiteforunivariatetimeseriesanomaly": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "TSB-UAD",
+        "doi": "10.14778/3529337.3529354"
+      },
+      {
+        "title": "Deep Learning for Univariate Time Series Anomaly Detection in Industrial IoT",
+        "doi": "10.14264/f82c56d"
+      },
+      {
+        "title": "A Lightweight Detector Ensemble for Univariate Time-Series Anomaly Detection",
+        "doi": "10.2139/ssrn.7552763"
+      }
+    ]
+  },
+  "tit:representationlearningwithcontrastivepredictivecoding": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Unsupervised Representation Learning From Pathology Images With Multi-Directional Contrastive Predictive Coding",
+        "doi": "10.1109/isbi48211.2021.9434140"
+      },
+      {
+        "title": "An Adaptive Multi-Indicator Contrastive Predictive Coding Framework for Patient Representation Learning",
+        "doi": "10.1109/ijcnn64981.2025.11229326"
+      },
+      {
+        "title": "Contrastive predictive coding with transformer for video representation learning",
+        "doi": "10.1016/j.neucom.2021.11.031"
+      }
+    ]
+  },
+  "tit:understandingcontrastiverepresentationlearningthroughalignme": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Prototypical Contrastive Learning through Alignment and Uniformity for Recommendation",
+        "doi": "10.1109/ijcnn60899.2024.10650218"
+      },
+      {
+        "title": "Towards Alignment-Uniformity Aware Representation in Graph Contrastive Learning",
+        "doi": "10.1145/3616855.3635789"
+      },
+      {
+        "title": "scAURA: Alignment- and Uniformity-based Graph Debiased Contrastive Representation Architecture for Self-Supervised Clustering of Single-Cell Transcriptomics",
+        "doi": "10.64898/2026.01.25.701579"
+      }
+    ]
+  },
+  "tit:axiomaticattributionfordeepnetworks": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Towards robust explainability of deep neural networks against attribution attacks",
+        "doi": "10.32657/10356/175394"
+      },
+      {
+        "title": "Interpreting Deep Neural Networks Beyond Attribution Methods: Quantifying Global Importance of Genomic Features",
+        "doi": "10.1101/2020.02.19.956896"
+      },
+      {
+        "title": "Improving performance of deep learning models with axiomatic attribution priors and expected gradients",
+        "doi": "10.1038/s42256-021-00343-w"
+      }
+    ]
+  },
+  "tit:robustanomalydetectionformultivariatetimeseriesthroughstocha": {
+    "title": "Robust Anomaly Detection for Multivariate Time Series through Stochastic Recurrent Neural Network",
+    "year": 2019,
+    "container": "Proceedings of the 25th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining",
+    "first_author": "Su",
+    "doi": "10.1145/3292500.3330672"
+  },
+  "tit:practicalapproachtoasynchronousmultivariatetimeseriesanomaly": {
+    "title": "Practical Approach to Asynchronous Multivariate Time Series Anomaly Detection and Localization",
+    "year": 2021,
+    "container": "Proceedings of the 27th ACM SIGKDD Conference on Knowledge Discovery &amp; Data Mining",
+    "first_author": "Abdulaal",
+    "doi": "10.1145/3447548.3467174"
+  },
+  "tit:detectingspacecraftanomaliesusinglstmsandnonparametricdynami": {
+    "title": "Detecting Spacecraft Anomalies Using LSTMs and Nonparametric Dynamic Thresholding",
+    "year": 2018,
+    "container": "Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp; Data Mining",
+    "first_author": "Hundman",
+    "doi": "10.1145/3219819.3219845"
+  },
+  "tit:swatawatertreatmenttestbedforresearchandtrainingonicssecurit": {
+    "title": "SWaT: a water treatment testbed for research and training on ICS security",
+    "year": 2016,
+    "container": "2016 International Workshop on Cyber-physical Systems for Smart Water Networks (CySWater)",
+    "first_author": "Mathur",
+    "doi": "10.1109/cyswater.2016.7469060"
+  },
+  "tit:usingexathlonforbenchmarkingandexplaininganomalydetectionins": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "A demonstration of the exathlon benchmarking platform for explainable anomaly detection",
+        "doi": "10.14778/3476311.3476355"
+      },
+      {
+        "title": "Benchmarking Anomaly Detection Algorithms using Hyperparameter Optimization",
+        "doi": "10.1109/iccp60212.2023.10398721"
+      },
+      {
+        "title": "Anomaly Detection on Real-time Security Log using Stream Processing",
+        "doi": "10.1109/isai-nlp56921.2022.9960280"
+      }
+    ]
+  },
+  "tit:anomalydetectiononmultivariatetimeseriesdata": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Anomaly detection in multivariate time series using ensemble method",
+        "doi": "10.32657/10356/155731"
+      },
+      {
+        "title": "Distributional reservoir state analysis for real-time anomaly detection in multivariate time series data",
+        "doi": "10.36227/techrxiv.174378296.63561723/v1"
+      },
+      {
+        "title": "Distributional reservoir state analysis for real-time anomaly detection in multivariate time series data",
+        "doi": "10.36227/techrxiv.174378296.63561723/v2"
+      }
+    ]
+  },
+  "tit:agentleintroductiontoconformalpredictionanddistributionfreeu": {
+    "error": "no-match",
+    "candidates": [
+      {
+        "title": "Review for \"A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction\"",
+        "doi": "10.1177/25152459251380452/v2/review1"
+      },
+      {
+        "title": "Review for \"A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction\"",
+        "doi": "10.1177/25152459251380452/v2/review2"
+      },
+      {
+        "title": "Review for \"A Tutorial on Distribution-Free Uncertainty Quantification Using Conformal Prediction\"",
+        "doi": "10.1177/25152459251380452/v3/review2"
+      }
+    ]
+  }
+}

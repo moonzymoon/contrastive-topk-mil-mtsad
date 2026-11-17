@@ -1,0 +1,109 @@
+% Figure 1: v3 architecture (unified protocol + two-branch objective + quantile radius).
+% Style: figurestyle.sty (blue circle=normal, red square=anomaly; solid=data flow,
+% dashed=weak-label/statistics flows; neutral gray=shared modules).
+% Protocol constants mirror src/data/protocol.py (35/10/10/45, L=128, n=8, l=16, Q90/Q95).
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+  font=\small,
+  win/.style={draw=black!60, rounded corners=1.5pt, inner sep=3pt, align=center, fill=gray!8, minimum height=6.5mm},
+  mat/.style={circle, draw=black!70, inner sep=1pt, minimum size=5.2mm, fill=gray!12},
+  dotn/.style={circle, fill=blue!60!black, inner sep=0pt, minimum size=1.6mm},
+  dota/.style={rectangle, fill=red!70!black, inner sep=0pt, minimum size=1.6mm},
+  arr/.style={-{Stealth[length=2.4mm,width=1.7mm]}, semithick, draw=black!75},
+  rep/.style={-{Stealth[length=2.4mm,width=1.7mm]}, semithick, dashed, draw=black!75},
+  nbox/.style={draw=blue!55!black, fill=blue!8, rounded corners=1.5pt, inner sep=3pt, align=center},
+  abox/.style={draw=red!60!black, fill=red!7, rounded corners=1.5pt, inner sep=3pt, align=center},
+  kbox/.style={draw=green!45!black, fill=green!7, rounded corners=1.5pt, inner sep=3pt, align=center},
+  pan/.style={draw=black!30, rounded corners=4pt},
+  ttl/.style={font=\small\bfseries, align=center},
+  sub/.style={font=\small, align=center, text=black!72},
+  lab/.style={font=\footnotesize, align=center, text=black!72},
+  blk/.style={draw=black!60, inner sep=1pt, minimum height=4.5mm, align=center},
+]
+
+% ================= Panel (a): protocol + training =================
+\draw[pan] (-0.35,-3.05) rectangle (9.55,2.72);
+\node[ttl] at (4.60,3.00) {(a) Four-block protocol and two-branch training on the weak-train block};
+
+% --- four-block timeline (top) ---
+\node[lab, anchor=west] at (1.75,2.62) {four-block split};
+\draw[fill=blue!8, draw=black!50]  (1.75,2.05) rectangle (4.30,2.45) node[pos=.5] {\footnotesize train 35\%};
+\draw[fill=gray!14, draw=black!50] (4.30,2.05) rectangle (5.55,2.45) node[pos=.5] {\scriptsize val 10\%};
+\draw[fill=gray!14, draw=black!50] (5.55,2.05) rectangle (6.80,2.45) node[pos=.5] {\scriptsize calib 10\%};
+\draw[fill=gray!8,  draw=black!50] (6.80,2.05) rectangle (9.35,2.45) node[pos=.5] {\footnotesize test 45\%};
+\node[lab, anchor=west] at (1.75,1.72) {\footnotesize scaler fitted here only (no future leakage)};
+
+% --- stream -> bags -> instances ---
+\node[win, minimum width=13mm] (raw) at (1.05,0.35) {raw\\stream};
+\draw[rep] (1.05,1.95) -- (raw.north);
+
+\node[win, minimum width=15mm] (bag) at (2.95,0.35) {bag $B_m$\\[-1pt]{\footnotesize $L{=}128$, $s{=}64$}};
+\node[dotn] at (2.62,0.86) {}; \node[dotn] at (2.80,0.86) {}; \node[dota] at (2.98,0.86) {}; \node[dotn] at (3.16,0.86) {}; \node[dotn] at (3.34,0.86) {};
+\node[lab] at (3.0,1.20) {\footnotesize $n{=}8$ instances, $l{=}16$, full coverage};
+\draw[arr] (raw) -- (bag);
+
+\node[win, minimum width=15mm] (enc) at (5.50,0.35) {encoder\\[-1pt]{\footnotesize TCN $+$ descriptors}};
+\draw[arr] (bag) -- (enc);
+
+\node[mat] (z) at (6.90,0.35) {$z_i$};
+\draw[arr] (enc) -- (z);
+
+% --- multi-hypersphere head with quantile radius (right) ---
+\begin{scope}[shift={(7.9,0.45)}]
+  \draw[black!65, thick] (0,0) circle (0.58);
+  \draw[black!65, thick] (-0.40,-0.30) circle (0.36);
+  \draw[black!65, thick] (0.36,-0.32) circle (0.31);
+  \node[dotn] at (-0.12,0.10) {}; \node[dotn] at (0.14,0.22) {}; \node[dotn] at (-0.42,-0.30) {};
+  \node[dota] at (0.88,0.52) {}; \node[dota] at (0.66,0.74) {};
+\end{scope}
+\node[lab, anchor=west] at (8.55,0.05) {$c_j,\; R_j$};
+\node[lab, anchor=west] at (7.62,-0.42) {\footnotesize $R_j=\mathrm{EMA}(Q_{0.9})$: data statistic,};
+\node[lab, anchor=west] at (7.62,-0.72) {\footnotesize no gradient channel};
+\draw[arr] (z) -- (7.45,0.45);
+\draw[rep] (7.9,1.05) to[out=140,in=40] (6.65,0.72);
+
+% --- instance scores -> losses (bottom) ---
+\node[win, minimum width=16mm] (sc) at (6.90,-1.55) {$s(x_i)=d^2-R_j^2$};
+\draw[arr] (z) -- (sc.north);
+
+\node[lab, anchor=west] at (1.30,-0.72) {weak labels $y_m$:};
+\node[nbox, minimum width=17mm] (l1) at (2.0,-1.55) {InfoNCE\\[-1pt]{\footnotesize both classes}};
+\node[kbox, minimum width=17mm] (l2) at (4.15,-1.55) {dispersion\\[-1pt]{\footnotesize all-normal}};
+\node[win, minimum width=15mm] (l3) at (6.90,-2.55) {TopK ranking};
+\node[lab, anchor=west] at (8.05,-2.05) {\footnotesize anomaly sparsity};
+\draw[rep] (bag.south west) to[out=-125,in=185] (l1.west);
+\draw[rep] (bag.south) to[out=-115,in=165] (l2.north west);
+\draw[rep] (sc.south) -- (l3.north);
+
+% ================= Panel (b): point-level inference =================
+\draw[pan] (10.25,-3.05) rectangle (16.65,2.72);
+\node[ttl] at (13.45,3.00) {(b) Point-level inference on test};
+
+\node[win, minimum width=17mm] (isf) at (11.55,1.35) {instance\\[-1pt]scores $s(x_i)$};
+
+% timeline with overlapping windows max-aggregated
+\draw[black!70, semithick] (12.75,1.35) -- (16.25,1.35);
+\foreach \x in {12.9,13.5,14.1,14.7,15.3} {
+  \draw[blue!45!black, thick] (\x,1.35) rectangle (\x+0.6,1.95);
+}
+\node[dotn] at (14.95,1.65) {}; \node[dota] at (15.55,1.65) {};
+\node[lab] at (14.5,2.25) {\footnotesize overlapping windows $\to$ max per timestamp};
+\draw[arr] (isf) -- (12.75,1.35);
+
+\node[win, minimum width=20mm] (thr) at (13.45,0.10) {threshold $=$ $Q_{0.95}$ of\\[-1pt]{\footnotesize calib normal scores}};
+\draw[arr] (14.25,1.20) -- (thr.north);
+
+% point-level alarm strip
+\draw[black!70, semithick] (11.35,-1.05) -- (16.25,-1.05);
+\foreach \x in {11.55,11.95,12.35,12.75,13.15,13.55} \node[dotn] at (\x,-1.05) {};
+\foreach \x in {13.95,14.35} \node[dota] at (\x,-1.05) {};
+\foreach \x in {14.75,15.15,15.55,15.95} \node[dotn] at (\x,-1.05) {};
+\node[lab] at (13.8,-1.45) {\footnotesize point alarm: metrics at timestamp level (AUPRC / Event-F1 / FAR)};
+\draw[arr] (thr.south) -- (13.45,-0.75);
+
+\node[lab, text=blue!55!black, anchor=west] at (11.35,-2.55) {normal};
+\node[lab, text=red!60!black, anchor=west] at (12.55,-2.55) {anomaly};
+\node[lab, anchor=west] at (13.75,-2.55) {\footnotesize one shared protocol for our method and all baselines};
+
+\end{tikzpicture}%
+}%
