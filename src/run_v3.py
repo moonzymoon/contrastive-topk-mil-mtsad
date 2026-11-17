@@ -34,7 +34,8 @@ def load(ds):
 
 
 def run_v3(X, Y, seed, pool="max", var_attn=False, epochs=None, lr=2e-3,
-           w_contrast=0.5, w_radius=0.1, clip_percentile=None, log=print):
+           w_contrast=0.5, w_radius=0.1, clip_percentile=None, log=print,
+           radius_mode="quantile", radius_q=0.9):
     """单种子完整管线: W1协议 → 模型 → v3损失训练 → instance分数 → 点级评测."""
     from utils.repro import load_config
     cfg = load_config(os.path.join(os.path.dirname(__file__), "..", "configs", "default.yaml"))
@@ -57,8 +58,10 @@ def run_v3(X, Y, seed, pool="max", var_attn=False, epochs=None, lr=2e-3,
                    channels=tuple(cfg["model"]["encoder"]["channels"]),
                    kernel_size=cfg["model"]["encoder"]["kernel_size"],
                    dropout=cfg["model"]["encoder"]["dropout"],
-                   use_var_attn=var_attn, pool=pool)   # ⑦⑧ 参数化
-    crit = CMHLossV3(w_contrast=w_contrast, w_radius=w_radius)
+                   use_var_attn=var_attn, pool=pool,   # ⑦⑧ 参数化
+                   radius_mode=radius_mode, radius_q=radius_q)  # ⑤b2
+    crit = CMHLossV3(w_contrast=w_contrast, w_radius=w_radius,
+                     radius_mode=radius_mode)
     opt = torch.optim.AdamW(model.parameters(), lr=lr,
                             weight_decay=cfg["train"]["weight_decay"])
 
@@ -82,6 +85,8 @@ def run_v3(X, Y, seed, pool="max", var_attn=False, epochs=None, lr=2e-3,
             opt.zero_grad(); loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), cfg["train"]["grad_clip"])
             opt.step()
+            # ⑤b2: 每步 EMA 分位数半径更新 (无梯度统计量)
+            model.hypers.update_radii(z.reshape(-1, z.shape[-1]).detach())
 
     # ---- 推理: instance 分数 → 点级 ----
     model.eval()
@@ -114,6 +119,8 @@ def main():
     ap.add_argument("--dataset", default="MSL")
     ap.add_argument("--seeds", default="7,42,123")
     ap.add_argument("--pool", default="max", choices=["max", "softmax"])
+    ap.add_argument("--radius_mode", default="quantile", choices=["quantile", "learnable"])
+    ap.add_argument("--radius_q", type=float, default=0.9)
     ap.add_argument("--var_attn", type=int, default=0)
     ap.add_argument("--epochs", type=int, default=None)
     ap.add_argument("--tag", default="")
@@ -125,7 +132,8 @@ def main():
     per = []
     for sd in seeds:
         t0 = time.time()
-        m = run_v3(X, Y, sd, pool=a.pool, var_attn=bool(a.var_attn), epochs=a.epochs)
+        m = run_v3(X, Y, sd, pool=a.pool, var_attn=bool(a.var_attn), epochs=a.epochs,
+                  radius_mode=a.radius_mode, radius_q=a.radius_q)
         per.append(m)
         print(f"  seed {sd}: AUPRC={m['AUPRC']:.4f} PF1={m['PointF1']:.4f} "
               f"EF1={m['EventF1_one2one']:.4f} FAR={m['FAR_point']:.4f} "

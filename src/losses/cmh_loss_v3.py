@@ -89,15 +89,19 @@ def topk_rank_loss(instance_scores, y_bag, k=None, margin=1.0):
     return torch.tensor(0.0, device=instance_scores.device, requires_grad=True)
 
 
-def compact_loss(z, centers, radii, soft=True, tau_c=1.0, w_radius=0.1):
-    """紧致损失. 半径惩罚系数 w_radius 显式化 (v2 隐埋 0.1×0.10=0.01 — ⑤案a的旋钮)."""
+def compact_loss(z, centers, radii, soft=True, tau_c=1.0, w_radius=0.1,
+                 radius_mode="quantile"):
+    """紧致损失. ⑤b2: quantile 模式下 radius_term 删除 (半径为统计量,
+    无梯度通道, 惩罚无意义). learnable 模式保留 w_radius 旋钮(历史复现)."""
     d2 = torch.cdist(z, centers).pow(2)
     if soft:
         w = torch.softmax(-d2 / tau_c, dim=-1)
         compact_term = (w * d2).sum(dim=-1).mean()
     else:
         compact_term = d2.min(dim=-1).values.mean()
-    return compact_term + w_radius * radii.pow(2).mean()
+    if radius_mode == "learnable":
+        return compact_term + w_radius * radii.pow(2).mean()
+    return compact_term
 
 
 def sep_loss(centers, margin=1.5):
@@ -119,20 +123,23 @@ class CMHLossV3(nn.Module):
 
     def __init__(self, w_bag=1.0, w_compact=0.10, w_sep=0.05, w_topk=1.0,
                  w_contrast=0.5, w_balance=0.10, topk_k=None, topk_margin=1.0,
-                 contrast_tau=0.1, sep_margin=1.5, w_radius=0.1):
+                 contrast_tau=0.1, sep_margin=1.5, w_radius=0.1,
+                 radius_mode="quantile"):
         super().__init__()
         self.w_bag, self.w_compact, self.w_sep = w_bag, w_compact, w_sep
         self.w_topk, self.w_contrast, self.w_balance = w_topk, w_contrast, w_balance
         self.topk_k, self.topk_margin = topk_k, topk_margin
         self.contrast_tau, self.sep_margin = contrast_tau, sep_margin
         self.w_radius = w_radius
+        self.radius_mode = radius_mode
 
     def forward(self, bag_score, y_bag, instance_scores, z, bag_z, centers, radii):
         """bag_score: (B,) 模型聚合后的 bag 分数 (⑦ 单一聚合来源)."""
         l_bag = F.binary_cross_entropy_with_logits(bag_score, y_bag.float())
         l_topk = topk_rank_loss(instance_scores, y_bag, k=self.topk_k, margin=self.topk_margin)
         l_contrast = infonce_loss(bag_z, y_bag, temperature=self.contrast_tau)
-        l_compact = compact_loss(z, centers, radii, w_radius=self.w_radius)
+        l_compact = compact_loss(z, centers, radii, w_radius=self.w_radius,
+                                 radius_mode=self.radius_mode)
         l_sep = sep_loss(centers, margin=self.sep_margin)
         l_balance = balance_loss(z, centers, centers.shape[0])
         total = (self.w_bag * l_bag + self.w_topk * l_topk + self.w_contrast * l_contrast
