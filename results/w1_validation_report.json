@@ -1,0 +1,95 @@
+{
+  "SMD": {
+    "T": 56958,
+    "train_bags": 310,
+    "anom_bags": 0,
+    "gpt": [
+      310,
+      0
+    ]
+  },
+  "PSM": {
+    "T": 220322,
+    "train_bags": 1203,
+    "anom_bags": 0,
+    "gpt": [
+      1203,
+      0
+    ]
+  },
+  "MSL": {
+    "T": 132046,
+    "train_bags": 721,
+    "anom_bags": 0,
+    "gpt": [
+      721,
+      0
+    ]
+  },
+  "SMAP": {
+    "T": 562800,
+    "train_bags": 3076,
+    "anom_bags": 120,
+    "gpt": [
+      3076,
+      120
+    ]
+  },
+  "Exathlon-1": {
+    "T": 43066,
+    "train_bags": 234,
+    "anom_bags": 31,
+    "gpt": [
+      234,
+      31
+    ]
+  },
+  "Exathlon-2": {
+    "T": 46656,
+    "train_bags": 254,
+    "anom_bags": 17,
+    "gpt": [
+      254,
+      17
+    ]
+  },
+  "Genesis": {
+    "T": 16220,
+    "train_bags": 87,
+    "anom_bags": 0,
+    "gpt": [
+      87,
+      0
+    ]
+  },
+  "Daphnet": {
+    "T": 38774,
+    "train_bags": 211,
+    "anom_bags": 0,
+    "gpt": [
+      211,
+      0
+    ]
+  },
+  "CATSv2": {
+    "T": 100000,
+    "train_bags": 545,
+    "anom_bags": 7,
+    "gpt": [
+      545,
+      7
+    ]
+  },
+  "PCA_SMD_pointlevel": {
+    "AUPRC": 0.6369003940947975,
+    "AUROC": 0.9147863340772795,
+    "PointF1": 0.3339721476938802,
+    "EventF1_one2one": 0.11904761904761904,
+    "AllEventMIoU": 0.12685496105434535,
+    "VUS_PR": 0.21794903984471417,
+    "FAR_point": 0.4516720509910067,
+    "coverage": 0.9987905270960946,
+    "eval_points": 25600.0,
+    "threshold": 0.27074211835861206
+  }
+}

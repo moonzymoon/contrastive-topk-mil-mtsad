@@ -38,10 +38,12 @@ class CMHMIL(nn.Module):
         B, n, d = z.shape
         z_flat = z.reshape(B * n, d)
         scores = self.hypers.instance_score(z_flat).view(B, n)  # (B,n)
-        # bag 聚合
+        # bag 聚合 (⑦: 新增 max 分支 — any-point 语义, 与论文 Eq(8) 对齐)
         if self.pool == "softmax":
             w = torch.softmax(scores, dim=-1)
             bag_score = (w * scores).sum(dim=-1)
+        elif self.pool == "max":
+            bag_score = scores.max(dim=-1).values
         elif self.pool == "mean":
             bag_score = scores.mean(dim=-1)
         elif self.pool == "topk":

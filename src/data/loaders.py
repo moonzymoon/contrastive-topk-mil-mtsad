@@ -1,6 +1,7 @@
 """真实数据集加载器 (SMD/PSM/MSL/SMAP/5-ECK/MetroPT-3)
 公开数据集加载逻辑. 实际下载待用户授权.
-每个加载器返回 (X: (T,D) float32, Y: (T,) int8) 已做基础标准化."""
+W1 修复 (2026-11-17): 返回【原始未标准化】(X, Y) — 标准化/clip 一律在
+data.protocol 层先切分后拟合 (旧版在 loader 内用全量统计 zscore 属于预处理泄漏, R9)."""
 import os
 import numpy as np
 
@@ -10,7 +11,7 @@ DATA_ROOT = os.environ.get("CMH_DATA_ROOT", os.path.join(
 
 
 def _zscore(X_train, X_all):
-    """用训练块统计做 z-score (防泄漏: 不用测试块统计)."""
+    """[已废弃 W1] 旧版标准化 — 保留仅供历史结果复现, 新代码用 data.protocol.Scaler."""
     mu = X_train.mean(axis=0, keepdims=True)
     sigma = X_train.std(axis=0, keepdims=True) + 1e-8
     return (X_all - mu) / sigma
@@ -26,8 +27,6 @@ def load_smd(entity="machine-1-1"):
     Yte = np.loadtxt(os.path.join(path, "test_label", f"{entity}.txt"), dtype=np.int8)
     X = np.vstack([Xtr, Xte]).astype(np.float32)
     Y = np.concatenate([np.zeros(len(Xtr), dtype=np.int8), Yte])
-    n_tr = len(Xtr) // 2
-    X = _zscore(X[:n_tr], X)
     return X, Y
 
 
@@ -42,8 +41,6 @@ def load_psm():
     Xtr = np.nan_to_num(Xtr); Xte = np.nan_to_num(Xte)
     X = np.vstack([Xtr, Xte])
     Y = np.concatenate([np.zeros(len(Xtr), dtype=np.int8), Y])
-    n_tr = len(Xtr) // 2
-    X = _zscore(X[:n_tr], X)
     return X, Y
 
 
@@ -63,8 +60,6 @@ def load_nasa(dataset="MSL"):
         Y = Y.reshape(-1)
     X = np.vstack([Xtr, Xte])
     Y = np.concatenate([np.zeros(len(Xtr), dtype=np.int8), Y])
-    n_tr = len(Xtr) // 2
-    X = _zscore(X[:n_tr], X)
     return X, Y
 
 
@@ -93,13 +88,8 @@ def load_swat(downsample=5):
     Xn = df_n[feat_cols].apply(pd.to_numeric, errors="coerce").fillna(0).values
     Xa = df_a[feat_cols].apply(pd.to_numeric, errors="coerce").fillna(0).values
     Ya = (df_a["Normal/Attack"].astype(str).str.strip() == "Attack").astype(np.int8).values
-    # clip 极端值到 [1%,99%] (用 normal 统计, 防泄漏)
-    for i in range(Xn.shape[1]):
-        lo, hi = np.percentile(Xn[:, i], [1, 99])
-        Xn[:, i] = np.clip(Xn[:, i], lo, hi)
-        Xa[:, i] = np.clip(Xa[:, i], lo, hi)
-    mu, sigma = Xn.mean(0), Xn.std(0) + 1e-8
-    X = np.vstack([(Xn - mu) / sigma, (Xa - mu) / sigma]).astype(np.float32)
+    # W1: 原始值返回 (clip+zscore 移至 protocol 层, 用协议 train 块统计)
+    X = np.vstack([Xn, Xa]).astype(np.float32)
     Y = np.concatenate([np.zeros(len(Xn), dtype=np.int8), Ya])
     if downsample and downsample > 1:
         X, Y = X[::downsample], Y[::downsample]
@@ -141,13 +131,8 @@ def load_wadi(downsample=10):
             Ya[((df_a["_dt"] >= start) & (df_a["_dt"] <= end)).values] = 1
         except Exception:
             continue
-    # clip + zscore (用 normal 统计)
-    for i in range(D):
-        lo, hi = np.percentile(Xn[:, i], [1, 99])
-        Xn[:, i] = np.clip(Xn[:, i], lo, hi)
-        Xa[:, i] = np.clip(Xa[:, i], lo, hi)
-    mu, sigma = Xn.mean(0), Xn.std(0) + 1e-8
-    X = np.vstack([(Xn - mu) / sigma, (Xa - mu) / sigma]).astype(np.float32)
+    # W1: 原始值返回 (clip+zscore 移至 protocol 层)
+    X = np.vstack([Xn, Xa]).astype(np.float32)
     Y = np.concatenate([np.zeros(len(Xn), dtype=np.int8), Ya])
     if downsample and downsample > 1:
         X, Y = X[::downsample], Y[::downsample]
