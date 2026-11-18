@@ -38,7 +38,11 @@ def point_f1_at_threshold(y_true, y_score, threshold):
 
 
 def _one2one_match(gt_events, pred_events):
-    """一对一事件匹配 (第一篇公式3): 最大基数一对一指派, IoU 破平局, 漏检零信用."""
+    """一对一事件匹配 (最大基数优先, IoU 降序贪心破平局), 漏检零信用.
+    修复 (三外审 Gustav R. 2026-11-18): 旧实现 linear_sum_assignment(-IoU)
+    最大化【总 IoU】, 与本注释"最大基数"不符 — pred 多于 gt 时会漏配低 IoU 对
+    (2 gt + 3 pred 只配 1 对的反例已复现). 改为: 先取全部 IoU>0 候选对,
+    按IoU降序贪心, 行列各至多一次 → 基数最大; 同基数下总 IoU 尽量大."""
     if not gt_events or not pred_events:
         return [], 0
     # IoU 矩阵
@@ -48,12 +52,17 @@ def _one2one_match(gt_events, pred_events):
             inter = max(0, min(ge, pe) - max(gs, ps))
             union = max(ge, pe) - min(gs, ps)
             IoU[i, j] = inter / union if union > 0 else 0.0
-    # 匹配: IoU>0 才算可能匹配
-    rows, cols = linear_sum_assignment(-IoU)
-    matches = []
-    for r, c in zip(rows, cols):
-        if IoU[r, c] > 0:
-            matches.append((r, c, IoU[r, c]))
+    # 最大基数贪心: IoU>0 候选按降序, 行列各至多一次
+    pairs = sorted(((IoU[i, j], i, j)
+                    for i in range(len(gt_events))
+                    for j in range(len(pred_events)) if IoU[i, j] > 0), reverse=True)
+    used_r, used_c, matches = set(), set(), []
+    for v, r, c in pairs:
+        if r in used_r or c in used_c:
+            continue
+        used_r.add(r); used_c.add(c)
+        matches.append((r, c, v))
+    matches.sort(key=lambda m: m[0])  # 按 gt 顺序输出
     return matches, IoU
 
 

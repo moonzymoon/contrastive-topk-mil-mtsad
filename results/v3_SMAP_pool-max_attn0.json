@@ -1,0 +1,35 @@
+{
+  "dataset": "SMAP",
+  "pool": "max",
+  "var_attn": 0,
+  "per_seed": [
+    {
+      "AUPRC": 0.17025864729241244,
+      "AUROC": 0.45390243892192067,
+      "PointF1": 0.22690932972959318,
+      "EventF1_one2one": 0.09468822170900694,
+      "AllEventMIoU": 0.14553683438486884,
+      "VUS_PR": 0.05871145222273854,
+      "FAR_point": 0.07235200151833869,
+      "coverage": 0.9999504778883772,
+      "eval_points": 363456,
+      "threshold": -0.038788020610809326,
+      "train_bags": 2478,
+      "train_anom_bags": 131,
+      "annot_bags": 1001,
+      "split_mode": "plan-c-annot",
+      "bag_ce_only": false,
+      "final_radii": [
+        0.5196738243103027,
+        0.25666165351867676,
+        4.28649377822876
+      ]
+    }
+  ],
+  "aggregate": {
+    "AUPRC": "0.1703",
+    "PointF1": "0.2269",
+    "EventF1_one2one": "0.0947",
+    "FAR_point": "0.0724"
+  }
+}
