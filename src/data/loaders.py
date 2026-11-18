@@ -94,7 +94,7 @@ def load_swat(downsample=5):
 
 
 def load_wadi(downsample=10):
-    """WADI (Water Distribution). iTrust/SUTD 2017. D=123.
+    """WADI (Water Distribution). iTrust/SUTD 2017. D=127 (实测; 旧注释123有误).
     WADI_14days.csv(14天正常) + WADI_attackdata.csv(2天攻击,无标签列).
     标签用 attack_description.xlsx 的时间区间精确标记(合法).
     降采样=10 (WADI采样率高)."""

@@ -6,18 +6,27 @@
 # ===== 复现性 =====
 seeds: [7, 42, 123, 202, 999]   # 第一篇同款5种子
 
-# ===== 防泄漏时序划分 (沿用第一篇) =====
+# ===== 防泄漏时序划分 (方案C双轨, 2026-11-18) =====
+# 轨1 official: 官方train内70/15/15 → train/val/calib; test=官方test (protocol.official_split)
+# 轨2 annot: 官方test前15%为弱标注块 (protocol.weak_annotation_split)
+# TSB-AD 5集 (无官方划分): 全流 35/10/10/45 (four_block_split, single-stream口径)
 split:
-  weak_train_ratio: 0.35        # 弱训练块
-  calib_ratio: 0.15             # bag标签校准块 (保形阈值在此选)
-  test_ratio: 0.50              # 留出测试块
+  weak_train_ratio: 0.35        # TSB整流口径
+  val_ratio: 0.10
+  calib_ratio: 0.10
+  test_ratio: 0.45
+  official_tt: 0.70             # 官方train -> train
+  official_tv: 0.15             # 官方train -> val
+  official_tc: 0.15             # 官方train -> calib
+  weak_annot_frac: 0.15         # 官方test -> annot (轨2)
   disjoint: true                # 时序不相交
 
 # ===== Bag 协议 (沿用第一篇) =====
 bag:
   L: 128                        # bag长度
   l: 16                         # instance长度
-  stride: 64                    # 滑动步长
+  stride: 64                    # bag滑动步长 (bag_stride)
+  instance_stride: 16           # instance步长 (=l, 无缝覆盖; 方案C修复 n=8)
 
 # ===== 模型 =====
 model:
@@ -27,7 +36,7 @@ model:
     channels: [32, 64]
     kernel_size: 3
     dropout: 0.1
-  var_attention: true           # 变量自注意力
+  var_attention: false          # 变量自注意力 (v3已删: forward未调用, 三外审R5)
   hyperspheres:
     k: 3                        # 球数 (消融 k in {1,2,3,5,8})
     init: vae_pretrain          # 导师C2: VAE预训练初始化

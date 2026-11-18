@@ -9,8 +9,8 @@ from .hyperspheres import MultiHypersphereLayer
 
 class CMHMIL(nn.Module):
     def __init__(self, D, d_embed=24, k=3, channels=(32, 64), kernel_size=3,
-                 dropout=0.1, use_var_attn=True, pool="softmax", init_centers=None,
-                 radius_mode="learnable", radius_q=0.9, radius_ema=0.9):
+                 dropout=0.1, use_var_attn=False, pool="max", init_centers=None,
+                 radius_mode="quantile", radius_q=0.9, radius_ema=0.9):
         super().__init__()
         self.encoder = InstanceEncoder(D, d_embed, channels, kernel_size, dropout, use_var_attn)
         self.hypers = MultiHypersphereLayer(d_embed, k, init_centers,
