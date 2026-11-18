@@ -62,6 +62,7 @@
 \addplot+[ybar, bar shift=0pt, draw=red!60!black, fill=red!10, fill opacity=0.75]
   table[x=bin_center, y=density, col sep=comma] {data/fig2_hist_anomaly.csv};
 \addlegendentry{anomaly}
+\draw[red!60!black, dashed, thick] (-0.000067,\pgfkeysvalueof{/pgfplots/ymin}) -- (-0.000067,\pgfkeysvalueof{/pgfplots/ymax});
 \end{axis}
 \end{scope}
 \node[ttl] at (11.65,3.15) {(b) Real test-block scores (MSL, seed 7)};

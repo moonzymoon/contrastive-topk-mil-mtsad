@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import torch
 
-from data.protocol import (four_block_split, Scaler, make_bags_v2,
+from data.protocol import (official_split, Scaler, make_bags_v2,
                            point_scores, threshold_from_calib)
 from data.loaders import load_dataset
 from models import CMHMIL
@@ -18,8 +18,8 @@ L, l, BAG_STRIDE = 128, 16, 64
 
 def export(ds="MSL", seed=7):
     set_seed(seed)
-    X, Y, _n_official_train = load_dataset(ds)
-    sp = four_block_split(len(Y))
+    X, Y, n_off = load_dataset(ds)
+    sp = official_split(len(Y), n_off)  # Plan-C track 1
     scaler = Scaler(X[sp["train"][0]:sp["train"][1]])
     Xs = scaler.transform(X)
     D = X.shape[1]

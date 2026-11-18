@@ -25,8 +25,9 @@ OUT = os.path.join(os.path.dirname(__file__), "..", "results", "grad_attribution
 
 
 def load_interpretation(entity):
-    path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                        "datasets", "SMD", "interpretation_label", f"{entity}.txt")
+    path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.abspath(__file__)))),
+        "datasets", "SMD", "interpretation_label", f"{entity}.txt")
     events = []
     if not os.path.exists(path):
         return events
