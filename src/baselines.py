@@ -144,7 +144,7 @@ if __name__ == "__main__":
     cfg = load_config(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "configs", "default.yaml"))
     PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     from data.loaders import load_smd
-    X, Y = load_smd("machine-1-1")
+    X, Y, _n_official_train = load_smd("machine-1-1")
     results = {}
     for name, fn in BASELINES.items():
         try:

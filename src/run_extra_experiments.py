@@ -70,9 +70,9 @@ def main():
         print(f'\n--- {name} ({cat}) ---')
         try:
             if src == 'tsb':
-                X, Y = load_tsb_ad(cat, sid)
+                X, Y, _n = load_tsb_ad(cat, sid)
             else:
-                X, Y = load_dataset(cat)
+                X, Y, _n = load_dataset(cat)
             print(f'  X={X.shape}, Y={Y.shape}, anomaly_ratio={Y.mean():.4f}')
         except Exception as e:
             print(f'  加载失败: {e}')
@@ -114,9 +114,9 @@ def main():
         print(f'\n--- {name} [AT] ---')
         try:
             if src == 'tsb':
-                X, Y = load_tsb_ad(args[0], args[1])
+                X, Y, _n = load_tsb_ad(args[0], args[1])
             else:
-                X, Y = load_dataset(args[0])
+                X, Y, _n = load_dataset(args[0])
             print(f'  X={X.shape}, ratio={Y.mean():.4f}')
         except Exception as e:
             print(f'  加载失败: {e}')

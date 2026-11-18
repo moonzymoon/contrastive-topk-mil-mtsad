@@ -13,12 +13,6 @@ DATA_ROOT = os.environ.get("CMH_DATA_ROOT",
 TSB_DIR = os.path.join(DATA_ROOT, "TSB-AD-MV", "TSB-AD-M")
 
 
-def _zscore(X_train, X_all):
-    mu = X_train.mean(axis=0, keepdims=True)
-    sigma = X_train.std(axis=0, keepdims=True) + 1e-8
-    return (X_all - mu) / sigma
-
-
 def load_tsb_ad(category, stream_id=1):
     """加载 TSB-AD-M 的某个子数据集.
 
@@ -27,8 +21,9 @@ def load_tsb_ad(category, stream_id=1):
         stream_id: stream 编号 (从1开始), 不同数据集有不同数量的 stream
 
     Returns:
-        X: (T, D) float32, 已用训练块统计做 z-score
+        X: (T, D) float32, 原始未标准化 (方案C: 标准化在 protocol 层, 消除双重标准化)
         Y: (T,) int8, 异常标签
+        n_official_train: None (TSB-AD 无官方 train/test 划分, 协议回退全流四块)
     """
     # 找匹配的文件: NNN_Category_id_X_*.csv
     pattern = os.path.join(TSB_DIR, f"*_{category}_id_{stream_id}_*.csv")
@@ -55,12 +50,7 @@ def load_tsb_ad(category, stream_id=1):
     # 处理 NaN/Inf
     X = np.nan_to_num(X, nan=0.0, posinf=0.0, neginf=0.0)
 
-    # 四块分割: train 35% 用于 z-score 统计
-    T = len(X)
-    n_tr = int(T * 0.35)
-    X = _zscore(X[:n_tr], X)
-
-    return X, Y
+    return X, Y, None
 
 
 def list_tsb_ad_streams(category):
@@ -84,7 +74,7 @@ if __name__ == "__main__":
         try:
             ids = list_tsb_ad_streams(cat)
             if ids:
-                X, Y = load_tsb_ad(cat, ids[0])
+                X, Y, _n = load_tsb_ad(cat, ids[0])
                 print(f"{cat:12s} streams={len(ids):3d}  id={ids[0]}: X={X.shape} D={X.shape[1]} ratio={Y.mean():.4f}")
         except Exception as e:
             print(f"{cat:12s} ERROR: {e}")

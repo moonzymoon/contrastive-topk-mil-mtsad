@@ -28,6 +28,52 @@ def four_block_split(T: int) -> dict:
     return {"train": (0, a), "val": (a, b), "calib": (b, c), "test": (c, T)}
 
 
+# ===== 方案C 双轨协议 (总管裁定 2026-11-18, 任务书步骤1a) =====
+# 轨1: 有官方train/test的数据集, 在官方train内部 70/15/15 切 train/val/calib,
+#      test = 官方test全段 (消灭"训练块混入官方test段"的拼接泄漏, 三外审P0-2).
+#      TSB-AD 整流5集 (无官方划分) 回退全流 four_block_split, 论文声明 single-stream.
+# 轨2: 轨1基础上, 官方test前 15% 为 weak-annotation 块 (bag标签供双类方法消费,
+#      与 TAIL-MIL / bag-CE 同预算), 其余 85% 为评估段.
+OFF_TT_RATIO = 0.70   # 官方train -> train
+OFF_TV_RATIO = 0.15   # 官方train -> val
+OFF_TC_RATIO = 0.15   # 官方train -> calib
+WEAK_ANNOT_FRAC = 0.15
+
+
+def official_split(T: int, n_official_train) -> dict:
+    """轨1切分. n_official_train=None (TSB 整流, 无官方划分) 时回退全流四块.
+
+    返回 dict 同构 four_block_split (各块 (start,end)), 外加:
+      n_official_train: 原样回传 (None 或 int)
+      mode: 'official' | 'single-stream'
+    """
+    if n_official_train is None or not (0 < n_official_train < T):
+        sp = four_block_split(T)
+        sp["n_official_train"] = None
+        sp["mode"] = "single-stream"
+        return sp
+    a = round(n_official_train * OFF_TT_RATIO)
+    b = round(n_official_train * (OFF_TT_RATIO + OFF_TV_RATIO))
+    c = n_official_train
+    return {"train": (0, a), "val": (a, b), "calib": (b, c), "test": (c, T),
+            "n_official_train": n_official_train, "mode": "official"}
+
+
+def weak_annotation_split(T: int, n_official_train, annot_frac=WEAK_ANNOT_FRAC) -> dict:
+    """轨2切分: official_split 基础上, 官方test前 annot_frac 为 annot 块.
+
+    annot 块 bag 标签仅供双类方法 (本方法 InfoNCE 分支 / TAIL-MIL / bag-CE 消融)
+    以同预算消费; 其余方法不消费 (论文如实声明). 返回 dict 含 'annot' 块."""
+    sp = official_split(T, n_official_train)
+    t0, t1 = sp["test"]
+    n_annot = round((t1 - t0) * annot_frac)
+    sp2 = dict(sp)
+    sp2["annot"] = (t0, t0 + n_annot)
+    sp2["test"] = (t0 + n_annot, t1)
+    sp2["mode"] = sp["mode"] + "+annot"
+    return sp2
+
+
 # ===== ④ 先切分后标准化 =====
 class Scaler:
     """z-score (可选 clip), 统计只来自 fit 传入的协议 train 块."""

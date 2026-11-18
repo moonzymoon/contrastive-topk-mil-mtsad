@@ -25,9 +25,9 @@ GPT_TABLE = {
 
 def load(ds):
     if ds.startswith("Exathlon"):
-        return load_tsb_ad("Exathlon", int(ds.split("-")[1]))
+        return load_tsb_ad("Exathlon", int(ds.split("-")[1]))[:2] + (None,)
     if ds in ("Genesis", "Daphnet", "CATSv2"):
-        return load_tsb_ad(ds, 1)
+        return load_tsb_ad(ds, 1)[:2] + (None,)
     return load_dataset(ds)
 
 
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     report = {}
     for ds, (gpt_n, gpt_a) in GPT_TABLE.items():
         try:
-            X, Y = load(ds)
+            X, Y, _n = load(ds)
             n, a = bag_stats(ds, X, Y)
             match = "✓" if abs(n - gpt_n) <= 1 and a == gpt_a else f"✗(GPT:{gpt_n}/{gpt_a})"
             print(f"  {ds:12s} T={len(Y):7d}  train_bags={n:5d} anom_bags={a:4d}  {match}")
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     print("=" * 70)
     print("B. PCA 走新协议端到端 (SMD, 点级)")
     print("=" * 70)
-    X, Y = load("SMD")
+    X, Y, _n = load("SMD")
     m = pca_point_baseline(X, Y)
     for k in ("AUPRC", "AUROC", "PointF1", "EventF1_one2one", "FAR_point", "coverage", "threshold"):
         print(f"  {k:16s} {m[k]}")

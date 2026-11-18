@@ -1,20 +1,17 @@
 """真实数据集加载器 (SMD/PSM/MSL/SMAP/5-ECK/MetroPT-3)
 公开数据集加载逻辑. 实际下载待用户授权.
-W1 修复 (2026-11-17): 返回【原始未标准化】(X, Y) — 标准化/clip 一律在
-data.protocol 层先切分后拟合 (旧版在 loader 内用全量统计 zscore 属于预处理泄漏, R9)."""
+W1 修复 (2026-11-17): 返回【原始未标准化】数据 — 标准化/clip 一律在
+data.protocol 层先切分后拟合 (旧版在 loader 内用全量统计 zscore 属于预处理泄漏, R9).
+方案C (2026-11-18): 返回三元组 (X, Y, n_official_train) —
+  n_official_train = 官方 train 段长度 (拼接降采样后的口径), 供轨1 official_split 使用;
+  无官方划分的数据集 (TSB-AD/5ECK) 返回 None → protocol 回退全流四块.
+统一入口: load_dataset(name) -> (X, Y, n_official_train)."""
 import os
 import numpy as np
 
 # 数据根目录(下载后存放位置)
 DATA_ROOT = os.environ.get("CMH_DATA_ROOT", os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "datasets"))
-
-
-def _zscore(X_train, X_all):
-    """[已废弃 W1] 旧版标准化 — 保留仅供历史结果复现, 新代码用 data.protocol.Scaler."""
-    mu = X_train.mean(axis=0, keepdims=True)
-    sigma = X_train.std(axis=0, keepdims=True) + 1e-8
-    return (X_all - mu) / sigma
 
 
 def load_smd(entity="machine-1-1"):
@@ -27,7 +24,7 @@ def load_smd(entity="machine-1-1"):
     Yte = np.loadtxt(os.path.join(path, "test_label", f"{entity}.txt"), dtype=np.int8)
     X = np.vstack([Xtr, Xte]).astype(np.float32)
     Y = np.concatenate([np.zeros(len(Xtr), dtype=np.int8), Yte])
-    return X, Y
+    return X, Y, len(Xtr)
 
 
 def load_psm():
@@ -41,7 +38,7 @@ def load_psm():
     Xtr = np.nan_to_num(Xtr); Xte = np.nan_to_num(Xte)
     X = np.vstack([Xtr, Xte])
     Y = np.concatenate([np.zeros(len(Xtr), dtype=np.int8), Y])
-    return X, Y
+    return X, Y, len(Xtr)
 
 
 def load_nasa(dataset="MSL"):
@@ -60,7 +57,7 @@ def load_nasa(dataset="MSL"):
         Y = Y.reshape(-1)
     X = np.vstack([Xtr, Xte])
     Y = np.concatenate([np.zeros(len(Xtr), dtype=np.int8), Y])
-    return X, Y
+    return X, Y, len(Xtr)
 
 
 def load_5eck():
@@ -71,9 +68,7 @@ def load_5eck():
     cols = [c for c in df.columns if c != "label"]
     X = df[cols].values.astype(np.float32)
     Y = (df["label"].values > 0).astype(np.int8) if "label" in df.columns else np.zeros(len(df), dtype=np.int8)
-    n_tr = len(X) // 2
-    X = _zscore(X[:n_tr], X)
-    return X, Y
+    return X, Y, None
 
 
 def load_swat(downsample=5):
@@ -91,9 +86,11 @@ def load_swat(downsample=5):
     # W1: 原始值返回 (clip+zscore 移至 protocol 层, 用协议 train 块统计)
     X = np.vstack([Xn, Xa]).astype(np.float32)
     Y = np.concatenate([np.zeros(len(Xn), dtype=np.int8), Ya])
+    n_official_train = len(Xn)
     if downsample and downsample > 1:
         X, Y = X[::downsample], Y[::downsample]
-    return X, Y
+        n_official_train = len(range(0, n_official_train, downsample))
+    return X, Y, n_official_train
 
 
 def load_wadi(downsample=10):
@@ -134,9 +131,11 @@ def load_wadi(downsample=10):
     # W1: 原始值返回 (clip+zscore 移至 protocol 层)
     X = np.vstack([Xn, Xa]).astype(np.float32)
     Y = np.concatenate([np.zeros(len(Xn), dtype=np.int8), Ya])
+    n_official_train = len(Xn)
     if downsample and downsample > 1:
         X, Y = X[::downsample], Y[::downsample]
-    return X, Y
+        n_official_train = len(range(0, n_official_train, downsample))
+    return X, Y, n_official_train
 
 
 LOADERS = {
@@ -151,7 +150,8 @@ LOADERS = {
 
 
 def load_dataset(name):
-    """统一加载入口. 返回 (X, Y). 实际下载待授权."""
+    """统一加载入口. 返回 (X, Y, n_official_train).
+    n_official_train=None 表示该数据集无官方 train/test 划分 (走全流协议)."""
     if name not in LOADERS:
         raise ValueError(f"未知数据集 {name}, 可选 {list(LOADERS)}")
     return LOADERS[name]()

@@ -18,7 +18,7 @@ L, l, BAG_STRIDE = 128, 16, 64
 
 def export(ds="MSL", seed=7):
     set_seed(seed)
-    X, Y = load_dataset(ds)
+    X, Y, _n_official_train = load_dataset(ds)
     sp = four_block_split(len(Y))
     scaler = Scaler(X[sp["train"][0]:sp["train"][1]])
     Xs = scaler.transform(X)

@@ -30,7 +30,7 @@ def main():
         if ent in results:
             continue
         try:
-            X, Y = load_smd(ent)
+            X, Y, _n_official = load_smd(ent)
         except Exception as e:
             results[ent] = {"error": str(e)[:150]}
             print(f"[{ent}] 加载失败: {str(e)[:60]}")

@@ -30,7 +30,7 @@ def load(ds):
         return load_tsb_ad("Exathlon", int(ds.split("-")[1]))
     if ds in ("Genesis", "Daphnet", "CATSv2"):
         return load_tsb_ad(ds, 1)
-    return load_dataset(ds)
+    return load_dataset(ds)  # (X, Y, n_official_train) 方案C三元组
 
 
 def run_v3(X, Y, seed, pool="max", var_attn=False, epochs=None, lr=2e-3,
@@ -127,7 +127,7 @@ def main():
     a = ap.parse_args()
     seeds = [int(s) for s in a.seeds.split(",")]
 
-    X, Y = load(a.dataset)
+    X, Y, _n_official_train = load(a.dataset)
     print(f"== {a.dataset} T={len(Y)} pool={a.pool} var_attn={a.var_attn} seeds={seeds}")
     per = []
     for sd in seeds:
