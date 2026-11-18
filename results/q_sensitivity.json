@@ -1,0 +1,464 @@
+{
+  "MSL_q0.9": {
+    "per_seed": [
+      {
+        "AUPRC": 0.14600781319891373,
+        "AUROC": 0.49485020222859405,
+        "PointF1": 0.13719992991063606,
+        "EventF1_one2one": 0.15384615384615385,
+        "AllEventMIoU": 0.0909174260254316,
+        "VUS_PR": 0.05255198989776597,
+        "FAR_point": 0.043434098420302596,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": 0.00279955193400383,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.15339715778827667,
+          0.2966066002845764,
+          1.1371400356292725
+        ]
+      },
+      {
+        "AUPRC": 0.12609720221701184,
+        "AUROC": 0.5086809515804301,
+        "PointF1": 0.08512990602542841,
+        "EventF1_one2one": 0.22857142857142854,
+        "AllEventMIoU": 0.06539876846660636,
+        "VUS_PR": 0.054648621266873774,
+        "FAR_point": 0.03981080015766653,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": 0.0254070982336998,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.13870970904827118,
+          0.16861030459403992,
+          1.0048917531967163
+        ]
+      },
+      {
+        "AUPRC": 0.1326749619653142,
+        "AUROC": 0.5193093170969608,
+        "PointF1": 0.08226095455285877,
+        "EventF1_one2one": 0.06730769230769232,
+        "AllEventMIoU": 0.07586122331434164,
+        "VUS_PR": 0.05761970278962816,
+        "FAR_point": 0.06074709681331676,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": 0.12324316799640656,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.17210505902767181,
+          0.369943767786026,
+          1.0258665084838867
+        ]
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.1349±0.0101",
+      "AUROC": "0.5076±0.0123",
+      "PointF1": "0.1015±0.0309",
+      "EventF1_one2one": "0.1499±0.0807",
+      "FAR_point": "0.0480±0.0112"
+    }
+  },
+  "MSL_q0.95": {
+    "per_seed": [
+      {
+        "AUPRC": 0.15533173268237055,
+        "AUROC": 0.5734973147237639,
+        "PointF1": 0.1188118811881188,
+        "EventF1_one2one": 0.1702127659574468,
+        "AllEventMIoU": 0.11122473062914476,
+        "VUS_PR": 0.06953273996924243,
+        "FAR_point": 0.04069009429671629,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": -0.039586592465639114,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.2999366223812103,
+          0.6393462419509888,
+          0.31856197118759155
+        ]
+      },
+      {
+        "AUPRC": 0.13559176580577315,
+        "AUROC": 0.5135108030069959,
+        "PointF1": 0.10650533125673896,
+        "EventF1_one2one": 0.09785932721712537,
+        "AllEventMIoU": 0.08673655961514778,
+        "VUS_PR": 0.0500055647347244,
+        "FAR_point": 0.12187319972105151,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": -0.004021011758595705,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.08960966765880585,
+          0.08706039935350418,
+          1.1682147979736328
+        ]
+      },
+      {
+        "AUPRC": 0.13039148787539115,
+        "AUROC": 0.5142750385871737,
+        "PointF1": 0.08149757976884323,
+        "EventF1_one2one": 0.15254237288135594,
+        "AllEventMIoU": 0.06637302611282372,
+        "VUS_PR": 0.05650243883401485,
+        "FAR_point": 0.17669264121767078,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": -0.016412660479545593,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.18514636158943176,
+          0.43196019530296326,
+          1.0369280576705933
+        ]
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.1404±0.0132",
+      "AUROC": "0.5338±0.0344",
+      "PointF1": "0.1023±0.0190",
+      "EventF1_one2one": "0.1402±0.0377",
+      "FAR_point": "0.1131±0.0684"
+    }
+  },
+  "MSL_q0.99": {
+    "per_seed": [
+      {
+        "AUPRC": 0.1521349293230096,
+        "AUROC": 0.5561040525420394,
+        "PointF1": 0.131224159626101,
+        "EventF1_one2one": 0.1798941798941799,
+        "AllEventMIoU": 0.11351787202226506,
+        "VUS_PR": 0.06505355539726289,
+        "FAR_point": 0.03987144113277342,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": -0.1327727884054184,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.384878545999527,
+          0.7682229280471802,
+          0.44263482093811035
+        ]
+      },
+      {
+        "AUPRC": 0.12073480103326384,
+        "AUROC": 0.473087619579595,
+        "PointF1": 0.07577834345016643,
+        "EventF1_one2one": 0.14893617021276595,
+        "AllEventMIoU": 0.06988779206803106,
+        "VUS_PR": 0.047247591067829546,
+        "FAR_point": 0.031245262423819774,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": -0.01453181728720665,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.20271563529968262,
+          0.1160874143242836,
+          1.2477279901504517
+        ]
+      },
+      {
+        "AUPRC": 0.1326847535031439,
+        "AUROC": 0.5190612872317413,
+        "PointF1": 0.07781060925847756,
+        "EventF1_one2one": 0.06844106463878329,
+        "AllEventMIoU": 0.07377153424352315,
+        "VUS_PR": 0.05726553957098322,
+        "FAR_point": 0.08936963706376398,
+        "coverage": 0.9999864368159069,
+        "eval_points": 73728,
+        "threshold": -0.04144720733165741,
+        "train_bags": 636,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.5194172859191895,
+          0.38214612007141113,
+          1.0762301683425903
+        ]
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.1352±0.0158",
+      "AUROC": "0.5161±0.0416",
+      "PointF1": "0.0949±0.0314",
+      "EventF1_one2one": "0.1324±0.0575",
+      "FAR_point": "0.0535±0.0314"
+    }
+  },
+  "SMD_q0.9": {
+    "per_seed": [
+      {
+        "AUPRC": 0.48243862449235786,
+        "AUROC": 0.844515370127063,
+        "PointF1": 0.2608356871530145,
+        "EventF1_one2one": 0.11764705882352941,
+        "AllEventMIoU": 0.007482430134460215,
+        "VUS_PR": 0.15414966166790114,
+        "FAR_point": 0.589456496384418,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": 0.021983638405799866,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.36745503544807434,
+          0.5292158126831055,
+          0.34783440828323364
+        ]
+      },
+      {
+        "AUPRC": 0.5821679140973243,
+        "AUROC": 0.9005750019611786,
+        "PointF1": 0.2765844884139244,
+        "EventF1_one2one": 0.1142857142857143,
+        "AllEventMIoU": 0.11481121040619056,
+        "VUS_PR": 0.1896350491878061,
+        "FAR_point": 0.5284970064536195,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": 0.017865240573883057,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.27003055810928345,
+          0.5814054012298584,
+          0.2713831961154938
+        ]
+      },
+      {
+        "AUPRC": 0.4486860030299185,
+        "AUROC": 0.8172785688008849,
+        "PointF1": 0.23543444352692908,
+        "EventF1_one2one": 0.08333333333333333,
+        "AllEventMIoU": 0.05280322786764035,
+        "VUS_PR": 0.1436324156964948,
+        "FAR_point": 0.6429515589767514,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": -0.004543475806713104,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.3062448501586914,
+          0.4315890073776245,
+          0.37381741404533386
+        ]
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.5044±0.0694",
+      "AUROC": "0.8541±0.0425",
+      "PointF1": "0.2576±0.0208",
+      "EventF1_one2one": "0.1051±0.0189",
+      "FAR_point": "0.5870±0.0573"
+    }
+  },
+  "SMD_q0.95": {
+    "per_seed": [
+      {
+        "AUPRC": 0.4667898147738362,
+        "AUROC": 0.8367923385254489,
+        "PointF1": 0.26392037055287276,
+        "EventF1_one2one": 0.11764705882352941,
+        "AllEventMIoU": 0.012899737468625425,
+        "VUS_PR": 0.1499990307788508,
+        "FAR_point": 0.5801259622113366,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": -0.0014823377132415771,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.40746667981147766,
+          0.5878518223762512,
+          0.375794380903244
+        ]
+      },
+      {
+        "AUPRC": 0.4743441101150344,
+        "AUROC": 0.8467245894036787,
+        "PointF1": 0.2596219098400388,
+        "EventF1_one2one": 0.07228915662650602,
+        "AllEventMIoU": 0.08483911270321759,
+        "VUS_PR": 0.15389583777893345,
+        "FAR_point": 0.5931887100536506,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": -0.046496301889419556,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.3569849729537964,
+          0.44294995069503784,
+          0.2947862446308136
+        ]
+      },
+      {
+        "AUPRC": 0.4470683988792705,
+        "AUROC": 0.8323503485125376,
+        "PointF1": 0.23961576091790449,
+        "EventF1_one2one": 0.022988505747126433,
+        "AllEventMIoU": 0.007121128318584071,
+        "VUS_PR": 0.14658306559643008,
+        "FAR_point": 0.664722805380608,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": -0.019446365535259247,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.3237358033657074,
+          0.4438265860080719,
+          0.3678632378578186
+        ]
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.4627±0.0141",
+      "AUROC": "0.8386±0.0074",
+      "PointF1": "0.2544±0.0130",
+      "EventF1_one2one": "0.0710±0.0473",
+      "FAR_point": "0.6127±0.0455"
+    }
+  },
+  "SMD_q0.99": {
+    "per_seed": [
+      {
+        "AUPRC": 0.4812654158770017,
+        "AUROC": 0.8350710038988634,
+        "PointF1": 0.2686745786376783,
+        "EventF1_one2one": 0.1081081081081081,
+        "AllEventMIoU": 0.07044596091861402,
+        "VUS_PR": 0.1521616352288921,
+        "FAR_point": 0.5701733924267164,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": -0.0764881819486618,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.5149315595626831,
+          0.7566027641296387,
+          0.4360729455947876
+        ]
+      },
+      {
+        "AUPRC": 0.4267356989902612,
+        "AUROC": 0.824969043972942,
+        "PointF1": 0.2604298356510746,
+        "EventF1_one2one": 0.05263157894736842,
+        "AllEventMIoU": 0.07144340558835603,
+        "VUS_PR": 0.14133843168470328,
+        "FAR_point": 0.5907005676074956,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": -0.11900216341018677,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.42688819766044617,
+          0.5287590622901917,
+          0.3493954539299011
+        ]
+      },
+      {
+        "AUPRC": 0.44663175356899165,
+        "AUROC": 0.8311942489182635,
+        "PointF1": 0.24307497969863756,
+        "EventF1_one2one": 0.03125,
+        "AllEventMIoU": 0.006962685414091471,
+        "VUS_PR": 0.14548138199042498,
+        "FAR_point": 0.6522820931498329,
+        "coverage": 0.9977878436742863,
+        "eval_points": 28416,
+        "threshold": -0.04741135239601135,
+        "train_bags": 310,
+        "train_anom_bags": 0,
+        "annot_bags": 0,
+        "split_mode": "plan-c",
+        "bag_ce_only": false,
+        "final_radii": [
+          0.374123215675354,
+          0.4960622489452362,
+          0.35637786984443665
+        ]
+      }
+    ],
+    "aggregate": {
+      "AUPRC": "0.4515±0.0276",
+      "AUROC": "0.8304±0.0051",
+      "PointF1": "0.2574±0.0131",
+      "EventF1_one2one": "0.0640±0.0397",
+      "FAR_point": "0.6044±0.0427"
+    }
+  }
+}

@@ -16,7 +16,7 @@ T1 = os.path.join(R, "full_v3c_track1.json")
 def agg(per):
     a = {}
     for k in ("AUPRC", "AUROC", "PointF1", "EventF1_one2one", "FAR_point"):
-        v = [p[k] for p in per if k in per and p[k] == p[k]]
+        v = [p[k] for p in per if k in p and p[k] == p[k]]
         if v:
             a[k] = f"{statistics.mean(v):.4f}±{statistics.stdev(v):.4f}" if len(v) > 1 else f"{v[0]:.4f}"
     return a

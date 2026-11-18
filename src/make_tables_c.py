@@ -16,10 +16,10 @@ t2 = json.load(open(os.path.join(R, "full_v3c_track2.json"), encoding="utf-8"))
 qs = json.load(open(os.path.join(R, "q_sensitivity.json"), encoding="utf-8"))
 s28 = json.load(open(os.path.join(R, "smd28_c.json"), encoding="utf-8"))
 
-DATASETS = ["SMD", "PSM", "MSL", "SMAP", "SWaT", "WADI",
-            "Exathlon-1", "Exathlon-2", "Genesis", "Daphnet", "CATSv2"]
+DATASETS = ["SMD", "PSM", "MSL", "SMAP", "WADI",
+            "Exathlon-1", "Exathlon-2", "Genesis", "Daphnet", "CATSv2"]  # SWaT excluded (R4)
 DS_LABEL = {"SMD": "SMD (m-1-1)", "PSM": "PSM", "MSL": "MSL", "SMAP": "SMAP",
-            "SWaT": "SWaT", "WADI": "WADI", "Exathlon-1": "Exathlon-1",
+            "WADI": "WADI", "Exathlon-1": "Exathlon-1",
             "Exathlon-2": "Exathlon-2", "Genesis": "Genesis",
             "Daphnet": "Daphnet", "CATSv2": "CATSv2"}
 BASES = ["PCA", "IF", "AE", "DeepSVDD", "USAD", "MS-SVDD-style", "AT-faithful"]
@@ -85,7 +85,7 @@ lines2 = [r"\begin{table}[H]\centering",
           r"Dataset & Ours (annot) & bag-CE only & TAIL-MIL \\",
           r"\midrule"]
 track2_audit = {}
-for ds in ["SMD", "PSM", "MSL", "SMAP", "SWaT", "WADI"]:
+for ds in ["SMD", "PSM", "MSL", "SMAP", "WADI"]:  # SWaT excluded
     e = t2[ds]
     cells = []
     for m in ("ours_v3_annot", "bag_ce_only_annot", "TAIL-MIL"):
