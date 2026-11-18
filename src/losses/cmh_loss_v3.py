@@ -29,13 +29,19 @@ import torch.nn.functional as F
 
 
 def dispersion_loss(bag_embeddings):
-    """⑨ mean-cosine dispersion 正则 (案A, 全正常 batch 分支).
-    L = mean_{m≠m'} (1 - cos(z_m, z_m'))  →  最小化平均余弦相似度 → 表征分散.
-    注: 与 v2 的 -(1-C) 优化方向相同 (差常数); 非 W&I 分布均匀性."""
+    """⑨ mean-cosine dispersion 正则 (P0-1 修复版, 2026-11-18 三外审抓出方向反转).
+    正确目标: L = mean_{m≠m'} cos(z_m, z_m')  →  最小化平均余弦相似度 → 表征分散.
+    求导验证: L=C, dL/dC=+1, 最小化→C↓→分散 ✓
+    历史(错误记录, 供教训档案):
+      v2 代码  -mean(1-cos)=C-1  → 分散 ✓ (行为对)
+      v3 初版  +mean(1-cos)=1-C  → 聚集 ✗ (照抄案A字面公式未求导, 违反纪律一)
+      案A裁定原文 "L=mean(1-sim)" 字面即 1-C=聚集, 与裁定意图(分散)相反——
+      裁定书公式笔误 + 实施未复验, 双重失效. 本版以行为意图(分散)为准.
+    注: 非 W&I 分布均匀性 (仅约束表征均值, 不约束分布形状)."""
     z = F.normalize(bag_embeddings, dim=-1)
     cos = z @ z.t()
     off_diag = cos[~torch.eye(len(z), dtype=torch.bool, device=z.device)]
-    return (1.0 - off_diag).mean()
+    return off_diag.mean()
 
 
 def infonce_loss(bag_embeddings, y_bag, temperature=0.1):

@@ -86,7 +86,7 @@ class ATModel(nn.Module):
         return self.recon(h), series_all, prior_all
 
 
-def baseline_at_faithful(X, Y, seed=7, epochs=15, lam=3.0, **kw):
+def baseline_at_faithful(X, Y, seed=7, epochs=10, lam=3.0, **kw):
     """两阶段 minimax 训练 (原文 Phase1/Phase2 每 epoch 交替)."""
     torch.manual_seed(seed); np.random.seed(seed)
     sp = four_block_split(len(Y))
@@ -106,41 +106,61 @@ def baseline_at_faithful(X, Y, seed=7, epochs=15, lam=3.0, **kw):
     model = ATModel(D, win=L)
     opt = torch.optim.Adam(model.parameters(), lr=1e-4)
     W = torch.from_numpy(tr_win)
+
+    def _assoc_terms(xb):
+        """官方 solver 153-173 行的 series_loss/prior_loss (逐层, prior 行归一化, 双向 KL
+        与 detach 方向逐行照抄). 返回 (series_loss, prior_loss) 标量."""
+        recon, series, priors = model(xb)
+        series_loss, prior_loss = 0.0, 0.0
+        for s, p in zip(series, priors):
+            p_n = p / p.sum(-1, keepdim=True)                 # 官方 prior 行归一化
+            series_loss = series_loss + (AnomalyAttention.kl(s, p_n.detach()).mean()
+                                         + AnomalyAttention.kl(p_n.detach(), s).mean())
+            prior_loss = prior_loss + (AnomalyAttention.kl(p_n, s.detach()).mean()
+                                       + AnomalyAttention.kl(s.detach(), p_n).mean())
+        return recon, series_loss / len(series), prior_loss / len(series)
+
+    model.train()
     for ep in range(epochs):
         perm = torch.randperm(len(W))
         for i in range(0, len(perm), 32):
             xb = W[perm[i:i + 32]]
-            recon, series, priors = model(xb)
+            recon, sl, pl = _assoc_terms(xb)
             rec_loss = ((recon - xb) ** 2).mean()
-            # 逐层逐head KL (B, H, L, L)
-            kl_sp = sum((AnomalyAttention.kl(s, p.detach())).mean()
-                        for s, p in zip(series, priors))
-            kl_ps = sum((AnomalyAttention.kl(p, s.detach())).mean()
-                        for s, p in zip(series, priors))
-            # Phase1: prior→series (detach series 侧); Phase2: 最大化 discrepancy
-            loss1 = rec_loss + lam * kl_sp.detach() - lam * kl_ps
-            loss2 = rec_loss + lam * kl_sp - lam * kl_ps.detach()
-            # epoch 奇偶交替两相位 (原文两阶段串行的紧凑等价)
-            loss = loss1 if (ep % 2 == 0) else loss2
-            opt.zero_grad(); loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
+            # 官方 178-179 行: loss1 = rec − k·series_loss; loss2 = rec + k·prior_loss
+            # minimax 语义: series 被推离 prior (AssDis 增大), prior 追赶 series
+            loss1 = rec_loss - lam * sl
+            loss2 = rec_loss + lam * pl
+            # 官方 188-191 行: 同一 iteration 双反传 (Minimax strategy)
+            opt.zero_grad()
+            loss1.backward(retain_graph=True)
+            loss2.backward()
             opt.step()
     model.eval()
 
-    def window_score(win_np):
-        """原文推理: recon_error + 归一化 AssocDiscrepancy (逐窗)."""
+    def window_score(win_np, temperature=50):
+        """官方 test() 218-247 行: T=50; metric = softmax(−series_loss−prior_loss, dim=-1)
+        (窗口维); cri = metric ⊙ recon_err (逐点乘法); 每窗分数 = cri 均值.
+        (不采用官方 detection-adjustment 点调整协议 — 那是被可靠性文献批评的口径;
+        阈值仍走本文统一 calib Q95 管线.)"""
         out = []
         with torch.no_grad():
             for i in range(0, len(win_np), 128):
                 xb = torch.from_numpy(win_np[i:i + 128])
                 recon, series, priors = model(xb)
-                rec = ((recon - xb) ** 2).mean(-1)                       # (B, L)
-                disc = sum((s - p).abs().mean(dim=(1, -2, -1))           # head维一并均值 → (B,)
-                           for s, p in zip(series, priors)) / len(series)
-                disc_n = disc / (disc.max() + 1e-9)                      # min-max归一(原文)
-                rec_n = rec.mean(-1) / (rec.mean(-1).max() + 1e-9)
-                out.append((rec_n + disc_n).numpy())
-        return np.concatenate(out)                                        # (N,)
+                rec = ((recon - xb) ** 2).mean(-1)                      # (B, L)
+                sl = torch.zeros_like(rec); pl = torch.zeros_like(rec)
+                for s, p in zip(series, priors):
+                    p_n = p / p.sum(-1, keepdim=True)
+                    kl_s = AnomalyAttention.kl(s, p_n.detach()) * temperature    # (B, L)
+                    kl_p = AnomalyAttention.kl(p_n, s.detach()) * temperature
+                    sl = sl + kl_s.mean(dim=1)                                   # head均值
+                    pl = pl + kl_p.mean(dim=1)
+                sl, pl = sl / len(series), pl / len(series)
+                metric = torch.softmax(-sl - pl, dim=-1)                # (B, L) 窗口维
+                cri = metric * rec                                      # 逐点乘法 (官方 245)
+                out.append(cri.mean(dim=-1).numpy())                    # 每窗一个分数
+        return np.concatenate(out)                                      # (N,)
 
     s_all = np.full(len(Y), np.nan, dtype=np.float32)
     for name in ("calib", "test"):

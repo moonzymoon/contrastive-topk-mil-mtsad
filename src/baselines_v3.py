@@ -119,8 +119,11 @@ def baseline_deep_svdd(X, Y, seed=7, epochs=30, **kw):
     blocks, finish = _pipeline(X, Y)
     d = _flatten(blocks["train"][0]).shape[1]
     W = torch.from_numpy(_flatten(blocks["train"][0]))
-    enc = nn.Sequential(nn.Linear(d, 64), nn.ReLU(), nn.Linear(64, 16),
-                        nn.ReLU(), nn.Linear(16, 8))
+    # bias=False 全层 (Ruff et al. 2018 §3.3 Prop.2: 有偏线性层存在常数映射 h≡c 坍缩解,
+    # 原文明确去除; 三外审 P0-2 抓出此前遗漏)
+    enc = nn.Sequential(nn.Linear(d, 64, bias=False), nn.ReLU(),
+                        nn.Linear(64, 16, bias=False), nn.ReLU(),
+                        nn.Linear(16, 8, bias=False))
     with torch.no_grad():
         c = enc(W[torch.randperm(len(W))[:512]]).mean(0).detach()  # 原文: 中心=初始均值
     opt = torch.optim.Adam(enc.parameters(), lr=1e-3, weight_decay=1e-5)  # λ‖θ‖² via wd
@@ -139,53 +142,73 @@ def baseline_deep_svdd(X, Y, seed=7, epochs=30, **kw):
     return finish(score)
 
 
-# ---------- USAD (faithful, Audibert et al. KDD 2020) ----------
-def baseline_usad(X, Y, seed=7, epochs=30, **kw):
-    """原文目标 (Eq.5-7, 含对抗相位与 λ 递增):
-      AE1 = E1∘D1, AE2 = E2∘D2
-      focus AE1 (k轮): L1 = ||X−D1(E1(X))||² + λ1·||X−D1(E2(X))||²
-      focus AE2     : L2 = ||X−D2(E2(X))||² + λ2·||X−D2(E1(X))||²
-      λi(k) = k/epochs (epoch 内线性增长)
-    分数 = mean(|X−D2(E1(X))|, |X−D1(E2(X))|) (原文 reconstruction focus)."""
+# ---------- USAD (faithful v2, Audibert et al. KDD 2020, per official code) ----------
+def baseline_usad(X, Y, seed=7, epochs=10, **kw):
+    """忠实版 (三外审 A5 修复, 2026-11-18): 逐行对照官方 UsadModel/training/testing —
+      结构: 单共享 encoder + decoder1 + decoder2 (官方 42-47 行)
+      训练: 每 batch 双阶段, 各自独立 optimizer (官方 82-101 行):
+        z=E(w); w1=D1(z); w2=D2(z); w3=D2(E(w1))          (官方 50-53 行)
+        loss1 = (1/n)·MSE(w,w1) + (1-1/n)·MSE(w,w3)       ← AE1 阶段全正号
+        loss2 = (1/n)·MSE(w,w2) − (1-1/n)·MSE(w,w3)       ← AE2 阶段负号对抗项 ✓
+        n = epoch+1 (λ=1−1/n 随 epoch 递增); AE2 阶段前重新前向 (官方 98 行)
+      分数: α·MSE(w,w1) + β·MSE(w,w2), α=β=0.5 (官方 testing 109-116 行)
+      输入: 官方对窗口 minmax→sigmoid 解码; 此处 instance 展平后 minmax[0,1],
+        decoder 末端 Sigmoid (保持官方数值域), 训练/推理一致."""
     torch.manual_seed(seed); np.random.seed(seed)
     blocks, finish = _pipeline(X, Y)
     d = _flatten(blocks["train"][0]).shape[1]
-    W = torch.from_numpy(_flatten(blocks["train"][0]))
+
+    def _mm(t):  # minmax -> [0,1] (逐行)
+        mn, mx = t.min(1, keepdim=True).values, t.max(1, keepdim=True).values
+        return (t - mn) / (mx - mn + 1e-8)
+
+    W = _mm(torch.from_numpy(_flatten(blocks["train"][0])))
 
     class Encoder(nn.Module):
         def __init__(s):
             super().__init__()
-            s.net = nn.Sequential(nn.Linear(d, 64), nn.ReLU(), nn.Linear(64, 16))
-        def forward(s, x): return s.net(x)
+            s.l1 = nn.Linear(d, max(d // 2, 16)); s.l2 = nn.Linear(max(d // 2, 16), max(d // 4, 8))
+            s.l3 = nn.Linear(max(d // 4, 8), 10)
+        def forward(s, x):
+            x = torch.relu(s.l1(x)); x = torch.relu(s.l2(x))
+            return torch.relu(s.l3(x))
     class Decoder(nn.Module):
         def __init__(s):
             super().__init__()
-            s.net = nn.Sequential(nn.Linear(16, 64), nn.ReLU(), nn.Linear(64, d))
-        def forward(s, z): return s.net(z)
-    E1, D1, E2, D2 = Encoder(), Decoder(), Encoder(), Decoder()
-    opt = torch.optim.Adam(list(E1.parameters()) + list(D1.parameters())
-                           + list(E2.parameters()) + list(D2.parameters()), lr=1e-3)
+            s.l1 = nn.Linear(10, max(d // 4, 8)); s.l2 = nn.Linear(max(d // 4, 8), max(d // 2, 16))
+            s.l3 = nn.Linear(max(d // 2, 16), d)
+        def forward(s, z):
+            z = torch.relu(s.l1(z)); z = torch.relu(s.l2(z))
+            return torch.sigmoid(s.l3(z))
+    E, D1, D2 = Encoder(), Decoder(), Decoder()
+    opt1 = torch.optim.Adam(list(E.parameters()) + list(D1.parameters()), lr=1e-3)
+    opt2 = torch.optim.Adam(list(E.parameters()) + list(D2.parameters()), lr=1e-3)
+
+    def fwd(xb):
+        z = E(xb); w1 = D1(z); w2 = D2(z); w3 = D2(E(w1))
+        return w1, w2, w3
+
     for ep in range(epochs):
-        lam1, lam2 = (ep + 1) / epochs, (ep + 1) / epochs  # λ 线性增长 (原文)
+        n = ep + 1
         perm = torch.randperm(len(W))
         for i in range(0, len(perm), 256):
             xb = W[perm[i:i + 256]]
-            # focus AE1 (对抗: E2 的编码经 D1 重建)
-            x1 = D1(E1(xb)); x1g = D1(E2(xb))
-            L1 = ((x1 - xb) ** 2).mean() + lam1 * ((x1g - xb) ** 2).mean()
-            # focus AE2
-            x2 = D2(E2(xb)); x2g = D2(E1(xb))
-            L2 = ((x2 - xb) ** 2).mean() + lam2 * ((x2g - xb) ** 2).mean()
-            loss = L1 + L2
-            opt.zero_grad(); loss.backward(); opt.step()
-    for m in (E1, D1, E2, D2):
+            # Train AE1 (官方 90-94 行: loss1.backward -> opt1.step -> zero)
+            w1, _, w3 = fwd(xb)
+            loss1 = (1.0 / n) * ((xb - w1) ** 2).mean() + (1 - 1.0 / n) * ((xb - w3) ** 2).mean()
+            loss1.backward(); opt1.step(); opt1.zero_grad()
+            # Train AE2 (官方 97-101 行: 重新前向, loss2.backward -> opt2.step)
+            _, w2, w3 = fwd(xb)
+            loss2 = (1.0 / n) * ((xb - w2) ** 2).mean() - (1 - 1.0 / n) * ((xb - w3) ** 2).mean()
+            loss2.backward(); opt2.step(); opt2.zero_grad()
+    for m in (E, D1, D2):
         m.eval()
 
     def score(insts):
         with torch.no_grad():
-            F = torch.from_numpy(insts.reshape(-1, insts.shape[-1] * l))
-            r1 = D2(E1(F)); r2 = D1(E2(F))
-            return (((r1 - F).abs() + (r2 - F).abs()) / 2).mean(1).numpy()
+            F = _mm(torch.from_numpy(insts.reshape(-1, insts.shape[-1] * l)))
+            z = E(F); w1 = D1(z); w2 = D2(z)
+            return (0.5 * ((F - w1) ** 2).mean(1) + 0.5 * ((F - w2) ** 2).mean(1)).numpy()
     return finish(score)
 
 

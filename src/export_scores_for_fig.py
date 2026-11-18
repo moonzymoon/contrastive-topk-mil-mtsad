@@ -41,6 +41,7 @@ def export(ds="MSL", seed=7):
     wX = torch.from_numpy(blocks["train"][0])
     wY = torch.from_numpy(blocks["train"][1].astype(np.float32))
     model.init_centers_kmeans(wX[torch.randperm(len(wX))[:256]])
+    model.train()  # P0修复: init内部置eval, 必须恢复 (三外审B3抓出, 否则Dropout全关与主实验不同配置)
     bs = cfg["train"]["batch_size"]
     for ep in range(cfg["train"]["max_epochs"]):
         perm = torch.randperm(len(wX))
