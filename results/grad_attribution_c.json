@@ -36,8 +36,13 @@
     }
   },
   "_aggregate": {
-    "hit3_mean": 0.6124567863698298,
-    "n_entities": 5,
-    "note": "random baseline D-dependent; see paper for per-entity D"
+    "hit3_mean": 0.6125,
+    "chance_unweighted": 0.5673,
+    "n_entities": 6,
+    "n_above": 5,
+    "below": [
+      "machine-2-1"
+    ],
+    "chance_formula": "hypergeometric 1-C(D-|V|,3)/C(D,3)"
   }
 }

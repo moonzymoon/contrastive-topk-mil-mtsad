@@ -9,13 +9,13 @@
       数值稳定实现: logsumexp(all) - logsumexp(pos)
   差异本质: 论文式分子是正样本指数和(联合), v2是逐正样本均值的log概率.
 
-[⑨ dispersion 正则 — 总管裁定案A: 诚实命名]
-  v2: return -off_diag(pdist).mean()  注释称"均匀性"  ← 注释与行为不符(R1)
-  v3: return pdist.mean() = mean(1 - cos)
-      命名: mean-cosine dispersion (最小化平均余弦相似度 → 分散)
-      与 v2 数学等价 (差常数 +1, 优化方向相同: C↓ → 分散)
-      明确声明: 非 Wang & Isola uniformity — 只约束表征均值 (‖Σz‖),
-      不约束分布形状 (反向双簇与均匀分布损失相同, GPT‖Σu‖²论证)
+[⑨ dispersion 正则 — R4修复版 2026-11-18]
+  正确实现: return off_diag.mean() = mean(cos)
+  最小化 mean(cos) → 平均余弦相似度下降 → 分散 ✓ (探针验证)
+  历史: v2返回 C-1 (分散✓但注释错); v3初版返回 1-C (聚集✗, 已修);
+  此处离线cos矩阵的非对角均值, dL/dC=+1, 优化方向正确.
+  声明: 非 Wang & Isola uniformity — 只约束表征均值 (‖Σu‖),
+  不约束分布形状 (反向双簇与均匀分布损失相同)
 
 [⑦ bag BCE 解耦]
   v2: CMHLossV2.forward 内部用 softmax 重新聚合 bag 分数 (与模型 pool 不一致)

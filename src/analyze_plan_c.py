@@ -112,7 +112,7 @@ for v in ok_entities.values():
     auprcs = [p["AUPRC"] for p in per]
     if len(auprcs) > 1:
         seed_sds.append(statistics.stdev(auprcs))
-macro_per_seed = [statistics.mean([list(s28.values())[0]["per_seed"][i]["AUPRC"]
+macro_per_seed = [statistics.mean([v["per_seed"][i]["AUPRC"]
                                    for v in ok_entities.values()
                                    if len(v["per_seed"]) > i]) for i in range(5)]
 macro_seed_sd = statistics.stdev(macro_per_seed) if len(macro_per_seed) > 1 else 0

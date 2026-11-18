@@ -54,17 +54,15 @@ class VariableSelfAttention(nn.Module):
 
 class InstanceEncoder(nn.Module):
     """完整 instance 编码器 -> z ∈ R^d.
-    pipeline: TCN(时间) + 变量描述子 + 变量自注意力 -> 池化 -> d_embed."""
-    def __init__(self, D, d_embed=24, channels=(32, 64), kernel_size=3, dropout=0.1, use_var_attn=True):
+    pipeline: TCN(时间) + 变量描述子 -> 投影 -> d_embed.
+    v3: 变量自注意力已删除 (forward从未调用, 三外审R5确认死代码)."""
+    def __init__(self, D, d_embed=24, channels=(32, 64), kernel_size=3, dropout=0.1,
+                 use_var_attn=False):
         super().__init__()
-        self.use_var_attn = use_var_attn
+        self.use_var_attn = False  # v3: 永久禁用
         self.tcn = TemporalConvEncoder(D, channels, kernel_size, dropout)
         self.desc = VariableDescriptors()
-        # TCN 通道均值池化(d) + 描述子(3D) -> 拼接后投影
         fused_in = channels[-1] + 3 * D
-        if use_var_attn:
-            self.var_attn = VariableSelfAttention(channels[-1])
-            fused_in = channels[-1] + 3 * D  # 变量注意力后仍池化回 d
         self.proj = nn.Sequential(
             nn.Linear(fused_in, 2 * d_embed), nn.ReLU(), nn.Linear(2 * d_embed, d_embed)
         )

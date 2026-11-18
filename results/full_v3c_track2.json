@@ -15,7 +15,7 @@
           "FAR_point": 0.6866685273048656,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": -0.023434750735759735,
+          "threshold": -0.02343476563692093,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
@@ -23,37 +23,37 @@
           "bag_ce_only": false,
           "final_radii": [
             0.4030369222164154,
-            0.6995511054992676,
-            0.2915017008781433
+            0.6995510458946228,
+            0.2915016710758209
           ],
           "seed": 7
         },
         {
-          "AUPRC": 0.5573220837611295,
-          "AUROC": 0.8719074573536408,
-          "PointF1": 0.3685892558210318,
-          "EventF1_one2one": 0.21052631578947367,
-          "AllEventMIoU": 0.327227337851544,
-          "VUS_PR": 0.20096047970972034,
-          "FAR_point": 0.37333705460973116,
+          "AUPRC": 0.568822079162421,
+          "AUROC": 0.8725218685421127,
+          "PointF1": 0.3800584705339283,
+          "EventF1_one2one": 0.2222222222222222,
+          "AllEventMIoU": 0.2459808357122187,
+          "VUS_PR": 0.20274299932865844,
+          "FAR_point": 0.36440599125500045,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": 0.07965460419654846,
+          "threshold": 0.07680371403694153,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
           "split_mode": "plan-c-annot",
           "bag_ce_only": false,
           "final_radii": [
-            0.2801855206489563,
-            0.5961539149284363,
-            0.3736894428730011
+            0.28004395961761475,
+            0.5834307670593262,
+            0.37387046217918396
           ],
           "seed": 42
         },
         {
-          "AUPRC": 0.4986567665458239,
-          "AUROC": 0.8184197034816796,
+          "AUPRC": 0.4987099096227496,
+          "AUROC": 0.818432964154812,
           "PointF1": 0.33041604954894305,
           "EventF1_one2one": 0.17647058823529416,
           "AllEventMIoU": 0.18062144493921506,
@@ -61,79 +61,79 @@
           "FAR_point": 0.45148385896362453,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": 0.01431804895401001,
+          "threshold": 0.01432277262210846,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
           "split_mode": "plan-c-annot",
           "bag_ce_only": false,
           "final_radii": [
-            0.4089196026325226,
-            0.3563447892665863,
-            0.5460995435714722
+            0.40891939401626587,
+            0.35634490847587585,
+            0.5460994839668274
           ],
           "seed": 123
         },
         {
-          "AUPRC": 0.4733585921597733,
-          "AUROC": 0.8253111095502195,
-          "PointF1": 0.318630513557416,
+          "AUPRC": 0.4748832250716924,
+          "AUROC": 0.8275988519295971,
+          "PointF1": 0.3179947624392069,
           "EventF1_one2one": 0.16,
           "AllEventMIoU": 0.11347187405836072,
-          "VUS_PR": 0.1667769869283579,
-          "FAR_point": 0.5006047074146432,
+          "VUS_PR": 0.1674094824215841,
+          "FAR_point": 0.502093217973765,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": -0.0272701233625412,
+          "threshold": -0.028105445206165314,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
           "split_mode": "plan-c-annot",
           "bag_ce_only": false,
           "final_radii": [
-            0.35888049006462097,
-            0.3918604254722595,
-            0.3565882742404938
+            0.3589271306991577,
+            0.3924442231655121,
+            0.35673683881759644
           ],
           "seed": 202
         },
         {
-          "AUPRC": 0.46526554908813933,
-          "AUROC": 0.7970774788670107,
-          "PointF1": 0.3155742941101316,
-          "EventF1_one2one": 0.13636363636363635,
-          "AllEventMIoU": 0.20229941791579983,
-          "VUS_PR": 0.15867575742733006,
-          "FAR_point": 0.4879523676621081,
+          "AUPRC": 0.49294416555829,
+          "AUROC": 0.8215011524008413,
+          "PointF1": 0.3137305366104749,
+          "EventF1_one2one": 0.16216216216216214,
+          "AllEventMIoU": 0.15446705303298186,
+          "VUS_PR": 0.1702344808380149,
+          "FAR_point": 0.48423109126430364,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": -0.018650315701961517,
+          "threshold": 0.03192904591560364,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
           "split_mode": "plan-c-annot",
           "bag_ce_only": false,
           "final_radii": [
-            0.35362204909324646,
-            0.5622809529304504,
-            0.36612528562545776
+            0.3537108898162842,
+            0.563352644443512,
+            0.3739759922027588
           ],
           "seed": 999
         }
       ],
       "aggregate": {
-        "AUPRC": "0.4902±0.0407",
-        "AUROC": "0.8237±0.0291",
-        "PointF1": "0.3201±0.0363",
-        "EventF1_one2one": "0.1557±0.0433",
-        "FAR_point": "0.5000±0.1155"
+        "AUPRC": "0.4984±0.0427",
+        "AUROC": "0.8292±0.0255",
+        "PointF1": "0.3219±0.0403",
+        "EventF1_one2one": "0.1632±0.0455",
+        "FAR_point": "0.4978±0.1181"
       }
     },
     "bag_ce_only_annot": {
       "per_seed": [
         {
-          "AUPRC": 0.5149376638165412,
-          "AUROC": 0.7926343245755565,
+          "AUPRC": 0.5149482356513135,
+          "AUROC": 0.7926683050504585,
           "PointF1": 0.295457373988799,
           "EventF1_one2one": 0.13186813186813184,
           "AllEventMIoU": 0.1802176583193653,
@@ -141,21 +141,21 @@
           "FAR_point": 0.5117685366080565,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": -0.004622043110430241,
+          "threshold": -0.004622519016265869,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
           "split_mode": "plan-c-annot",
           "bag_ce_only": true,
           "final_radii": [
-            0.18338286876678467,
+            0.18338227272033691,
             0.5446774363517761,
-            0.11312790960073471
+            0.11312764137983322
           ],
           "seed": 7
         },
         {
-          "AUPRC": 0.5144981931265311,
+          "AUPRC": 0.514498193126531,
           "AUROC": 0.7619549284914748,
           "PointF1": 0.29918742506993473,
           "EventF1_one2one": 0.1951219512195122,
@@ -172,7 +172,7 @@
           "bag_ce_only": true,
           "final_radii": [
             0.24858441948890686,
-            0.6545280814170837,
+            0.654528021812439,
             0.2935419976711273
           ],
           "seed": 42
@@ -187,16 +187,16 @@
           "FAR_point": 0.6743417992371383,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": -0.009409710764884949,
+          "threshold": -0.00940970703959465,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
           "split_mode": "plan-c-annot",
           "bag_ce_only": true,
           "final_radii": [
-            0.24617516994476318,
-            0.1830083131790161,
-            0.6107071042060852
+            0.24617522954940796,
+            0.18300822377204895,
+            0.61070716381073
           ],
           "seed": 123
         },
@@ -210,7 +210,7 @@
           "FAR_point": 0.7179272490464229,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": -0.02091609686613083,
+          "threshold": -0.020916109904646873,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
@@ -218,8 +218,8 @@
           "bag_ce_only": true,
           "final_radii": [
             0.16131354868412018,
-            0.494558185338974,
-            0.19517113268375397
+            0.4945581555366516,
+            0.19517108798027039
           ],
           "seed": 202
         },
@@ -227,22 +227,22 @@
           "AUPRC": 0.43466481410255364,
           "AUROC": 0.7479403308386,
           "PointF1": 0.28687254083700964,
-          "EventF1_one2one": 0.19999999999999998,
-          "AllEventMIoU": 0.15902868884764465,
+          "EventF1_one2one": 0.23333333333333334,
+          "AllEventMIoU": 0.17503498926644614,
           "VUS_PR": 0.13797278502812346,
           "FAR_point": 0.543027258349614,
           "coverage": 0.9993803445284422,
           "eval_points": 24192,
-          "threshold": 0.038499340415000916,
+          "threshold": 0.03849934786558151,
           "train_bags": 375,
           "train_anom_bags": 0,
           "annot_bags": 65,
           "split_mode": "plan-c-annot",
           "bag_ce_only": true,
           "final_radii": [
-            0.28024324774742126,
-            0.5667684674263,
-            0.1928407847881317
+            0.28024327754974365,
+            0.5667683482170105,
+            0.19284076988697052
           ],
           "seed": 999
         }
@@ -251,7 +251,7 @@
         "AUPRC": "0.4862±0.0361",
         "AUROC": "0.7871±0.0313",
         "PointF1": "0.2799±0.0200",
-        "EventF1_one2one": "0.1811±0.0807",
+        "EventF1_one2one": "0.1878±0.0839",
         "FAR_point": "0.5831±0.1076"
       }
     },
@@ -349,1765 +349,6 @@
         "PointF1": "0.1461±0.1283",
         "EventF1_one2one": "0.2388±0.1623",
         "FAR_point": "0.0054±0.0035"
-      }
-    }
-  },
-  "PSM": {
-    "T": 220322,
-    "n_official_train": 132481,
-    "split_mode": "plan-c-annot",
-    "ours_v3_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.47026568062437873,
-          "AUROC": 0.5622072341200157,
-          "PointF1": 0.32615606069693515,
-          "EventF1_one2one": 0.2133333333333333,
-          "AllEventMIoU": 0.08128221883683,
-          "VUS_PR": 0.18888769934399519,
-          "FAR_point": 0.09236448416553332,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 1.60519341230384,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.24183890223503113,
-            0.4203243553638458,
-            0.6572215557098389
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.4607460879307903,
-          "AUROC": 0.5378413890494809,
-          "PointF1": 0.2777737984385073,
-          "EventF1_one2one": 0.2150537634408602,
-          "AllEventMIoU": 0.07671974821982042,
-          "VUS_PR": 0.17779758123608638,
-          "FAR_point": 0.0172916261900136,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 3.6793150424957015,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.6121209859848022,
-            0.3720302879810333,
-            1.0673383474349976
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.5072942499952244,
-          "AUROC": 0.6255386497473543,
-          "PointF1": 0.3400996493818048,
-          "EventF1_one2one": 0.17543859649122806,
-          "AllEventMIoU": 0.048141156792293596,
-          "VUS_PR": 0.22266465875235725,
-          "FAR_point": 0.07443170779094618,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.9698532998561822,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.3623884916305542,
-            0.42190271615982056,
-            0.35866695642471313
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.48775473767039873,
-          "AUROC": 0.5750259885495818,
-          "PointF1": 0.3688495753128612,
-          "EventF1_one2one": 0.17333333333333337,
-          "AllEventMIoU": 0.0714149789797945,
-          "VUS_PR": 0.1971119653373455,
-          "FAR_point": 0.18070720808237808,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.6955019831657372,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.6139588952064514,
-            0.6385397911071777,
-            0.7279550433158875
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.4862995382620402,
-          "AUROC": 0.6444566322629172,
-          "PointF1": 0.34413075780089153,
-          "EventF1_one2one": 0.23809523809523808,
-          "AllEventMIoU": 0.0666216918218396,
-          "VUS_PR": 0.23332988756928635,
-          "FAR_point": 0.0914319020788809,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.618854898214335,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.47248512506484985,
-            0.6429798007011414,
-            0.47792014479637146
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.4825±0.0179",
-        "AUROC": "0.5890±0.0446",
-        "PointF1": "0.3314±0.0337",
-        "EventF1_one2one": "0.2031±0.0279",
-        "FAR_point": "0.0912±0.0586"
-      }
-    },
-    "bag_ce_only_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.3084216796511392,
-          "AUROC": 0.4659680306142874,
-          "PointF1": 0.05880360409186369,
-          "EventF1_one2one": 0.13559322033898305,
-          "AllEventMIoU": 0.039155858695823595,
-          "VUS_PR": 0.005052388155123029,
-          "FAR_point": 0.10685836409558966,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": -2.6917467039311305e-05,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.0548505038022995,
-            0.009136048145592213,
-            0.4368840456008911
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.48056112027913644,
-          "AUROC": 0.6331210850507056,
-          "PointF1": 0.31559413725860225,
-          "EventF1_one2one": 0.26804123711340205,
-          "AllEventMIoU": 0.06973599083257974,
-          "VUS_PR": 0.2285048579633845,
-          "FAR_point": 0.0703905187487857,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": -0.08718745298683689,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.43778929114341736,
-            0.3839689791202545,
-            0.4357379972934723
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.41937792435205135,
-          "AUROC": 0.6135152255736289,
-          "PointF1": 0.015666466912079447,
-          "EventF1_one2one": 0.06451612903225806,
-          "AllEventMIoU": 0.0079749455070902,
-          "VUS_PR": 0.21494341224578473,
-          "FAR_point": 0.0004857198367981348,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.014857047842815498,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.020492618903517723,
-            0.21437397599220276,
-            0.4496762752532959
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.3066142026150882,
-          "AUROC": 0.4902376127848006,
-          "PointF1": 0.2519888720777002,
-          "EventF1_one2one": 0.12987012987012986,
-          "AllEventMIoU": 0.08495422708637755,
-          "VUS_PR": 0.15062776656311674,
-          "FAR_point": 0.24598795414804742,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.005477090924978176,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.22372840344905853,
-            0.14768420159816742,
-            0.22864551842212677
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.2785624804352377,
-          "AUROC": 0.45384847779842047,
-          "PointF1": 0.014306519318084467,
-          "EventF1_one2one": 0.1875,
-          "AllEventMIoU": 0.026467817197207234,
-          "VUS_PR": 0.13647258672540014,
-          "FAR_point": 0.0004857198367981348,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": -0.15313881114125333,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.17620854079723358,
-            0.5303149819374084,
-            0.20830737054347992
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.3587±0.0869",
-        "AUROC": "0.5313±0.0853",
-        "PointF1": "0.1313±0.1422",
-        "EventF1_one2one": "0.1571±0.0758",
-        "FAR_point": "0.0848±0.1011"
-      }
-    },
-    "TAIL-MIL": {
-      "per_seed": [
-        {
-          "AUPRC": 0.368883747130054,
-          "AUROC": 0.5764123488451363,
-          "PointF1": 0.017794507656771326,
-          "EventF1_one2one": 0.03448275862068965,
-          "AllEventMIoU": 0.013078470824949699,
-          "VUS_PR": 0.1936188381422318,
-          "FAR_point": 0.0003108606955508063,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.11712318547070023,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.3856239495801147,
-          "AUROC": 0.5651421248044806,
-          "PointF1": 0.17740217314111215,
-          "EventF1_one2one": 0.10784313725490197,
-          "AllEventMIoU": 0.012981555712923568,
-          "VUS_PR": 0.18943703390972527,
-          "FAR_point": 0.04876627161453274,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.007545953383669219,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.35491063140366197,
-          "AUROC": 0.5192552584490203,
-          "PointF1": 0.019163315938061424,
-          "EventF1_one2one": 0.03389830508474576,
-          "AllEventMIoU": 0.00041220115416323167,
-          "VUS_PR": 0.15458774751668736,
-          "FAR_point": 0.0,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.030063738487660818,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.45171235678566213,
-          "AUROC": 0.6422695713963184,
-          "PointF1": 0.2597075824549473,
-          "EventF1_one2one": 0.13793103448275862,
-          "AllEventMIoU": 0.0742438736283466,
-          "VUS_PR": 0.2282288046897137,
-          "FAR_point": 0.04734796969108218,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.03673477917909586,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.37449096061853104,
-          "AUROC": 0.5420624702251685,
-          "PointF1": 0.27168785036354554,
-          "EventF1_one2one": 0.15294117647058825,
-          "AllEventMIoU": 0.050962499701927,
-          "VUS_PR": 0.1747361531365333,
-          "FAR_point": 0.15513891587332426,
-          "coverage": 0.9994508806000134,
-          "eval_points": 74624,
-          "threshold": 0.02797125941142435,
-          "train_bags": 1652,
-          "train_anom_bags": 44,
-          "annot_bags": 204,
-          "split_mode": "plan-c-annot",
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.3871±0.0378",
-        "AUROC": "0.5690±0.0465",
-        "PointF1": "0.1492±0.1247",
-        "EventF1_one2one": "0.0934±0.0565",
-        "FAR_point": "0.0503±0.0633"
-      }
-    }
-  },
-  "MSL": {
-    "T": 132046,
-    "n_official_train": 58317,
-    "split_mode": "plan-c-annot",
-    "ours_v3_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.12840241973942282,
-          "AUROC": 0.5268969656180493,
-          "PointF1": 0.0679472932211462,
-          "EventF1_one2one": 0.18181818181818182,
-          "AllEventMIoU": 0.04946922747280628,
-          "VUS_PR": 0.051353375009511204,
-          "FAR_point": 0.004960160413698486,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -194363.34375,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            785.1001586914062,
-            1039585.625,
-            1039585.625
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.12464835656468655,
-          "AUROC": 0.5707356218822874,
-          "PointF1": 0.025517348685234167,
-          "EventF1_one2one": 0.1694915254237288,
-          "AllEventMIoU": 0.042650857152513454,
-          "VUS_PR": 0.061790389810772596,
-          "FAR_point": 0.009533357958243189,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -487848.25,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            1254.3621826171875,
-            1456774.625,
-            1456774.625
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.11811409373738996,
-          "AUROC": 0.48722373279473397,
-          "PointF1": 0.06726386924406726,
-          "EventF1_one2one": 0.16666666666666666,
-          "AllEventMIoU": 0.046991488409701354,
-          "VUS_PR": 0.04407160674500413,
-          "FAR_point": 0.00608587057850949,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -25032.755859375,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            159.89016723632812,
-            1072201.0,
-            1072201.0
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.14553693060270262,
-          "AUROC": 0.6041390293033426,
-          "PointF1": 0.07029196070291961,
-          "EventF1_one2one": 0.16666666666666666,
-          "AllEventMIoU": 0.06979465983757419,
-          "VUS_PR": 0.06774180027875147,
-          "FAR_point": 0.020579388950451163,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -23351.771484375,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            152.91110229492188,
-            1046921.3125,
-            1046921.3125
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.11463951128818232,
-          "AUROC": 0.5188330699511875,
-          "PointF1": 0.039128501556247225,
-          "EventF1_one2one": 0.20512820512820512,
-          "AllEventMIoU": 0.03306285098565354,
-          "VUS_PR": 0.05120324309490266,
-          "FAR_point": 0.014282447716039611,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -846183.0,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            2465.717529296875,
-            1231563.875,
-            1231563.875
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1263±0.0120",
-        "AUROC": "0.5416±0.0460",
-        "PointF1": "0.0540±0.0204",
-        "EventF1_one2one": "0.1780±0.0164",
-        "FAR_point": "0.0111±0.0064"
-      }
-    },
-    "bag_ce_only_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.11826586412894055,
-          "AUROC": 0.5149491467968254,
-          "PointF1": 0.11429111174081422,
-          "EventF1_one2one": 0.15277777777777776,
-          "AllEventMIoU": 0.04778849712946143,
-          "VUS_PR": 0.04975457621650002,
-          "FAR_point": 0.07350535591789352,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -209101.46875,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            781.186767578125,
-            1039585.625,
-            1039585.625
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.12522777523515113,
-          "AUROC": 0.49591415998060295,
-          "PointF1": 0.0765520460557025,
-          "EventF1_one2one": 0.1851851851851852,
-          "AllEventMIoU": 0.05384739596818503,
-          "VUS_PR": 0.04554746374268337,
-          "FAR_point": 0.006648725660914991,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -455385.75,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            1227.171142578125,
-            1456774.625,
-            1456774.625
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.13771681360314247,
-          "AUROC": 0.5340384743953874,
-          "PointF1": 0.07104247104247104,
-          "EventF1_one2one": 0.17543859649122806,
-          "AllEventMIoU": 0.056359169908530404,
-          "VUS_PR": 0.05285001711628616,
-          "FAR_point": 0.007774435825725995,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -24404.865234375,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            156.36392211914062,
-            1072201.0,
-            1072201.0
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.15370072532249385,
-          "AUROC": 0.5908772838280076,
-          "PointF1": 0.09417103956885549,
-          "EventF1_one2one": 0.17500000000000002,
-          "AllEventMIoU": 0.08771009949538863,
-          "VUS_PR": 0.06515404508639044,
-          "FAR_point": 0.016111726733857492,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -23884.990234375,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            154.8937530517578,
-            1046921.3125,
-            1046921.3125
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.09935147047388079,
-          "AUROC": 0.4880724771336258,
-          "PointF1": 0.03605079885292913,
-          "EventF1_one2one": 0.1616161616161616,
-          "AllEventMIoU": 0.04331098479669966,
-          "VUS_PR": 0.04470262613536685,
-          "FAR_point": 0.024413839199338646,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": -847397.0,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            2462.68310546875,
-            1231563.875,
-            1231563.875
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1269±0.0204",
-        "AUROC": "0.5248±0.0410",
-        "PointF1": "0.0784±0.0291",
-        "EventF1_one2one": "0.1700±0.0128",
-        "FAR_point": "0.0257±0.0277"
-      }
-    },
-    "TAIL-MIL": {
-      "per_seed": [
-        {
-          "AUPRC": 0.09219901460415819,
-          "AUROC": 0.5102670615757537,
-          "PointF1": 0.044946706048542444,
-          "EventF1_one2one": 0.12949640287769784,
-          "AllEventMIoU": 0.02465235264173123,
-          "VUS_PR": 0.01231883468049186,
-          "FAR_point": 0.03181890137723603,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": 0.033213481307029724,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.08364409988688223,
-          "AUROC": 0.4814524313300568,
-          "PointF1": 0.02249348511863942,
-          "EventF1_one2one": 0.09259259259259259,
-          "AllEventMIoU": 0.019003134473828037,
-          "VUS_PR": 0.04344167609365591,
-          "FAR_point": 0.02473044518319174,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": 0.004460683558136225,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.0802202086865437,
-          "AUROC": 0.44911083940113733,
-          "PointF1": 0.028664495114006518,
-          "EventF1_one2one": 0.10218978102189781,
-          "AllEventMIoU": 0.03407046239135634,
-          "VUS_PR": 0.037802712606389274,
-          "FAR_point": 0.03099220797495295,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": 0.00956142507493496,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.104152215414485,
-          "AUROC": 0.5537025630665956,
-          "PointF1": 0.06265634306134604,
-          "EventF1_one2one": 0.1694915254237288,
-          "AllEventMIoU": 0.05864846358481603,
-          "VUS_PR": 0.05648781564491648,
-          "FAR_point": 0.040965296466325435,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": 0.001475804834626615,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.07788863199137519,
-          "AUROC": 0.43168393721785847,
-          "PointF1": 0.030284377692970578,
-          "EventF1_one2one": 0.10256410256410256,
-          "AllEventMIoU": 0.04202954964473614,
-          "VUS_PR": 0.03497070708396295,
-          "FAR_point": 0.03864351925140274,
-          "coverage": 0.9997766076272538,
-          "eval_points": 62656,
-          "threshold": 0.02688339725136757,
-          "train_bags": 807,
-          "train_anom_bags": 47,
-          "annot_bags": 171,
-          "split_mode": "plan-c-annot",
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.0876±0.0107",
-        "AUROC": "0.4852±0.0487",
-        "PointF1": "0.0378±0.0161",
-        "EventF1_one2one": "0.1193±0.0313",
-        "FAR_point": "0.0334±0.0065"
-      }
-    }
-  },
-  "SMAP": {
-    "T": 562800,
-    "n_official_train": 135183,
-    "split_mode": "plan-c-annot",
-    "ours_v3_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.18518001661876615,
-          "AUROC": 0.5206099040400263,
-          "PointF1": 0.208478344480821,
-          "EventF1_one2one": 0.05954974582425563,
-          "AllEventMIoU": 0.14169914661628633,
-          "VUS_PR": 0.07387744691250245,
-          "FAR_point": 0.15236528698182739,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": -0.021834198385477066,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.5196728706359863,
-            0.17487803101539612,
-            4.28649377822876
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.18220692357166,
-          "AUROC": 0.5601042624475443,
-          "PointF1": 0.19262234560973446,
-          "EventF1_one2one": 0.08421052631578947,
-          "AllEventMIoU": 0.10244306782277729,
-          "VUS_PR": 0.0848879494300978,
-          "FAR_point": 0.14067724231736442,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": -0.4684363007545471,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.7511078715324402,
-            2.348853588104248,
-            0.38181009888648987
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.17888160915468537,
-          "AUROC": 0.533763936038892,
-          "PointF1": 0.2045977723411064,
-          "EventF1_one2one": 0.0686868686868687,
-          "AllEventMIoU": 0.11271714879159335,
-          "VUS_PR": 0.07666100376455946,
-          "FAR_point": 0.1253957960997675,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.18567855656147003,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.45116496086120605,
-            4.10505485534668,
-            0.45974263548851013
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.16012629221970032,
-          "AUROC": 0.478070685279875,
-          "PointF1": 0.16204885771945277,
-          "EventF1_one2one": 0.0744297719087635,
-          "AllEventMIoU": 0.09955824184543986,
-          "VUS_PR": 0.06198733763746282,
-          "FAR_point": 0.11103167950400936,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.07083959132432938,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.2668800354003906,
-            0.5747441053390503,
-            4.2845778465271
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.16370470910902876,
-          "AUROC": 0.47475100672697834,
-          "PointF1": 0.19911645022088745,
-          "EventF1_one2one": 0.06779661016949153,
-          "AllEventMIoU": 0.11367048955970334,
-          "VUS_PR": 0.06256855904002205,
-          "FAR_point": 0.12819523304917202,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": -0.12989544868469238,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.7334607243537903,
-            0.5060793161392212,
-            0.18434730172157288
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1740±0.0113",
-        "AUROC": "0.5135±0.0367",
-        "PointF1": "0.1934±0.0185",
-        "EventF1_one2one": "0.0709±0.0091",
-        "FAR_point": "0.1315±0.0157"
-      }
-    },
-    "bag_ce_only_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.1258526588247298,
-          "AUROC": 0.4833513071796374,
-          "PointF1": 0.053701715903610704,
-          "EventF1_one2one": 0.054945054945054944,
-          "AllEventMIoU": 0.05770432140183643,
-          "VUS_PR": 0.06315556220375687,
-          "FAR_point": 0.048188273996868425,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.006083036307245493,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.17696663737297058,
-            0.021566344425082207,
-            4.28649377822876
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.1353392715744726,
-          "AUROC": 0.5026317351807326,
-          "PointF1": 0.012822380882995775,
-          "EventF1_one2one": 0.30612244897959184,
-          "AllEventMIoU": 0.027188610513534075,
-          "VUS_PR": 0.002784293560059076,
-          "FAR_point": 0.001303240704129565,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.00016547658015042543,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.07236792892217636,
-            2.348853588104248,
-            0.020238306373357773
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.1219791758839827,
-          "AUROC": 0.470179808665514,
-          "PointF1": 0.05148348833237592,
-          "EventF1_one2one": 0.056955093099671415,
-          "AllEventMIoU": 0.054674567476286004,
-          "VUS_PR": 0.060365204345969585,
-          "FAR_point": 0.048808262293007734,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.0005760221392847598,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.028134973719716072,
-            4.10505485534668,
-            0.14698351919651031
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.12319278512085532,
-          "AUROC": 0.47843448473888783,
-          "PointF1": 0.04965256046089902,
-          "EventF1_one2one": 0.055,
-          "AllEventMIoU": 0.04411053396660879,
-          "VUS_PR": 0.0630484869389728,
-          "FAR_point": 0.04252929919180097,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.001558059360831976,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.027342770248651505,
-            0.18579058349132538,
-            4.2845778465271
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.1490921975661002,
-          "AUROC": 0.575797674531985,
-          "PointF1": 0.0446894856828728,
-          "EventF1_one2one": 0.0687757909215956,
-          "AllEventMIoU": 0.057323023075671414,
-          "VUS_PR": 0.08837618628908551,
-          "FAR_point": 0.041583500719629275,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.001005734084174037,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.2261919379234314,
-            0.13088491559028625,
-            0.0414673276245594
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1311±0.0113",
-        "AUROC": "0.5021±0.0429",
-        "PointF1": "0.0425±0.0169",
-        "EventF1_one2one": "0.1084±0.1107",
-        "FAR_point": "0.0365±0.0199"
-      }
-    },
-    "TAIL-MIL": {
-      "per_seed": [
-        {
-          "AUPRC": 0.1629445063569554,
-          "AUROC": 0.5440516985522478,
-          "PointF1": 0.17507155653481046,
-          "EventF1_one2one": 0.06011372867587327,
-          "AllEventMIoU": 0.10497266419667776,
-          "VUS_PR": 0.0765603958821195,
-          "FAR_point": 0.27081784680595317,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.005839097313582897,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.13019732787462582,
-          "AUROC": 0.5,
-          "PointF1": 0.0,
-          "EventF1_one2one": 0.0,
-          "AllEventMIoU": 0.0,
-          "VUS_PR": 0.0,
-          "FAR_point": 0.0,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.0,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.16327983366241228,
-          "AUROC": 0.5647303627579662,
-          "PointF1": 0.1988439829084305,
-          "EventF1_one2one": 0.055857253685027156,
-          "AllEventMIoU": 0.10021072162301523,
-          "VUS_PR": 0.08181672644829736,
-          "FAR_point": 0.2283296692868553,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.009321589022874832,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.14866327965522264,
-          "AUROC": 0.5466947445609829,
-          "PointF1": 0.17322713724285724,
-          "EventF1_one2one": 0.051114736269711795,
-          "AllEventMIoU": 0.13198456617458093,
-          "VUS_PR": 0.07665386443837686,
-          "FAR_point": 0.26421623673430655,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.010180903598666191,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.13816859843961166,
-          "AUROC": 0.5369811310354534,
-          "PointF1": 0.1798646725035587,
-          "EventF1_one2one": 0.057401812688821746,
-          "AllEventMIoU": 0.12666452667832764,
-          "VUS_PR": 0.07488847259530747,
-          "FAR_point": 0.29320385278441174,
-          "coverage": 0.9999504778883772,
-          "eval_points": 363456,
-          "threshold": 0.007571900729089975,
-          "train_bags": 2478,
-          "train_anom_bags": 131,
-          "annot_bags": 1001,
-          "split_mode": "plan-c-annot",
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1487±0.0147",
-        "AUROC": "0.5385±0.0238",
-        "PointF1": "0.1454±0.0819",
-        "EventF1_one2one": "0.0449±0.0253",
-        "FAR_point": "0.2113±0.1204"
-      }
-    }
-  },
-  "SWaT": {
-    "T": 288344,
-    "n_official_train": 277420,
-    "split_mode": "plan-c-annot",
-    "ours_v3_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.9999999999999994,
-          "AUROC": NaN,
-          "PointF1": 0.22358346094946402,
-          "EventF1_one2one": 0.16666666666666669,
-          "AllEventMIoU": 0.032758620689655175,
-          "VUS_PR": 0.24337931034482757,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.04458862543106079,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.21366290748119354,
-            0.3365957736968994,
-            0.2642134428024292
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.30903790087463556,
-          "EventF1_one2one": 0.15384615384615385,
-          "AllEventMIoU": 0.05344827586206897,
-          "VUS_PR": 0.49924137931034485,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.015023809857666503,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.16498081386089325,
-            1.508131980895996,
-            0.09250719100236893
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.8931297709923663,
-          "EventF1_one2one": 0.125,
-          "AllEventMIoU": 0.6862068965517242,
-          "VUS_PR": 0.49924137931034485,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.01523664952255788,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.1726870983839035,
-            1.3296815156936646,
-            2.9099209308624268
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.22900763358778625,
-          "EventF1_one2one": 0.16666666666666669,
-          "AllEventMIoU": 0.027586206896551724,
-          "VUS_PR": 0.49924137931034485,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.0602085499092938,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.27660876512527466,
-            0.12611797451972961,
-            2.1522469520568848
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.15873015873015872,
-          "EventF1_one2one": 0.19999999999999998,
-          "AllEventMIoU": 0.03103448275862069,
-          "VUS_PR": 0.49917241379310345,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": 0.0017816685140129305,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.18698275089263916,
-            1.5174025297164917,
-            0.3864096999168396
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "1.0000±0.0000",
-        "PointF1": "0.3627±0.3013",
-        "EventF1_one2one": "0.1624±0.0270"
-      }
-    },
-    "bag_ce_only_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.9999999999999998,
-          "AUROC": NaN,
-          "PointF1": 0.19314641744548286,
-          "EventF1_one2one": 0.2857142857142857,
-          "AllEventMIoU": 0.032758620689655175,
-          "VUS_PR": 0.10451724137931034,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.0021586234215646982,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.05610040947794914,
-            0.31394505500793457,
-            0.040147293359041214
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.22900763358778625,
-          "EventF1_one2one": 0.18181818181818182,
-          "AllEventMIoU": 0.029310344827586206,
-          "VUS_PR": 0.49924137931034485,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.00024685938842594754,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.11836925148963928,
-            1.2654154300689697,
-            0.06131618097424507
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.9249304911955515,
-          "EventF1_one2one": 0.16666666666666669,
-          "AllEventMIoU": 0.7189655172413794,
-          "VUS_PR": 0.49924137931034485,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.00022570223809453098,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.025502026081085205,
-            0.5935595631599426,
-            0.7042543292045593
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.21538461538461542,
-          "EventF1_one2one": 0.15384615384615385,
-          "AllEventMIoU": 0.03103448275862069,
-          "VUS_PR": 0.48234482758620695,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.00013567646965384483,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.05102244019508362,
-            0.016850609332323074,
-            1.27222740650177
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.3065693430656934,
-          "EventF1_one2one": 0.0909090909090909,
-          "AllEventMIoU": 0.041379310344827586,
-          "VUS_PR": 0.49924137931034485,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": -0.0007730500132311539,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.051479168236255646,
-            1.1203404664993286,
-            0.11668557673692703
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "1.0000±0.0000",
-        "PointF1": "0.3738±0.3110",
-        "EventF1_one2one": "0.1758±0.0705"
-      }
-    },
-    "TAIL-MIL": {
-      "per_seed": [
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.0,
-          "EventF1_one2one": 0.0,
-          "AllEventMIoU": 0.0,
-          "VUS_PR": 0.0,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": 0.0,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "seed": 7
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.0,
-          "EventF1_one2one": 0.0,
-          "AllEventMIoU": 0.0,
-          "VUS_PR": 0.0,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": 0.0,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "seed": 42
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 0.0,
-          "EventF1_one2one": 0.0,
-          "AllEventMIoU": 0.0,
-          "VUS_PR": 0.0,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": 0.0,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "seed": 123
-        },
-        {
-          "AUPRC": 1.0,
-          "AUROC": NaN,
-          "PointF1": 1.0,
-          "EventF1_one2one": 1.0,
-          "AllEventMIoU": 1.0,
-          "VUS_PR": 0.49924137931034485,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": 0.00020210298098390908,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.9999999999999999,
-          "AUROC": NaN,
-          "PointF1": 0.006872852233676977,
-          "EventF1_one2one": 1.0,
-          "AllEventMIoU": 0.0034482758620689655,
-          "VUS_PR": 0.003448275862068966,
-          "FAR_point": NaN,
-          "coverage": 0.9994614970382337,
-          "eval_points": 9280,
-          "threshold": 0.0,
-          "train_bags": 3057,
-          "train_anom_bags": 24,
-          "annot_bags": 24,
-          "split_mode": "plan-c-annot",
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "1.0000±0.0000",
-        "PointF1": "0.2014±0.4465",
-        "EventF1_one2one": "0.4000±0.5477"
-      }
-    }
-  },
-  "WADI": {
-    "T": 138241,
-    "n_official_train": 120961,
-    "split_mode": "plan-c-annot",
-    "ours_v3_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.186507748596349,
-          "AUROC": 0.5279759136432549,
-          "PointF1": 0.05907423927049261,
-          "EventF1_one2one": 0.6,
-          "AllEventMIoU": 0.16579193615394638,
-          "VUS_PR": 0.026570733478783054,
-          "FAR_point": 0.6558188892819243,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 1.8319387435913086,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.1816430240869522,
-            0.18685925006866455,
-            0.32122793793678284
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.18579248808339813,
-          "AUROC": 0.5340027986233651,
-          "PointF1": 0.05907423927049261,
-          "EventF1_one2one": 0.6,
-          "AllEventMIoU": 0.16579193615394638,
-          "VUS_PR": 0.026818703928716853,
-          "FAR_point": 0.6558188892819243,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 2.926645278930664,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.1519399881362915,
-            0.17918938398361206,
-            0.5902764201164246
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.18695900856343975,
-          "AUROC": 0.551144875946029,
-          "PointF1": 0.05907423927049261,
-          "EventF1_one2one": 0.6,
-          "AllEventMIoU": 0.16579193615394638,
-          "VUS_PR": 0.027676446051442767,
-          "FAR_point": 0.6558188892819243,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 1.9164257049560547,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.2996528446674347,
-            0.5683378577232361,
-            0.17183347046375275
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.19145632719230113,
-          "AUROC": 0.5536499222265147,
-          "PointF1": 0.05907423927049261,
-          "EventF1_one2one": 0.6,
-          "AllEventMIoU": 0.16579193615394638,
-          "VUS_PR": 0.028070937929551506,
-          "FAR_point": 0.6558188892819243,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 1.7132362127304077,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.3596428632736206,
-            0.18872913718223572,
-            0.23104049265384674
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.1851335599557661,
-          "AUROC": 0.564676036600725,
-          "PointF1": 0.05907423927049261,
-          "EventF1_one2one": 0.6,
-          "AllEventMIoU": 0.16579193615394638,
-          "VUS_PR": 0.02878135722627819,
-          "FAR_point": 0.6558188892819243,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 1.548862099647522,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": false,
-          "final_radii": [
-            0.12867102026939392,
-            0.11434663832187653,
-            0.19504743814468384
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1872±0.0025",
-        "AUROC": "0.5463±0.0150",
-        "PointF1": "0.0591±0.0000",
-        "EventF1_one2one": "0.6000±0.0000",
-        "FAR_point": "0.6558±0.0000"
-      }
-    },
-    "bag_ce_only_annot": {
-      "per_seed": [
-        {
-          "AUPRC": 0.1762143491868041,
-          "AUROC": 0.5881784981264432,
-          "PointF1": 0.07597122302158273,
-          "EventF1_one2one": 0.5263157894736842,
-          "AllEventMIoU": 0.3592464195834504,
-          "VUS_PR": 0.029574685653493294,
-          "FAR_point": 0.6726565263530244,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.003770070616155863,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.1163436695933342,
-            0.07417625188827515,
-            0.011871961876749992
-          ],
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.1863764623746156,
-          "AUROC": 0.5999139772973392,
-          "PointF1": 0.06379493109761973,
-          "EventF1_one2one": 0.375,
-          "AllEventMIoU": 0.18638717424918447,
-          "VUS_PR": 0.031518809565387204,
-          "FAR_point": 0.6738592147152458,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.008882091380655766,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.2126319408416748,
-            0.4364544153213501,
-            0.047390151768922806
-          ],
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.18816876816314043,
-          "AUROC": 0.5532588482191535,
-          "PointF1": 0.0679980516317584,
-          "EventF1_one2one": 0.47058823529411764,
-          "AllEventMIoU": 0.23210145996347023,
-          "VUS_PR": 0.02831441609559306,
-          "FAR_point": 0.6646621860629642,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.0032985075376927853,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.27599480748176575,
-            0.05363138020038605,
-            0.08418387174606323
-          ],
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.18521561555793833,
-          "AUROC": 0.5597843525586492,
-          "PointF1": 0.05907423927049261,
-          "EventF1_one2one": 0.6,
-          "AllEventMIoU": 0.16579193615394638,
-          "VUS_PR": 0.02590016457787108,
-          "FAR_point": 0.6558188892819243,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": -1.9457354937912896e-05,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.4893965721130371,
-            0.00814837496727705,
-            0.14802640676498413
-          ],
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.17925302281168945,
-          "AUROC": 0.5347436666039771,
-          "PointF1": 0.06206435596295236,
-          "EventF1_one2one": 0.375,
-          "AllEventMIoU": 0.18638717424918447,
-          "VUS_PR": 0.027030312472591928,
-          "FAR_point": 0.6810753448885745,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.000644198153167963,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "bag_ce_only": true,
-          "final_radii": [
-            0.16325809061527252,
-            0.03158876672387123,
-            0.058679379522800446
-          ],
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1830±0.0051",
-        "AUROC": "0.5672±0.0265",
-        "PointF1": "0.0658±0.0065",
-        "EventF1_one2one": "0.4694±0.0976",
-        "FAR_point": "0.6696±0.0097"
-      }
-    },
-    "TAIL-MIL": {
-      "per_seed": [
-        {
-          "AUPRC": 0.0520747334652038,
-          "AUROC": 0.5162176218219297,
-          "PointF1": 0.0632688927943761,
-          "EventF1_one2one": 0.4,
-          "AllEventMIoU": 0.04387504387504388,
-          "VUS_PR": 0.012955854126679463,
-          "FAR_point": 0.0021223912274495934,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.0,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "seed": 7
-        },
-        {
-          "AUPRC": 0.29480545196784125,
-          "AUROC": 0.64409013169553,
-          "PointF1": 0.43328550932568144,
-          "EventF1_one2one": 0.4444444444444445,
-          "AllEventMIoU": 0.16455988455988457,
-          "VUS_PR": 0.2486586110626417,
-          "FAR_point": 0.0017686593562079944,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.0,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "seed": 42
-        },
-        {
-          "AUPRC": 0.27175182912715024,
-          "AUROC": 0.6440510242947938,
-          "PointF1": 0.43328550932568144,
-          "EventF1_one2one": 0.4444444444444445,
-          "AllEventMIoU": 0.16455988455988457,
-          "VUS_PR": 0.2486586110626417,
-          "FAR_point": 0.0017686593562079944,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.0,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "seed": 123
-        },
-        {
-          "AUPRC": 0.026760894185784014,
-          "AUROC": 0.3746683848575601,
-          "PointF1": 0.0,
-          "EventF1_one2one": 0.0,
-          "AllEventMIoU": 0.0,
-          "VUS_PR": 0.011455511747896038,
-          "FAR_point": 0.022638839759462327,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.0008168868953362107,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "seed": 202
-        },
-        {
-          "AUPRC": 0.09478552016193245,
-          "AUROC": 0.5307101727447217,
-          "PointF1": 0.11573236889692587,
-          "EventF1_one2one": 0.25,
-          "AllEventMIoU": 0.026272577996715927,
-          "VUS_PR": 0.06142034548944337,
-          "FAR_point": 0.0,
-          "coverage": 0.9978213507625272,
-          "eval_points": 14656,
-          "threshold": 0.0,
-          "train_bags": 1361,
-          "train_anom_bags": 5,
-          "annot_bags": 39,
-          "split_mode": "plan-c-annot",
-          "seed": 999
-        }
-      ],
-      "aggregate": {
-        "AUPRC": "0.1480±0.1261",
-        "AUROC": "0.5419±0.1114",
-        "PointF1": "0.2091±0.2087",
-        "EventF1_one2one": "0.3078±0.1897",
-        "FAR_point": "0.0057±0.0095"
       }
     }
   }

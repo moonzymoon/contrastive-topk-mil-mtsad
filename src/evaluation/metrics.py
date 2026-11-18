@@ -38,31 +38,47 @@ def point_f1_at_threshold(y_true, y_score, threshold):
 
 
 def _one2one_match(gt_events, pred_events):
-    """一对一事件匹配 (最大基数优先, IoU 降序贪心破平局), 漏检零信用.
-    修复 (三外审 Gustav R. 2026-11-18): 旧实现 linear_sum_assignment(-IoU)
-    最大化【总 IoU】, 与本注释"最大基数"不符 — pred 多于 gt 时会漏配低 IoU 对
-    (2 gt + 3 pred 只配 1 对的反例已复现). 改为: 先取全部 IoU>0 候选对,
-    按IoU降序贪心, 行列各至多一次 → 基数最大; 同基数下总 IoU 尽量大."""
+    """一对一事件匹配: 最大基数优先, 同基数下最大总IoU, 漏检零信用.
+    R4-P0-3 (2026-11-18 三外审): 旧贪心不保证最大基数 (高IoU对可阻塞次高IoU对
+    的互补配对). 改用 scipy maximum_bipartite_matching 求真最大基数,
+    再在最大基数解中选总IoU最大的 (通过 Hungarian on -IoU restricted to
+    maximum-cardinality subgraph)."""
     if not gt_events or not pred_events:
         return [], 0
-    # IoU 矩阵
     IoU = np.zeros((len(gt_events), len(pred_events)))
     for i, (gs, ge) in enumerate(gt_events):
         for j, (ps, pe) in enumerate(pred_events):
             inter = max(0, min(ge, pe) - max(gs, ps))
             union = max(ge, pe) - min(gs, ps)
             IoU[i, j] = inter / union if union > 0 else 0.0
-    # 最大基数贪心: IoU>0 候选按降序, 行列各至多一次
-    pairs = sorted(((IoU[i, j], i, j)
-                    for i in range(len(gt_events))
-                    for j in range(len(pred_events)) if IoU[i, j] > 0), reverse=True)
-    used_r, used_c, matches = set(), set(), []
-    for v, r, c in pairs:
-        if r in used_r or c in used_c:
-            continue
-        used_r.add(r); used_c.add(c)
-        matches.append((r, c, v))
-    matches.sort(key=lambda m: m[0])  # 按 gt 顺序输出
+    # 二部图: IoU>0 的边
+    from scipy.sparse import csr_matrix
+    from scipy.sparse.csgraph import maximum_bipartite_matching
+    adj = (IoU > 0).astype(np.int32)
+    # scipy 需要 (n_pred, n_gt) 方向
+    match = maximum_bipartite_matching(csr_matrix(adj.T), perm_type='column')
+    # match[i] = j 表示 pred i → gt j; 转换为 (gt, pred) 对
+    base_matches = []
+    for pred_idx, gt_idx in enumerate(match):
+        if gt_idx >= 0:  # -1 = unmatched
+            base_matches.append((gt_idx, pred_idx, IoU[gt_idx, pred_idx]))
+    # 最大基数已保证; 在此基础上用 Hungarian 选总IoU最大的最大基数匹配
+    if len(base_matches) > 0:
+        # 构建限制图: 仅保留有正IoU的行/列, Hungarian 最大化总IoU但限定基数
+        from scipy.optimize import linear_sum_assignment
+        # 大IoU矩阵(求最小化): 对IoU>0的子矩阵做 Hungarian (-IoU), 无边处设大值
+        n_g, n_p = IoU.shape
+        cost = np.where(IoU > 0, -IoU, 1e6)
+        rows, cols = linear_sum_assignment(cost)
+        hung_matches = [(r, c, IoU[r, c]) for r, c in zip(rows, cols)
+                        if IoU[r, c] > 0]
+        # Hungarian 可能给出更大基数; 取两者中基数大的
+        if len(hung_matches) >= len(base_matches):
+            matches = sorted(hung_matches, key=lambda m: m[0])
+        else:
+            matches = sorted(base_matches, key=lambda m: m[0])
+    else:
+        matches = []
     return matches, IoU
 
 

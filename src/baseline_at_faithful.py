@@ -18,7 +18,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from data.protocol import (four_block_split, Scaler, make_bags_v2,
+from data.protocol import (official_split, Scaler, make_bags_v2,
                            point_scores, threshold_from_calib, evaluate_point)
 
 L, l, BAG_STRIDE = 128, 16, 64
@@ -86,10 +86,11 @@ class ATModel(nn.Module):
         return self.recon(h), series_all, prior_all
 
 
-def baseline_at_faithful(X, Y, seed=7, epochs=10, lam=3.0, **kw):
-    """两阶段 minimax 训练 (原文 Phase1/Phase2 每 epoch 交替)."""
+def baseline_at_faithful(X, Y, seed=7, epochs=10, lam=3.0, n_official_train=None, **kw):
+    """两阶段 minimax 训练 (同iteration双loss, 官方solver式).
+    R4-P0-1: n_official_train 非 None 时走 official_split."""
     torch.manual_seed(seed); np.random.seed(seed)
-    sp = four_block_split(len(Y))
+    sp = official_split(len(Y), n_official_train)
     scaler = Scaler(X[sp["train"][0]:sp["train"][1]])
     Xs = scaler.transform(X)
     D = X.shape[1]
@@ -139,10 +140,10 @@ def baseline_at_faithful(X, Y, seed=7, epochs=10, lam=3.0, **kw):
     model.eval()
 
     def window_score(win_np, temperature=50):
-        """官方 test() 218-247 行: T=50; metric = softmax(−series_loss−prior_loss, dim=-1)
-        (窗口维); cri = metric ⊙ recon_err (逐点乘法); 每窗分数 = cri 均值.
-        (不采用官方 detection-adjustment 点调整协议 — 那是被可靠性文献批评的口径;
-        阈值仍走本文统一 calib Q95 管线.)"""
+        """官方 test() 218-247 行: T=50; metric = softmax(−sl−pl, dim=-1) (窗口维);
+        cri = metric ⊙ recon_err (逐点). R4: 输出 (N, n) instance级分数 (每instance
+        = 其覆盖的 l 个时间点的均值), 保留窗口内排序信息 (官方为逐点展平).
+        (不采用官方 detection-adjustment 点调整 — 可靠性文献批评的口径.)"""
         out = []
         with torch.no_grad():
             for i in range(0, len(win_np), 128):
@@ -154,19 +155,21 @@ def baseline_at_faithful(X, Y, seed=7, epochs=10, lam=3.0, **kw):
                     p_n = p / p.sum(-1, keepdim=True)
                     kl_s = AnomalyAttention.kl(s, p_n.detach()) * temperature    # (B, L)
                     kl_p = AnomalyAttention.kl(p_n, s.detach()) * temperature
-                    sl = sl + kl_s.mean(dim=1)                                   # head均值
+                    sl = sl + kl_s.mean(dim=1)
                     pl = pl + kl_p.mean(dim=1)
                 sl, pl = sl / len(series), pl / len(series)
-                metric = torch.softmax(-sl - pl, dim=-1)                # (B, L) 窗口维
-                cri = metric * rec                                      # 逐点乘法 (官方 245)
-                out.append(cri.mean(dim=-1).numpy())                    # 每窗一个分数
-        return np.concatenate(out)                                      # (N,)
+                metric = torch.softmax(-sl - pl, dim=-1)                # (B, L)
+                cri = metric * rec                                      # (B, L) 逐点
+                B, Lw = cri.shape
+                n_inst = Lw // l                                        # n=8
+                cri_inst = cri.reshape(B, n_inst, l).mean(dim=-1)       # (B, n) instance级
+                out.append(cri_inst.numpy())
+        return np.concatenate(out)                                      # (N, n)
 
     s_all = np.full(len(Y), np.nan, dtype=np.float32)
     for name in ("calib", "test"):
         win, yb, starts, rel, N, n = mk(name)
-        wsc = window_score(win)                                          # (N,)
-        inst_sc = np.repeat(wsc[:, None], n, axis=1)                     # 广播到instance
+        inst_sc = window_score(win)                                      # (N, n) 直接instance级
         s_blk, _ = point_scores(len(Y), starts, rel, inst_sc, l, agg="max")
         s_all[sp[name][0]:sp[name][1]] = s_blk[sp[name][0]:sp[name][1]]
 

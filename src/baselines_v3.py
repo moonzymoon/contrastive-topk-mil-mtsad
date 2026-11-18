@@ -17,15 +17,17 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from data.protocol import (four_block_split, Scaler, make_bags_v2,
+from data.protocol import (four_block_split, official_split, Scaler, make_bags_v2,
                            point_scores, threshold_from_calib, evaluate_point)
 
 L, l, BAG_STRIDE = 128, 16, 64
 
 
-def _pipeline(X, Y):
-    """W1 统一管线: 返回各块 instance 数组与点级评测闭包."""
-    sp = four_block_split(len(Y))
+def _pipeline(X, Y, n_official_train=None):
+    """统一管线: 返回各块 instance 数组与点级评测闭包.
+    R4-P0-1 (2026-11-18 三外审): n_official_train 非 None 时走 official_split,
+    与主方法同轨; None 时回退 four_block_split (TSB 整流)."""
+    sp = official_split(len(Y), n_official_train)
     scaler = Scaler(X[sp["train"][0]:sp["train"][1]])
     Xs = scaler.transform(X)
     blocks = {}
@@ -59,10 +61,10 @@ def _flatten(insts):
 
 
 # ---------- 经典基线 (instance 级, 点级评测) ----------
-def baseline_pca(X, Y, seed=7, **kw):
+def baseline_pca(X, Y, seed=7, n_official_train=None, **kw):
     from sklearn.decomposition import PCA
     np.random.seed(seed)
-    blocks, finish = _pipeline(X, Y)
+    blocks, finish = _pipeline(X, Y, n_official_train)
     pca = PCA(n_components=0.9, svd_solver="full").fit(_flatten(blocks["train"][0]))
 
     def score(insts):
@@ -72,9 +74,9 @@ def baseline_pca(X, Y, seed=7, **kw):
     return finish(score)
 
 
-def baseline_if(X, Y, seed=7, **kw):
+def baseline_if(X, Y, seed=7, n_official_train=None, **kw):
     from sklearn.ensemble import IsolationForest
-    blocks, finish = _pipeline(X, Y)
+    blocks, finish = _pipeline(X, Y, n_official_train)
     iso = IsolationForest(n_estimators=100, random_state=seed,
                           contamination="auto").fit(_flatten(blocks["train"][0]))
 
@@ -83,9 +85,9 @@ def baseline_if(X, Y, seed=7, **kw):
     return finish(score)
 
 
-def baseline_ae(X, Y, seed=7, epochs=30, **kw):
+def baseline_ae(X, Y, seed=7, n_official_train=None, epochs=30, **kw):
     torch.manual_seed(seed); np.random.seed(seed)
-    blocks, finish = _pipeline(X, Y)
+    blocks, finish = _pipeline(X, Y, n_official_train)
     d = _flatten(blocks["train"][0]).shape[1]
     W = torch.from_numpy(_flatten(blocks["train"][0]))
 
@@ -112,11 +114,11 @@ def baseline_ae(X, Y, seed=7, epochs=30, **kw):
 
 
 # ---------- DeepSVDD (faithful, Ruff et al. ICML 2018) ----------
-def baseline_deep_svdd(X, Y, seed=7, epochs=30, **kw):
+def baseline_deep_svdd(X, Y, seed=7, n_official_train=None, epochs=30, **kw):
     """目标: min (1/N)Σ‖φ(x;θ) − c‖² + λ‖θ‖². c=初始嵌入均值(detach, 原文 §3.2).
     分数 = ‖φ(x)−c‖² (越大越异常). 无半径参数 (原文无)."""
     torch.manual_seed(seed); np.random.seed(seed)
-    blocks, finish = _pipeline(X, Y)
+    blocks, finish = _pipeline(X, Y, n_official_train)
     d = _flatten(blocks["train"][0]).shape[1]
     W = torch.from_numpy(_flatten(blocks["train"][0]))
     # bias=False 全层 (Ruff et al. 2018 §3.3 Prop.2: 有偏线性层存在常数映射 h≡c 坍缩解,
@@ -143,7 +145,7 @@ def baseline_deep_svdd(X, Y, seed=7, epochs=30, **kw):
 
 
 # ---------- USAD (faithful v2, Audibert et al. KDD 2020, per official code) ----------
-def baseline_usad(X, Y, seed=7, epochs=10, **kw):
+def baseline_usad(X, Y, seed=7, n_official_train=None, epochs=10, **kw):
     """忠实版 (三外审 A5 修复, 2026-11-18): 逐行对照官方 UsadModel/training/testing —
       结构: 单共享 encoder + decoder1 + decoder2 (官方 42-47 行)
       训练: 每 batch 双阶段, 各自独立 optimizer (官方 82-101 行):
@@ -155,7 +157,7 @@ def baseline_usad(X, Y, seed=7, epochs=10, **kw):
       输入: 官方对窗口 minmax→sigmoid 解码; 此处 instance 展平后 minmax[0,1],
         decoder 末端 Sigmoid (保持官方数值域), 训练/推理一致."""
     torch.manual_seed(seed); np.random.seed(seed)
-    blocks, finish = _pipeline(X, Y)
+    blocks, finish = _pipeline(X, Y, n_official_train)
     d = _flatten(blocks["train"][0]).shape[1]
 
     def _mm(t):  # minmax -> [0,1] (逐行)
@@ -207,18 +209,19 @@ def baseline_usad(X, Y, seed=7, epochs=10, **kw):
     def score(insts):
         with torch.no_grad():
             F = _mm(torch.from_numpy(insts.reshape(-1, insts.shape[-1] * l)))
-            z = E(F); w1 = D1(z); w2 = D2(z)
+            # R4 (GPT): 官方 testing 用 w2 = D2(E(w1)), 非 D2(E(x))
+            w1 = D1(E(F)); w2 = D2(E(w1))
             return (0.5 * ((F - w1) ** 2).mean(1) + 0.5 * ((F - w2) ** 2).mean(1)).numpy()
     return finish(score)
 
 
 # ---------- 多球SVDD风格 (our implementation, 诚实改名) ----------
-def baseline_ms_svdd(X, Y, seed=7, epochs=30, k=3, margin=1.5, **kw):
+def baseline_ms_svdd(X, Y, seed=7, n_official_train=None, epochs=30, k=3, margin=1.5, **kw):
     """multi-sphere SVDD-style baseline — our implementation of the objective of
     Xing et al. (PR 2024): 多球紧致 + 球心分离. 不含其解纠缠VAE组件 (差异如实声明,
     论文中不得称 DMSVDD, 称 "MS-SVDD-style")."""
     torch.manual_seed(seed); np.random.seed(seed)
-    blocks, finish = _pipeline(X, Y)
+    blocks, finish = _pipeline(X, Y, n_official_train)
     d = _flatten(blocks["train"][0]).shape[1]
     W = torch.from_numpy(_flatten(blocks["train"][0]))
     enc = nn.Sequential(nn.Linear(d, 64), nn.ReLU(), nn.Linear(64, 16))

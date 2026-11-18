@@ -156,66 +156,6 @@ def run_v3(X, Y, seed, pool="max", var_attn=False, epochs=None, lr=2e-3,
     m["final_radii"] = model.hypers.radii.detach().numpy().tolist()  # ⑤ 监控
     return m
 
-    model = CMHMIL(D, d_embed=cfg["model"]["encoder"]["d_embed"],
-                   k=cfg["model"]["hyperspheres"]["k"],
-                   channels=tuple(cfg["model"]["encoder"]["channels"]),
-                   kernel_size=cfg["model"]["encoder"]["kernel_size"],
-                   dropout=cfg["model"]["encoder"]["dropout"],
-                   use_var_attn=var_attn, pool=pool,   # ⑦⑧ 参数化
-                   radius_mode=radius_mode, radius_q=radius_q)  # ⑤b2
-    crit = CMHLossV3(w_contrast=w_contrast, w_radius=w_radius,
-                     radius_mode=radius_mode)
-    opt = torch.optim.AdamW(model.parameters(), lr=lr,
-                            weight_decay=cfg["train"]["weight_decay"])
-
-    wX = torch.from_numpy(blocks["train"][0])
-    wY = torch.from_numpy(blocks["train"][1].astype(np.float32))
-    model.init_centers_kmeans(wX[torch.randperm(len(wX))[:min(256, len(wX))]])
-    bs = cfg["train"]["batch_size"]
-
-    model.train()
-    for ep in range(epochs):
-        perm = torch.randperm(len(wX))
-        for i in range(0, len(perm), bs):
-            idx = perm[i:i + bs]
-            if len(idx) < 4:
-                continue
-            xb, yb = wX[idx], wY[idx]
-            scores, bag_score, z = model(xb, return_z=True)
-            bag_z = z.mean(dim=1)  # bag 池化表征 (对比学习输入)
-            loss, parts = crit(bag_score, yb, scores, z.reshape(-1, z.shape[-1]),
-                               bag_z, model.hypers.centers, model.hypers.radii)
-            opt.zero_grad(); loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), cfg["train"]["grad_clip"])
-            opt.step()
-            # ⑤b2: 每步 EMA 分位数半径更新 (无梯度统计量)
-            model.hypers.update_radii(z.reshape(-1, z.shape[-1]).detach())
-
-    # ---- 推理: instance 分数 → 点级 ----
-    model.eval()
-    s_all = np.full(len(Y), np.nan, dtype=np.float32)
-    with torch.no_grad():
-        for name in ("calib", "test"):
-            insts, yb, starts, rel = blocks[name]
-            sc = []
-            for i in range(0, len(insts), 256):
-                s_i, _ = model(torch.from_numpy(insts[i:i + 256]))
-                sc.append(s_i.numpy())
-            sc = np.concatenate(sc)  # (N, n)
-            s_blk, _ = point_scores(len(Y), starts, rel, sc, l, agg="max")
-            s_all[sp[name][0]:sp[name][1]] = s_blk[sp[name][0]:sp[name][1]]
-
-    thr = threshold_from_calib(s_all[sp["calib"][0]:sp["calib"][1]],
-                               Y[sp["calib"][0]:sp["calib"][1]], alpha=0.05)
-    cov = ~np.isnan(s_all[sp["test"][0]:sp["test"][1]])
-    m = evaluate_point(Y[sp["test"][0]:sp["test"][1]],
-                       s_all[sp["test"][0]:sp["test"][1]], thr, cov)
-    m["threshold"] = thr
-    m["train_bags"] = int(len(blocks["train"][1]))
-    m["train_anom_bags"] = int(blocks["train"][1].sum())
-    m["final_radii"] = model.hypers.radii.detach().numpy().tolist()  # ⑤ 监控
-    return m
-
 
 def main():
     ap = argparse.ArgumentParser()

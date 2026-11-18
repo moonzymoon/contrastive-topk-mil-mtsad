@@ -1,133 +1,108 @@
-# Contrastive TopK-MIL for Weakly-Supervised MTSAD
+# Bag-Level Contrastive Learning for Weakly-Supervised MIL Anomaly Detection in Multivariate Time Series
 
-Official code for **"Contrastive TopK-MIL with Gradient Attribution for Weakly-Supervised Multivariate Time-Series Anomaly Detection"** (under review).
+Official code for **"Bag-Level Contrastive Learning for Weakly-Supervised Multiple-Instance Anomaly Detection in Multivariate Time Series"**.
 
 ## Overview
 
-This repository implements a weakly-supervised multiple-instance learning (MIL) framework for multivariate time-series anomaly detection (MTSAD). The method addresses the **weak-representation problem**: existing MIL-MTSAD methods train their encoders only through indirect one-class regularisation, yielding representations that are often outperformed by classical unsupervised baselines such as PCA and autoencoders under honest evaluation protocols.
+A weakly-supervised MIL framework for multivariate time-series anomaly detection (MTSAD) that introduces **bag-level contrastive learning**: normal bags serve as mutual positives, anomaly bags as negatives — to our knowledge the first such use of MIL bag labels in the MIL-MTSAD setting.
 
-The framework introduces three components:
+Key components:
+1. **Bag-level contrastive learning** — under all-normal training (the standard MTSAD case), a mean-cosine dispersion regulariser (not Wang & Isola uniformity; it constrains only the representation mean) prevents collapse. Under the track-2 weak-annotation protocol, a joint InfoNCE objective activates.
+2. **Quantile radius** — hypersphere radii are data statistics (EMA of per-sphere 90% distance quantile), stored as buffers with no gradient channel, eliminating the unbounded-radius degeneracy of learned radii.
+3. **TopK ranking loss** — handles anomaly sparsity; the equal-budget track-2 experiment quantifies its combined contribution with the contrastive objective (+0.124 AUPRC over bag-CE alone on PSM).
+4. **Gradient attribution** — under a corrected coordinate alignment, Hit@3 = 0.612 vs. unweighted hypergeometric chance 0.567 (5 of 6 entities above their own chance; single seed).
 
-1. **Bag-level contrastive learning** (Contribution 1) — uses the natural structure of MIL: normal bags serve as mutual positives while anomaly bags act as negatives, learning discriminative representations without anomaly injection. Under the all-normal training block (the standard case in MTSAD), a uniformity regulariser spreads normal bag representations across the feature space, preventing collapse.
-2. **TopK ranking loss** (Contribution 2) — replaces standard bag-level cross-entropy with a ranking objective that focuses on the highest-scoring instances, addressing the anomaly sparsity problem that dilutes standard pooling.
-3. **Gradient-based attribution** (exploratory) — variable-level fault localisation via input gradients, validated against SMD's true root-cause labels (`interpretation_label`). We report openly that this exploratory analysis does not surpass random on SMD's multi-variable events — an honest negative result discussed as a limitation rather than a contribution.
+## Dual-Track Protocol (Plan C)
+
+All experiments use a **dual-track protocol** ensuring no training contact with official-test data (track 1) or equal-budget weak annotation (track 2):
+
+- **Track 1** (main comparison): For datasets with official train/test splits (SMD, PSM, MSL, SMAP, WADI), training/validation/calibration happen entirely **within the official training segment** (70/15/15 split); the held-out test is the official test segment in full. For TSB-AD-M datasets (Exathlon-1/2, Genesis, Daphnet, CATSv2), a single-stream 35/10/10/45 split is used (no official split exists). **SWaT is excluded** — the locally available test file contains only attack-labelled rows, making AUPRC degenerate.
+- **Track 2** (equal-budget weak supervision): The first 15% of the official test segment serves as a weak-annotation block, consumed at equal label budget by our method (InfoNCE branch), a bag-CE-only ablation, and TAIL-MIL (official model).
+
+All metrics are computed at **point level** (instance scores max-aggregated onto the timestamp axis). Every method receives the same splits.
 
 ## Requirements
 
 - Python >= 3.9
-- PyTorch (CPU version is sufficient)
+- PyTorch (CPU sufficient)
 - numpy, scipy, scikit-learn, pyyaml
 
+## Quick Start
+
 ```bash
-pip install torch numpy scipy scikit-learn pyyaml
+export CMH_DATA_ROOT=/path/to/datasets
+
+# Main experiment (track 1, all datasets, all baselines, 5 seeds)
+cd src/
+PYTHONPATH=. python run_full_v3_c.py
+
+# Or single dataset / method
+PYTHONPATH=. python run_v3.py --dataset MSL --seeds 7,42,123,202,999 --split_mode plan-c
+
+# Track 2 (equal-budget weak supervision)
+PYTHONPATH=. python run_v3.py --dataset SMD --split_mode plan-c-annot
+PYTHONPATH=. python run_tailmil_c.py SMD
 ```
-
-## Datasets
-
-All datasets are publicly available. Download and place under `datasets/`:
-
-| Dataset | Source | Directory |
-|---|---|---|
-| SMD (28 entities) | [OmniAnomaly](https://github.com/NetManAIOps/OmniAnomaly/tree/master/ServerMachineDataset) | `datasets/SMD/` |
-| PSM | [eBay](https://github.com/eBay/tsAdBenchmark) | `datasets/PSM/` |
-| MSL / SMAP | [Telemanom](https://github.com/khundman/telemanom) | `datasets/NASA/MSL/`, `datasets/NASA/SMAP/` |
-| SWaT | [iTrust SUTD](https://itrust.sutd.edu.sg/itrust-labs_datasets/) | `datasets/SWaT/` |
-| WADI | [iTrust SUTD](https://itrust.sutd.edu.sg/itrust-labs_datasets/) | `datasets/WADI/` |
-| Exathlon | [Exathlon](https://github.com/exathlon-benchmark/exathlon) | `datasets/Exathlon/` |
-
-SMD also provides `interpretation_label/` (domain-expert root-cause variable labels) from the OmniAnomaly repository, used for the attribution evaluation.
 
 ## Repository Structure
 
 ```
-├── configs/
-│   └── default.yaml          # all hyperparameters
+├── configs/default.yaml       # all hyperparameters
 ├── src/
-│   ├── data/                 # dataset loaders + chronological split
-│   │   ├── loaders.py
-│   │   └── split.py
-│   ├── models/               # encoder, multi-hypersphere prototype layer, CMH-MIL
-│   │   ├── encoder.py
-│   │   ├── hyperspheres.py
-│   │   └── cmh_mil.py
-│   ├── losses/               # v1 (compact/sep/rank) and v2 (+ contrastive + TopK)
-│   │   ├── cmh_loss.py
-│   │   └── cmh_loss_v2.py
-│   ├── evaluation/           # conformal threshold + event-level metrics
-│   │   ├── conformal.py
-│   │   └── metrics.py
-│   ├── utils/
-│   │   └── repro.py          # seeds, hashing, logging
-│   ├── baselines_ext/        # TAIL-MIL official baseline
-│   ├── run_v2_experiment.py  # main experiment (v2, 4 benchmarks, 5 seeds)
-│   ├── baselines.py          # classical baselines (PCA, IF, AE, DeepSVDD, DMSVDD)
-│   ├── baselines_sota.py     # USAD baseline
-│   └── run_grad_attribution.py  # gradient attribution evaluation
-└── results/                  # per-seed JSON logs (5-seed mean reported)
+│   ├── data/
+│   │   ├── protocol.py        # dual-track protocol (official_split, weak_annotation_split,
+│   │   │                      #   make_bags_v2 n=8, point_scores, Scaler)
+│   │   ├── loaders.py         # returns (X, Y, n_official_train) — raw values
+│   │   └── tsb_ad_loader.py   # TSB-AD-M loader (single-stream)
+│   ├── models/
+│   │   ├── encoder.py         # TCN + descriptors (var_attn removed)
+│   │   ├── hyperspheres.py    # quantile radius (EMA, buffer, no gradient)
+│   │   └── cmh_mil.py         # max pooling, any-point semantics
+│   ├── losses/
+│   │   └── cmh_loss_v3.py     # InfoNCE (joint), dispersion (mean-cos), TopK
+│   ├── evaluation/
+│   │   ├── metrics.py         # Event-F1 (maximum-cardinality matching), AUPRC, FAR
+│   │   └── conformal.py
+│   ├── baselines_v3.py        # PCA, IF, AE, DeepSVDD(bias-free), USAD(faithful), MS-SVDD-style
+│   ├── baseline_at_faithful.py # Anomaly Transformer (official minimax objective)
+│   ├── run_tailmil_c.py       # TAIL-MIL (official model, equal-budget track-2)
+│   ├── run_full_v3_c.py       # main experiment runner (dual-track, resumable)
+│   ├── run_grad_attribution_c.py # gradient attribution (corrected alignment)
+│   └── make_tables_c.py       # programmatic table generation (main/track2/q/ef1)
+├── results/                   # per-seed JSON logs (all experiments)
+└── paper/                     # LaTeX source + programmatically generated tables
 ```
 
-## Quick Start
+## Key Results (under the unified dual-track protocol)
 
-### Run the main experiment (v2, 4 benchmarks, 5 seeds)
-```bash
-cd src/
-PYTHONPATH=. python run_v2_experiment.py
-```
+| Dataset | Ours | Best baseline |
+|---------|------|---------------|
+| SMAP | **0.147** | AT 0.117 |
+| WADI | **0.158** | AE 0.154 |
+| Exathlon-1 | 0.993 | IF 0.997 |
+| SMD | 0.490 | PCA 0.637 |
+| PSM | 0.437 | AT 0.511 |
 
-### Run classical baselines
-```bash
-PYTHONPATH=. python baselines.py
-PYTHONPATH=. python baselines_sota.py      # USAD
-PYTHONPATH=. python baselines_ext/run_tailmil.py
-```
+- vs. USAD (faithful re-implementation): **9/10 wins**
+- vs. Anomaly Transformer (faithful): **8/10 wins**
+- Track-2 equal-budget: **5/5 wins over TAIL-MIL**; +0.124 AUPRC over bag-CE on PSM
+- Attribution: Hit@3 = 0.612 vs. chance 0.567 (5/6 entities above own chance)
+- SMD-28 macro: 0.426 (entity SD 0.264, seed SD 0.010)
 
-### Run gradient attribution evaluation (SMD)
-```bash
-PYTHONPATH=. python run_grad_attribution.py
-```
+## Honest Limitations
 
-## Configuration
-
-All hyperparameters are in `configs/default.yaml`. Key settings:
-
-- **Seeds**: {7, 42, 123, 202, 999}
-- **Temporal split**: weak-train 35% / validation 10% / calibration 10% / test 45% (four disjoint blocks)
-- **Bag**: L=128, instance l=16, stride=64
-- **Loss weights** (v2): contrast=0.5, topk=1.0, compact=0.10, sep=0.05, balance=0.10
-- **Conformal**: alpha=0.05, threshold computed on calibration block
-- **CPU-only** (no GPU required)
-
-## Results
-
-Results are saved to `results/` as JSON files with per-seed logs. The paper reports 5-seed means across 8 benchmarks (SMD, PSM, MSL, SMAP, SWaT, WADI, Exathlon-1, Exathlon-2).
-
-Key findings (reported honestly, including negative results):
-- The method **surpasses classical detectors on MSL, SMAP, and Exathlon-1** (AUPRC up to 0.999 on Exathlon-1).
-- On **SMD/PSM/SWaT/WADI**, classical reconstruction-based detectors remain stronger on AUPRC.
-- **Single-entity SMD results overstate performance**: the 28-entity macro-average AUPRC drops to 0.233 (vs. 0.511 for machine-1-1).
-- **Gradient attribution does not surpass random** on SMD's multi-variable events (Hit@3 = 0.438 vs. random 0.566), reported as a limitation.
-- **Conformal coverage** holds on MSL/Exathlon but is violated on SMD/PSM/SMAP due to time-series non-exchangeability.
-
-See `results/v2_experiment.json` for the full per-seed numbers.
+- Reconstruction methods (PCA, AE) remain stronger on SMD, PSM, Daphnet, CATSv2
+- Event-F1 on SMAP trails AT (0.081 vs. 0.307) despite better AUPRC
+- Quantile threshold is an empirical device; coverage violated on drifting datasets
+- Silhouette-based applicability scores are exploratory, not validated
+- SWaT excluded (degenerate local test data)
 
 ## Reproducibility
 
-- Fixed random seeds {7, 42, 123, 202, 999}; means reported.
-- SHA-256 checksums of data/config/code archived per run (`utils/repro.py`).
-- All negative results retained (sphere collapse, non-significant comparisons, attribution failure).
-- The four-block temporal split strictly separates model selection, threshold calibration, and final evaluation — addressing the leakage concerns raised by reliable-benchmark studies.
-
-## Citation
-
-```bibtex
-@article{zhang2026contrastive,
-  title={Contrastive TopK-MIL with Gradient Attribution for Weakly-Supervised Multivariate Time-Series Anomaly Detection},
-  author={Zhang, Yao and Li, Baocai and Wang, Yichen},
-  journal={International Journal of Machine Learning and Cybernetics},
-  year={2026},
-  note={Under review}
-}
-```
+- Fixed seeds {7, 42, 123, 202, 999} for all methods
+- All results generated programmatically from archived per-seed JSONs
+- All tables in the paper generated by `make_tables_c.py` (no hand-typed numbers)
+- Gradient attribution uses single seed (7); multi-seed replication is future work
 
 ## License
 

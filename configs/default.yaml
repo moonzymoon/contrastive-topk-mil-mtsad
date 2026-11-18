@@ -1,64 +1,69 @@
-# CMH-MIL 默认实验配置
-# 论文: From Bags to Calibrated Alarms:
-#       Conformal Multi-Hypersphere Learning for Weakly-Supervised MTS Anomaly Detection
-# 合规: 固定种子 / 全程不触测试标签选阈值 / 阴性结果留存
+# CMH-MIL v3 实验配置 (方案C, 2026-11-19 全面对齐代码实际值)
+# 论文: Bag-Level Contrastive Learning for Weakly-Supervised MIL Anomaly Detection
+#       in Multivariate Time Series
 
 # ===== 复现性 =====
-seeds: [7, 42, 123, 202, 999]   # 第一篇同款5种子
+seeds: [7, 42, 123, 202, 999]
 
-# ===== 防泄漏时序划分 (方案C双轨, 2026-11-18) =====
-# 轨1 official: 官方train内70/15/15 → train/val/calib; test=官方test (protocol.official_split)
+# ===== 方案C双轨协议 =====
+# 轨1 official: 官方train内70/15/15; test=官方test (protocol.official_split)
 # 轨2 annot: 官方test前15%为弱标注块 (protocol.weak_annotation_split)
-# TSB-AD 5集 (无官方划分): 全流 35/10/10/45 (four_block_split, single-stream口径)
+# TSB-AD 5集(无官方划分): 全流35/10/10/45 (four_block_split)
 split:
-  weak_train_ratio: 0.35        # TSB整流口径
+  weak_train_ratio: 0.35
   val_ratio: 0.10
   calib_ratio: 0.10
   test_ratio: 0.45
-  official_tt: 0.70             # 官方train -> train
-  official_tv: 0.15             # 官方train -> val
-  official_tc: 0.15             # 官方train -> calib
-  weak_annot_frac: 0.15         # 官方test -> annot (轨2)
-  disjoint: true                # 时序不相交
+  official_tt: 0.70
+  official_tv: 0.15
+  official_tc: 0.15
+  weak_annot_frac: 0.15
+  disjoint: true
 
-# ===== Bag 协议 (沿用第一篇) =====
+# ===== Bag 协议 (n=8全覆盖) =====
 bag:
-  L: 128                        # bag长度
-  l: 16                         # instance长度
-  stride: 64                    # bag滑动步长 (bag_stride)
-  instance_stride: 16           # instance步长 (=l, 无缝覆盖; 方案C修复 n=8)
+  L: 128
+  l: 16
+  stride: 64              # bag_stride
+  instance_stride: 16     # =l, 无缝覆盖, n=8
 
 # ===== 模型 =====
 model:
   encoder:
-    type: tcn                   # tcn / cnn1d
-    d_embed: 24                 # 嵌入维度 (第一篇同款)
+    type: tcn
+    d_embed: 24
     channels: [32, 64]
     kernel_size: 3
     dropout: 0.1
-  var_attention: false          # 变量自注意力 (v3已删: forward未调用, 三外审R5)
+  var_attention: false    # v3已删 (forward未调用)
   hyperspheres:
-    k: 3                        # 球数 (消融 k in {1,2,3,5,8})
-    init: vae_pretrain          # 导师C2: VAE预训练初始化
+    k: 3
+    init: kmeans          # k-means初始化 (run_v3.init_centers_kmeans)
+    radius_mode: quantile # EMA(Q90)统计量, buffer无梯度
+    radius_q: 0.9
+    radius_ema: 0.9
 
-# ===== 损失权重 (第一篇基础上, 据真实实验坍缩诊断调整) =====
+# ===== v3 损失权重 =====
 loss:
   bag_bce: 1.0
-  compact: 0.10                 # 0.20→0.10 降紧致力防坍缩 (实验诊断)
-  sep: 0.05                     # 0.02→0.05 升分离力 (实验诊断)
+  contrast: 0.5           # w_contrast (InfoNCE/dispersion)
+  topk: 1.0               # w_topk
+  topk_margin: 1.0
+  compact: 0.10
+  sep: 0.05
   sep_margin: 1.5
-  rank: 1.0
-  rank_margin: 1.0
-  elbo_mog_alpha: 0.10          # 导师C2混合高斯先验权重 (待消融)
-  balance: 0.10                 # 球均衡正则 (防坍缩, 实验诊断新增)
+  balance: 0.10
+  contrast_tau: 0.1       # InfoNCE temperature
 
-# ===== 保形校准 (创新点②) =====
-conformal:
-  method: split                 # split conformal (标准)
-  alpha: 0.05                   # 目标误报率
-  bag_pool: softmax             # bag聚合: softmax / mean / topk
+# ===== 阈值 (经验分位, 非共形保证) =====
+threshold:
+  method: empirical_quantile  # calib正常点Q95 (非conformal, 如实声明)
+  alpha: 0.05
 
-# ===== 训练 (沿用第一篇优化器) =====
+# ===== Pooling =====
+pooling: max              # any-point语义 (v3统一)
+
+# ===== 训练 =====
 train:
   optimizer: adamw
   lr: 0.002
@@ -66,14 +71,15 @@ train:
   grad_clip: 5.0
   batch_size: 128
   max_epochs: 12
-  device: cpu                   # 硬约束: 全程CPU
+  device: cpu
 
 # ===== 数据集 =====
-datasets: [SMD, PSM, MSL, SMAP, 5ECK2022]   # 第一篇同源, 复用
-swat_wadi: false                # 待授权申请后开启
+datasets_official: [SMD, PSM, MSL, SMAP, WADI]     # 轨1 official_split
+datasets_single_stream: [Exathlon-1, Exathlon-2, Genesis, Daphnet, CATSv2]  # TSB-AD
+# SWaT已排除: 本地attack.csv全Attack(正例率100%), AUPRC退化
 
-# ===== 评估 (沿用第一篇 + 补VUS-PR) =====
+# ===== 评估 =====
 eval:
-  metrics: [AUPRC, PointF1, EventF1_one2one, AllEventMIoU, VUS_PR, AUROC]
-  event_match: one_to_one       # 一对一匹配, 漏检零信用
-  stats: [Friedman, Wilcoxon, Holm]
+  metrics: [AUPRC, PointF1, EventF1_one2one, AllEventMIoU, AUROC, FAR_point]
+  event_match: maximum_cardinality  # scipy maximum_bipartite_matching
+  stats: [Wilcoxon_paired]

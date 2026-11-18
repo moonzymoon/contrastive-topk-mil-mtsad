@@ -23,10 +23,12 @@ SEEDS = [7, 42, 123, 202, 999]
 SEEDS_Q = [7, 42, 123]           # 敏感性用
 R = os.path.join(os.path.dirname(__file__), "..", "results")
 
-DATASETS_OFFICIAL = ["SMD", "PSM", "MSL", "SMAP", "SWaT", "WADI"]     # 轨1 official
+# R4-P0-2: SWaT本地attack.csv全Attack(54621行0正常), AUPRC退化恒=1.0
+# 原始iTrust SWaT test含正常回退, 此本地副本被预筛. 诚实处理: 从主表排除.
+DATASETS_OFFICIAL = ["SMD", "PSM", "MSL", "SMAP", "WADI"]     # 轨1 official
 DATASETS_TSB = ["Exathlon-1", "Exathlon-2", "Genesis", "Daphnet", "CATSv2"]  # 轨1 single-stream
-DATASETS_ALL = DATASETS_OFFICIAL + DATASETS_TSB
-TRACK2_SETS = DATASETS_OFFICIAL                                        # 轨2 (annot)
+DATASETS_ALL = DATASETS_OFFICIAL + DATASETS_TSB  # 10集 (SWaT排除)
+TRACK2_SETS = [d for d in DATASETS_OFFICIAL if d != "SWaT"]  # 5集                                        # 轨2 (annot)
 CLASSIC = ["PCA", "IF"]          # 确定性 (5种子同值, 仍按5种子跑以满足统一口径)
 NEURAL = ["AE", "DeepSVDD", "USAD", "MS-SVDD-style"]
 
@@ -72,12 +74,12 @@ def main():
             per.append(m)
             print(f"  v3 s{sd}: AUPRC={m['AUPRC']:.4f}")
         entry["ours_v3"] = {"per_seed": per, "aggregate": agg(per)}
-        # 7基线 5种子 (统一口径)
+        # 7基线 5种子 (统一口径 + R4-P0-1: 同轨切分)
         for name, fn in BASELINES_V3.items():
             per_b = []
             for sd in SEEDS:
                 try:
-                    mb = fn(X, Y, seed=sd)
+                    mb = fn(X, Y, seed=sd, n_official_train=n_off)
                     mb["seed"] = sd
                     per_b.append(mb)
                 except Exception as e:
@@ -85,11 +87,11 @@ def main():
             if per_b:
                 entry[name] = {"per_seed": per_b, "aggregate": agg(per_b)}
             print(f"  {name}: {entry.get(name, {}).get('aggregate', {}).get('AUPRC', 'FAIL')}")
-        # AT-faithful 5种子
+        # AT-faithful 5种子 (R4-P0-1: 同轨切分)
         per_at = []
         for sd in SEEDS:
             try:
-                ma = baseline_at_faithful(X, Y, seed=sd)
+                ma = baseline_at_faithful(X, Y, seed=sd, n_official_train=n_off)
                 ma["seed"] = sd
                 per_at.append(ma)
             except Exception as e:
