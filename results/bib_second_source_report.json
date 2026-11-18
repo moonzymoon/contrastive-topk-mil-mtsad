@@ -1,0 +1,131 @@
+{
+  "arxiv": {
+    "16": {
+      "verdict": "OK",
+      "id": "1807.03748",
+      "title": "Representation Learning with Contrastive Predictive Coding",
+      "year": "2018",
+      "first_author": "Aaron van den Oord",
+      "want": "contrastive predictive",
+      "want_year": "2018",
+      "year_ok": true
+    },
+    "25": {
+      "verdict": "OK",
+      "id": "2107.07511",
+      "title": "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",
+      "year": "2021",
+      "first_author": "Anastasios N. Angelopoulos",
+      "want": "conformal prediction",
+      "want_year": "2021",
+      "year_ok": true
+    }
+  },
+  "dblp": {
+    "1": {
+      "verdict": "ERR",
+      "query": "Deep One-Class Classification Ruff",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2018",
+      "verdict_final": "CHECK"
+    },
+    "6": {
+      "verdict": "ERR",
+      "query": "Attention-based Deep Multiple Instance Learning Ilse",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2018",
+      "verdict_final": "CHECK"
+    },
+    "8": {
+      "verdict": "ERR",
+      "query": "Unbiased Multiple Instance Learning Weakly Supervised Video Anomaly",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2023",
+      "verdict_final": "CHECK"
+    },
+    "13": {
+      "verdict": "ERR",
+      "query": "LOF Identifying Density-Based Local Outliers",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2000",
+      "verdict_final": "CHECK"
+    },
+    "15": {
+      "verdict": "ERR",
+      "query": "TSB-UAD Benchmark Univariate Time Series",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2022",
+      "verdict_final": "CHECK"
+    },
+    "17": {
+      "verdict": "ERR",
+      "query": "Understanding Contrastive Representation Learning Alignment Uniformity",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2020",
+      "verdict_final": "CHECK"
+    },
+    "18": {
+      "verdict": "ERR",
+      "query": "Axiomatic Attribution for Deep Networks",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2017",
+      "verdict_final": "CHECK"
+    },
+    "4": {
+      "verdict": "ERR",
+      "query": "review deep learning based anomaly detection Neurocomputing",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2026",
+      "verdict_final": "CHECK"
+    },
+    "5": {
+      "verdict": "ERR",
+      "query": "Graph anomaly detection time series survey",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2025",
+      "verdict_final": "CHECK"
+    },
+    "12": {
+      "verdict": "ERR",
+      "query": "Correlation-aware spatial-temporal graph multivariate time-series anomaly",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2024",
+      "verdict_final": "CHECK"
+    },
+    "NEW-DCdetector": {
+      "verdict": "ERR",
+      "query": "DCdetector dual attention contrastive time series anomaly",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2023",
+      "verdict_final": "CHECK"
+    },
+    "NEW-MulGad": {
+      "verdict": "ERR",
+      "query": "MulGad multi-granularity contrastive multivariate time series",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2025",
+      "verdict_final": "CHECK"
+    },
+    "NEW-DACAD": {
+      "verdict": "ERR",
+      "query": "DACAD domain adaptation contrastive anomaly detection multivariate",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2025",
+      "verdict_final": "CHECK"
+    },
+    "NEW-NRdetector": {
+      "verdict": "ERR",
+      "query": "noise-resilient point-wise anomaly detection weak segment",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2025",
+      "verdict_final": "CHECK"
+    },
+    "WADI-Ahmed": {
+      "verdict": "ERR",
+      "query": "WADI water distribution attack detection",
+      "err": "HTTP Error 429: Too Many Requests",
+      "year_want": "2017",
+      "verdict_final": "CHECK"
+    }
+  }
+}
